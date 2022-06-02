@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace KataCSharp.LeetCode.B
@@ -10,16 +11,72 @@ namespace KataCSharp.LeetCode.B
     {
         public void MyMain()
         {
-            //int[] arr = new int[] {-1, 0, 1, 2, -1, -4};
-            int[] arr = new int[] {0, 3, 0, 1, 1, -1, -5, -5, 3, -3, -3, 0};
+            //int[] arr = new int[] {-1, 0, 1, 2, -1, -4 };
+            int[] arr = new int[] {3, 0, -2, -1, 1, 2};
+            //int[] arr = new int[] {0, 3, 0, 1, 1, -1, -5, -5, 3, -3, -3, 0};
             Triplets(arr);
         }
-
-        public IList<IList<int>> Triplets(int[] arr)
+       // [[-2,-1,3],[-2,0,2],[-1,0,1]]
+        public IList<IList<int>> Triplets2(int[] arr)
         {
             int n = arr.Length;
             var matrix = new List<IList<int>>();
-            var set = new HashSet<List<int>>();
+            var list = new List<int>();
+            int fir = 0, sec = 1, trd = 2;
+            int t = 0, s = 0;
+            if (sec == n || trd == n) return matrix;
+
+            while (fir < n)
+            {
+                if (t == n)
+                {
+                    t = 0;
+                    sec++;
+                    s++;
+                }
+
+                if (sec == n) sec = 0; 
+                if (trd == n) trd = 0;
+                if(trd == fir || trd == sec)
+                {
+                    trd++;
+                    t++;
+                    continue;
+                }
+                if(sec == fir)
+                {
+                    sec++;
+                    s++;
+                    continue;
+                }
+
+                int num1 = arr[fir];
+                int num2 = arr[sec];
+                int num3 = arr[trd];
+
+                if (num1 + num2 + num3 == 0)
+                {
+                    list = new List<int> { num1, num2, num3 };
+                    list.Sort();
+                    if (!matrix.Any(m => Enumerable.SequenceEqual(m, list)))
+                    {
+                        matrix.Add(list);
+                    }
+                }
+                if (s >= n) 
+                {
+                    s = 0;
+                    fir++; }
+                trd++;
+                t++;
+            }
+            
+            return matrix;
+        } 
+        public List<IList<int>> Triplets(int[] arr)
+        {
+            int n = arr.Length;
+            var matrix = new List<IList<int>>();
             for (int fir = 0; fir < n; fir++)
             {
                 for (int sec = fir + 1, j = 0; j < n; sec++, j++)
@@ -33,46 +90,29 @@ namespace KataCSharp.LeetCode.B
                         if (trd == fir || trd == sec) continue;
                         if (arr[fir] + arr[sec] + arr[trd] == 0)
                         {
-                            //if (IsMatrixUnique(matrix, arr[fir], arr[sec], arr[trd]))
-                            //{
-                            //    matrix.Add(new List<int> { arr[fir], arr[sec], arr[trd] });
-                            //}
                             var sortedList = new List<int> { arr[fir], arr[sec], arr[trd] };
                             sortedList.Sort();
+                           
                             matrix.Add(sortedList);
                         }
 
                     }
                 }
             }
-            matrix = matrix.Distinct().ToList();
-            return matrix;
-        }
+            var res = new List<IList<int>>();
 
-        public bool IsMatrixUnique(List<IList<int>> matrix, int num1, int num2, int num3)
-        {
-            bool[] marks = new bool[3];
-            var nums = new List<int> { num1, num2, num3 };
-            for (int i = 0; i < matrix.Count; i++)
+            foreach (var item in matrix)
             {
-                for (int j = 0; j < matrix[i].Count; j++)
+                if (!res.Any(els => Enumerable.SequenceEqual(item, els)))
                 {
-                    if (nums.Contains(matrix[i][j]))
-                    {
-                        var numToRemove = matrix[i][j];
-                        int index = nums.IndexOf(numToRemove);
-                        marks[j] = true;
-                        nums.RemoveAt(index);
-                    }
+                    res.Add(item);
                 }
-                if(!marks.Any(el => el == false)){ return false; }
-                marks = new bool[3];
-                nums = new List<int> { num1, num2, num3 };
             }
+          
 
-
-            return marks.Any(el => el == false);
+            return res;
         }
+
 
     }
 }
