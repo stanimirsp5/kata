@@ -7,4 +7,10 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Sandbox\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Sandbox\" />
+  </ItemGroup>
 </Project>
