@@ -2,6 +2,6 @@
 using KataCSharp.LeetCode.B;
 
 
-SetMatrixZeroes t = new SetMatrixZeroes();
-t.MyMain();
+GroupAnagrams groupAnagrams = new GroupAnagrams();
+groupAnagrams.MyMain();
 
