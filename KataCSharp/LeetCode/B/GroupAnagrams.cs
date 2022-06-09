@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,8 +13,58 @@ namespace KataCSharp.LeetCode.B
         {
             string[] strs = new string[] { "eat", "tea", "tan", "ate", "nat", "bat" };
             Group(strs);
+            //var w1 = "ddddddddddg";
+            //var w2 = "dgggggggggg";
+            //var w1 = "eat";
+            //var w2 = "tea";
+            //var t = IsAnagram(w1, w2);
         }
-        public IList<IList<string>> Group(string[] strs)
+
+        public List<IList<string>> Group(string[] strs)
+        {
+
+            var dict = new Dictionary<string, List<string>>();
+
+
+
+            foreach (var str in strs)
+            {
+                var w = str.ToCharArray();
+                Array.Sort(w);
+                var sw = new string(w);
+
+                if(dict.TryGetValue(sw, out var list))
+                {
+                    list.Add(str);
+                }
+                else
+                {
+                    dict.Add(sw,new List<string> { str });
+                }
+            }
+            var res = new List<IList<string>>(dict.Values);
+            return res;
+
+        }
+
+        public bool IsAnagram(string w1, string w2)
+        {
+            var sorted1 = w1.ToCharArray();
+            Array.Sort(sorted1);
+            var nw1 = sorted1.ToString();
+            
+            var sorted2 = w2.ToCharArray();
+            Array.Sort(sorted2);
+            var nw2 = sorted2.ToString();
+
+            if(nw1 == nw2)return true;
+
+            return false;
+
+        }
+
+
+        public IList<IList<string>> Group2(string[] strs)
         {
 
             var list = strs.ToList();
@@ -68,7 +119,7 @@ namespace KataCSharp.LeetCode.B
 
         }
 
-        public bool IsAnagram(string w1, string w2)
+        public bool IsAnagram2(string w1, string w2)
         {
             if (w1.Length != w2.Length) return false;
 
@@ -77,17 +128,19 @@ namespace KataCSharp.LeetCode.B
 
             int i = 0, j = 0;
             int n = w1.Length;
+            var checkedLetterIndex = new List<int>();
             while (i < n && j < n)
             {
-                if (char1[i] == char2[j])
+                if (char1[i] == char2[j] && !checkedLetterIndex.Contains(j))
                 {
+                    checkedLetterIndex.Add(j);
                     i++;
                     j = -1;
                 }
                 j++;
             }
 
-            if (i == n ) return true;
+            if (i == n) return true;
             else return false;
         }
     }
