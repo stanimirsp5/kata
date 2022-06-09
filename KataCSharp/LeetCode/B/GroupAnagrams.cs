@@ -11,13 +11,39 @@ namespace KataCSharp.LeetCode.B
     {
         public void MyMain()
         {
-            string[] strs = new string[] { "eat", "tea", "tan", "ate", "nat", "bat" };
-            Group(strs);
-            //var w1 = "ddddddddddg";
-            //var w2 = "dgggggggggg";
-            //var w1 = "eat";
-            //var w2 = "tea";
-            //var t = IsAnagram(w1, w2);
+
+            //var r1 = LengthOfLongestSubstring(" ");//1
+            var r2 = LengthOfLongestSubstring("abcabcbb");//3
+            //var r3 = LengthOfLongestSubstring("dvdf");//3
+            //var r4  =LengthOfLongestSubstring("idwvdfp");//5
+        }
+        public int LengthOfLongestSubstring(string s)
+        {
+            char[] chars = s.ToCharArray();
+            var list = new List<char>();
+          
+            int maxLength = 0;
+            int i = 0;
+            while (i < chars.Length) 
+            {
+                char ch = chars[i];
+
+                if (list.Contains(ch))
+                {
+
+                    i = Array.IndexOf(chars, ch)+1;
+                    list = new List<char>();
+                    continue;
+                }
+
+                list.Add(ch);
+                int c = list.Count;
+                if (c > maxLength) maxLength = c;
+                i++;
+            }
+
+
+            return maxLength;
         }
 
         public List<IList<string>> Group(string[] strs)
@@ -25,7 +51,7 @@ namespace KataCSharp.LeetCode.B
 
             var dict = new Dictionary<string, List<string>>();
 
-
+            
 
             foreach (var str in strs)
             {
