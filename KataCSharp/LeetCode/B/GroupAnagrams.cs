@@ -12,39 +12,41 @@ namespace KataCSharp.LeetCode.B
         public void MyMain()
         {
 
-            //var r1 = LengthOfLongestSubstring(" ");//1
+            var r1 = LengthOfLongestSubstring(" ");//1
             var r2 = LengthOfLongestSubstring("abcabcbb");//3
-            //var r3 = LengthOfLongestSubstring("dvdf");//3
-            //var r4  =LengthOfLongestSubstring("idwvdfp");//5
+            var r3 = LengthOfLongestSubstring("dvdf");//3
+            var r4  =LengthOfLongestSubstring("idwvdfp");//5
+            var r5  =LengthOfLongestSubstring("ohvhjdml");//6
         }
         public int LengthOfLongestSubstring(string s)
         {
             char[] chars = s.ToCharArray();
             var list = new List<char>();
-          
-            int maxLength = 0;
-            int i = 0;
+            var dict = new Dictionary<int, string>();
+
+            int maxLength = 0, i = 0;
             while (i < chars.Length) 
             {
                 char ch = chars[i];
+                string chs = ch.ToString();
 
                 if (list.Contains(ch))
                 {
-
-                    i = Array.IndexOf(chars, ch)+1;
+                    i = dict.GetLastUniqueValueKey(chs) +1;
                     list = new List<char>();
+                    dict = new Dictionary<int, string>();
                     continue;
                 }
 
+                dict.Add(i, chs);
                 list.Add(ch);
                 int c = list.Count;
                 if (c > maxLength) maxLength = c;
                 i++;
             }
-
-
             return maxLength;
         }
+
 
         public List<IList<string>> Group(string[] strs)
         {
