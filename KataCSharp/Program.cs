@@ -2,6 +2,6 @@
 using KataCSharp.LeetCode.B;
 
 
-GroupAnagrams groupAnagrams = new GroupAnagrams();
-groupAnagrams.MyMain();
+Trees2 main = new Trees2();
+main.MyMain();
 

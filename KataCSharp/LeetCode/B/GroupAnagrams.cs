@@ -18,6 +18,7 @@ namespace KataCSharp.LeetCode.B
             var r4  =LengthOfLongestSubstring("idwvdfp");//5
             var r5  =LengthOfLongestSubstring("ohvhjdml");//6
         }
+
         public int LengthOfLongestSubstring(string s)
         {
             char[] chars = s.ToCharArray();
