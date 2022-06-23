@@ -1,7 +1,7 @@
 ﻿
 using KataCSharp.LeetCode.B;
+using KataCSharp.Recursion.Princeton;
 
-
-Trees2 main = new Trees2();
+MyMainRec main = new MyMainRec();
 main.MyMain();
 

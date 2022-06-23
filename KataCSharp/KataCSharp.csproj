@@ -9,8 +9,10 @@
 
   <ItemGroup>
     <None Remove="Sandbox\" />
+    <None Remove="Recursion\Princeton\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Sandbox\" />
+    <Folder Include="Recursion\Princeton\" />
   </ItemGroup>
 </Project>

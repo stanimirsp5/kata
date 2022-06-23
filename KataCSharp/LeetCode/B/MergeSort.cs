@@ -13,13 +13,65 @@ namespace KataCSharp.LeetCode.B
         {
             // int[] arr = new int[] { 7,3,4,9,6,5,2,8,1 };
 
-            int[] arr = new int[] { 5, 2 };
+            int[] arr5 = new int[] { 5, 2 };
             int[] arr88 = new int[] { 5, 4, 1, 3, 2 };
             int[] arr2 = new int[] { 6,5,7,1};
-            Sort(arr2, 0, arr2.Length-1);
-            //int[] arr = new int[] { 3, 4, 5, 1, 2 };
-           // Merge(arr,0, 0, arr.Length-1);
+            int[] arr = new int[] { 5,6,1,7};
+
+
         }
+        // 0,3
+        void MySort(int[] arr, int lo,int hi)//0,3/0,1
+        {
+            if (lo >= hi) return;
+            int mid = lo + (hi-lo)/2;//1,
+
+            MySort(arr, lo, mid);//0,1
+            MySort(arr, mid+1, hi);//1,1
+
+            MyMerge(arr, lo, mid, hi);
+
+        }
+
+        void MyMerge(int[] arr, int lo,int mid, int hi)//0,1,1
+        {
+
+            int[] leftArr = new int[mid-lo];
+            int[] rightArr = new int[hi-mid];
+            for (int i = 0, j = lo; i < leftArr.Length; i++, j++)
+            {
+                leftArr[i] = arr[j];
+            }
+
+            for (int m = 0, n = mid; m < rightArr.Length; m++,n++)
+            {
+                rightArr[m] = arr[n];
+            }
+            //[5,6,1,2]
+            int l = 0, r = 0, a = lo;
+            while (l < leftArr.Length || r < rightArr.Length)
+            {
+                if (leftArr[l] > rightArr[r])//[5,6]/[1,2]
+                {
+                    arr[a] = rightArr[r];
+                    a++;r++;
+                }
+                if (leftArr[l] < rightArr[r])//[5,6]/[1,2]
+                {
+                    arr[a] = leftArr[l];
+                    a++;l++;
+                }
+            }
+
+
+        }
+
+        //void MySwap(int[] arr1, int[] arr2)
+        //{
+        //    var temp = arr[a];
+        //    arr[a] = rightArr[r];
+        //    rightArr[r] = temp;
+        //}
 
         public void Test()
         {
