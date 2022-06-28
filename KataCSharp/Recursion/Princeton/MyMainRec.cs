@@ -5,7 +5,8 @@ namespace KataCSharp.Recursion.Princeton
     {
         public void MyMain()
         {
-            Fibonnacci f = new Fibonnacci();
+            //Fibonnacci f = new Fibonnacci();
+            TowersOfHanoi f = new TowersOfHanoi();
             f.Start();
         }
     }

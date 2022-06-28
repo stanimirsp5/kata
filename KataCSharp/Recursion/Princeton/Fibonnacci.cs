@@ -9,7 +9,8 @@ namespace KataCSharp.Recursion.Princeton
             //  Fib(0,1,0,5);
             // ReverseFib(2,3);
            int t = Factorial(5);
-           int gcd = GCD(6,4,1);
+           int gcd = GCD(12,8);
+           int gcdIterate = GCD2(100,80);
         }
         // 1,1,2,3,5,8,13,21,34,55,89,139
         void Fib(int a,int b, int count,int length)//0,1,1,3
@@ -36,17 +37,32 @@ namespace KataCSharp.Recursion.Princeton
         }
         //Euclid's algorithm greatest common divicor
         //4,6
-        int GCD(int a, int b, int gcd)
+        int GCD(int a, int b)//10,8
+        {
+            if(b == 0)
+            {
+                return a;
+            }
+           return GCD(b, a%b);
+        }
+
+        int GCD2(int a,int b)//6,4
         {
 
-            if(a%gcd != 0 || b%gcd != 0)
+            while (true)
             {
-            //Console.WriteLine(gcd);
-                return gcd-1;
+                int temp = a % b;
+                
+                if (temp == 0)
+                {
+                    break;
+                }
+                a = b;
+                b = temp;
+
             }
 
-            return GCD(a / gcd, b / gcd, gcd + 1);
-
+            return b;
         }
 
     }
