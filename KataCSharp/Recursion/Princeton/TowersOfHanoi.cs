@@ -11,11 +11,12 @@ namespace KataCSharp.Recursion.Princeton
         {
             int n = 3;
 
-            for (int i = n; i >= 1; i--)
-            {
-                A.Push(i);
-            }
-            Run();
+            //for (int i = n; i >= 1; i--)
+            //{
+            //    A.Push(i);
+            //}
+            //Run();
+            Tower(3, 'A', 'B', 'C');
         }
 
 
@@ -34,6 +35,35 @@ namespace KataCSharp.Recursion.Princeton
             Run();
 
             C.Push(B.Pop());
+        }
+
+        void Tower(int discNum, char from, char aux, char to)
+        {
+            if (discNum == 1)
+            {
+                Console.WriteLine("Move disc {0} from {1} to {2}", discNum, from,to);
+                return;
+            }
+            else
+            {
+                Tower(discNum - 1,from,to,aux);
+                Console.WriteLine("Move disc {0} from {1} to {2}", discNum, from, to);
+
+                Tower(discNum-1,aux,from,to);
+            }
+        }
+
+        void Hanoi()
+        {
+            if(A.Count == 1)
+            {
+                C.Push(A.Pop());
+            }
+            else
+            {
+                Hanoi();
+
+            }
         }
 
     }
