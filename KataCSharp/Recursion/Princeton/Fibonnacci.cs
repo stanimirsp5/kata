@@ -8,14 +8,66 @@ namespace KataCSharp.Recursion.Princeton
         {
             //Fib(0,1,0,5);
             // Fib2(5, 0, 0, 1);
-            Console.Write(FibMultipeRecursion(5));
+            //MRec(3);
             // ReverseFib(2,3);
             //int t = Factorial(5);
             //int gcd = GCD(12,8);
             //int gcdIterate = GCD2(100,80);
+
+            //var t = SAN(4);
+            Console.WriteLine(NUP(4,4));
+
+        }
+        void PF(int n1,int n2,int l, int n)// print fibonnacci
+        {
+            if (l == n) return;
+            Console.WriteLine(n1);
+            PF(n2, n1 + n2, l, n + 1);
+
+        }
+
+        int MyF(int n)
+        {
+            if (n == 0) return 0;
+            else if (n == 1) return 1;
+            else
+            {
+                var t = MyF(n - 1) + MyF(n - 2);
+                Console.WriteLine(t);
+                return t;
+            }
+        }
+        // 2,4
+        // 1,1; 2,1; 2,2; 2,3; 2,4
+        int NUP(int n, int m)//number of unique paths
+        {
+            if (n == 1 || m == 1) return 1;
+
+            return NUP(n - 1, m) + NUP(n, m - 1);
+        }
+        //4 - 1+2+3+4
+        int SAN(int n)//sum of all nums
+        {
+            if (n <= 0) return 0;
+
+           return SAN(n - 1) + n;
         }
         // 1,1,2,3,5,8,13,21,34,55,89,139
+        void MRec(int n)// 3
+        {
+            if (n < 0) return;
 
+            Console.Write(n+" ");
+
+            MRec(n - 1);
+            MRec(n - 1);
+        }
+        int Facto(int n)//5
+        {
+            if (n < 1) return 1;
+
+            return Facto(n - 1) * n;
+        }
         void Fib(int a,int b, int count,int length)//0,1,1,3
         {
             if (count != length)
@@ -54,6 +106,7 @@ namespace KataCSharp.Recursion.Princeton
                 int f1 = FibMultipeRecursion(n - 1);
                 int f2 = FibMultipeRecursion(n - 2);
                 int res = f1 + f2;
+                Console.WriteLine(res);
                 return res;
             }
             

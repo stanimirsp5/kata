@@ -16,9 +16,15 @@ namespace KataCSharp.Recursion.Princeton
             //    A.Push(i);
             //}
             //Run();
-            Tower(3, 'A', 'B', 'C');
+            TOH(3, 'A', 'B', 'C');
         }
-
+        void TOH(int n, char a, char b, char c)
+        {
+            if (n <= 0) return;
+            TOH(n - 1, a, c, b);
+            Console.WriteLine($"Move {n} from {a} to {c}");
+            TOH(n - 1,b,a,c);
+        }
 
         void Run()
         {
