@@ -8,7 +8,10 @@ namespace KataCSharp.Recursion.Princeton
         {
             //Fib(0,1,0,5);
             // Fib2(5, 0, 0, 1);
-            //MRec(3);
+
+           // Perm("ABC", 0, 0);
+            //Console.Write(FibMultipeRecursion(5));
+
             // ReverseFib(2,3);
             //int t = Factorial(5);
             //int gcd = GCD(12,8);
@@ -53,6 +56,7 @@ namespace KataCSharp.Recursion.Princeton
            return SAN(n - 1) + n;
         }
         // 1,1,2,3,5,8,13,21,34,55,89,139
+
         void MRec(int n)// 3
         {
             if (n < 0) return;
@@ -67,6 +71,18 @@ namespace KataCSharp.Recursion.Princeton
             if (n < 1) return 1;
 
             return Facto(n - 1) * n;
+        }
+        void Perm(string str, int i,int n)
+        {
+            if(str.Length <= n)
+            {
+                //i += 1;
+                Console.WriteLine();
+                return;
+            }
+            Console.Write(str[i]);
+            Perm(str, i+1, n+1);
+            Console.Write(str[i]);
         }
         void Fib(int a,int b, int count,int length)//0,1,1,3
         {

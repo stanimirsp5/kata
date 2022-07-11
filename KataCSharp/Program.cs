@@ -1,6 +1,6 @@
 ﻿
 using KataCSharp.LeetCode.B;
-using KataCSharp.Recursion.Princeton;
+using KataCSharp.Recursion;
 
 MyMainRec main = new MyMainRec();
 main.MyMain();
