@@ -10,7 +10,7 @@ namespace KataCSharp.Recursion
         {
             // Fibonnacci f = new Fibonnacci();
             //TowersOfHanoi f = new TowersOfHanoi();
-            var f = new NKnightProblem();
+            var f = new RatInMaze();
             f.Start();
         }
     }
