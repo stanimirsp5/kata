@@ -2,8 +2,8 @@
 using KataCSharp.LeetCode.B;
 using KataCSharp.Recursion;
 
-//MyMainRec main = new MyMainRec();
-//main.MyMain();
+MyMainRec main = new MyMainRec();
+main.MyMain();
 
 var list1 = new List<string>() {"test1", "test2" };
 var list2 = new List<string>() {"file1", "file2" };
@@ -52,7 +52,8 @@ void ListRefTest(List<string> list)
 }
 
 
-
+char[] ch = new char[] { 'a', 'b' };
+string resStr = string.Join("",ch);
 
 
 
