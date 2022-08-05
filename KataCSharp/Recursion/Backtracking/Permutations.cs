@@ -9,14 +9,46 @@ namespace KataCSharp.Recursion.Backtracking
         List<string> resList = new List<string>();
         public void Start()
         {
-            
-           // PermuteLetters(0);
+
+            // PermuteLetters(0);
             //string str = "abc";
             //InPlacePerm(str, 0, str.Length - 1);
-            PermuteWithRepetition(0);
+            //PermuteParentheses(0);
+            AreParenthesesValid();
         }
+        static string parentheses = "()()";
+        static int pn = parentheses.Length;
+        char[] pRes = new char[pn];
+        bool[] pUsed = new bool[pn];
+        void PermuteParentheses(int index)
+        {
+            if(index >= pn)
+            {
+                if(AreParenthesesValid(pRes)){
+                    Common.PrintArray(pRes);
+                }
+                return;
+            }
 
-        void PermuteLetters(int index)
+            for (int i = 0; i < pn; i++)
+            {
+                if (!pUsed[i])
+                {
+                    pUsed[i] = true;
+                    pRes[index] = parentheses[i];
+                    PermuteParentheses(index + 1);
+                    pUsed[i] = false;
+                }
+            }
+
+        }
+        bool AreParenthesesValid(char[] pRes)
+        {
+            string str = pRes.ToString();
+
+            return true;
+        }
+            void PermuteLetters(int index)
         {
 
             if(index >= letters.Length)
