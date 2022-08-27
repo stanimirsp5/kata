@@ -10,15 +10,15 @@ namespace KataCSharp.Recursion.Backtracking
     {
 
         static int[] nums = new int[]{1,2,3};
-        int[] arr = new int[2];
+        int[] arr = new int[] { 1,2,3};
         int k = 2;
         int n = nums.Length;
         public void Start()
         {
-            //Comb(0,0);
+            Comb(0,0);
             // CombRepetition(0,0);
             string digits = "23";
-            LetterCombinations(digits);
+            //LetterCombinations(digits);
            
         }
         //["ad","ae","af","bd","be","bf","cd","ce","cf"]

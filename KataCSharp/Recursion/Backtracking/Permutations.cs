@@ -1,31 +1,53 @@
 ﻿using System;
+using System.Runtime.InteropServices;
+
 namespace KataCSharp.Recursion.Backtracking
 {
+    // Combinations - the order doesn't matter 123
+    // Permutations - the order matter 123,132,213,231,312,321
+    // Variations - the order matter for selected num of items 123 n-2 - 12,13,21,23,31,32
     public class Permutations
     {
-        static string letters = "ab";
-        bool[] used = new bool[letters.Length];
-        char[] charArr = new char[letters.Length];
+        static string letters = "abc";
+        static bool[] used = new bool[letters.Length];
+        static char[] charArr = new char[letters.Length];
         List<string> resList = new List<string>();
+
+        
+        int nParentheses = 6;
+        int pn;
+        char[] pRes;
+        bool[] pUsed;
+        static HashSet<string> resParentheses = new HashSet<string>();
         public void Start()
         {
 
-            // PermuteLetters(0);
+             //PermuteLetters(0);
             //string str = "abc";
+
             //InPlacePerm(str, 0, str.Length - 1);
-            //PermuteParentheses(0);
-            AreParenthesesValid();
+            string parentheses = GenerateParentheses(nParentheses);
+            pn = parentheses.Length;
+            pRes = new char[pn];
+            pUsed = new bool[pn];
+            PermuteParentheses(0, parentheses);
+
+            //AreParenthesesValid("()()",0,0,0);
+           //var v = ArePValid(")");
+
         }
-        static string parentheses = "()()";
-        static int pn = parentheses.Length;
-        char[] pRes = new char[pn];
-        bool[] pUsed = new bool[pn];
-        void PermuteParentheses(int index)
+        public IList<string> GenerateParenthesis(int n)
+        {
+            var t = resParentheses.ToList();
+            return t;
+        }
+
+            void PermuteParentheses(int index, string parentheses)
         {
             if(index >= pn)
             {
-                if(AreParenthesesValid(pRes)){
-                    Common.PrintArray(pRes);
+                if (ArePValid(pRes)){
+                    resParentheses.Add(new string(pRes));
                 }
                 return;
             }
@@ -36,19 +58,66 @@ namespace KataCSharp.Recursion.Backtracking
                 {
                     pUsed[i] = true;
                     pRes[index] = parentheses[i];
-                    PermuteParentheses(index + 1);
+                    PermuteParentheses(index + 1, parentheses);
                     pUsed[i] = false;
                 }
             }
-
         }
-        bool AreParenthesesValid(char[] pRes)
+        string GenerateParentheses(int n)
         {
-            string str = pRes.ToString();
+            string init = string.Empty;
+            int i = 0;
+            while(i < n)
+            {
+                init += "()";
+                i++;
+            }
 
-            return true;
+            return init;
         }
-            void PermuteLetters(int index)
+        bool ArePValid(char[] chars)
+        {
+            var stack = new Stack<char>();
+
+            foreach (var p in chars)
+            {
+                if (p == '(')
+                    stack.Push(')');
+                else if (stack.Count == 0 || stack.Pop() != p)
+                    return false;
+            }
+
+            return stack.Count == 0;
+        }
+        bool AreParenthesesValid(string str, int index, int start, int end)
+        {
+            if (index >= str.Length)
+                if (start < end && str[start] == '(' && str[end] == ')') return true;
+                else return false;
+
+            if (str[index] == '(') start = index;
+            else end = index;
+
+            return AreParenthesesValid(str, index + 1, start,end);
+        }
+        bool ArePValid(string str)
+        {
+            var chars = str.ToCharArray();
+            var stack = new Stack<char>();
+
+            foreach (var p in chars)
+            {
+                if (p == '(')
+                    stack.Push(')');
+                else if (stack.Count == 0 || stack.Pop() != p)
+                    return false;
+            }
+
+            return stack.Count == 0;
+        }
+       
+
+        void PermuteLetters(int index)
         {
 
             if(index >= letters.Length)
@@ -113,4 +182,3 @@ namespace KataCSharp.Recursion.Backtracking
         }
     }
 }
-
