@@ -3,10 +3,76 @@ using System.Runtime.InteropServices;
 
 namespace KataCSharp.Recursion.Backtracking
 {
-    // Combinations - the order doesn't matter 123
+    // Combinations - the order doesn't matter 123 n=2 12,13,23
     // Permutations - the order matter 123,132,213,231,312,321
-    // Variations - the order matter for selected num of items 123 n-2 - 12,13,21,23,31,32
-    public class Permutations
+    // Variations - the order matter for selected num of items 123 n=2 - 12,13,21,23,31,32
+
+    //common
+    public partial class Permutations
+    {
+
+        public void Start()
+        {
+            //new
+            InitPMain();
+
+
+            //old
+            //PermuteLetters(0);
+            //string str = "abc";
+
+            //InPlacePerm(str, 0, str.Length - 1);
+            //string parentheses = GenerateParentheses(nParentheses);
+            //pn = parentheses.Length;
+            //pRes = new char[pn];
+            //pUsed = new bool[pn];
+            //PermuteParentheses(0, parentheses);
+
+            //AreParenthesesValid("()()",0,0,0);
+            //var v = ArePValid(")");
+
+        }
+    }
+
+    // new
+    public partial class Permutations
+    {
+        char[] temp;
+        void InitPMain()
+        {
+            string str = "abc";
+            //string str = "()()()()()()";
+            temp = new char[str.Length];
+            bool[] isUsed = new bool[str.Length];
+            HashSet<string> resParentheses = new HashSet<string>();
+
+            NPerm(0, 0, str, isUsed, resParentheses);
+        }
+        void NPerm(int index,int start, string str, bool[] isUsed, HashSet<string> resParentheses)
+        {
+            if (index >= str.Length)
+                //if (AreParenthesesValid(temp))
+                //{
+                //    resParentheses.Add(new string(temp));
+                Common.PrintArray(temp);
+                //}
+            for (int i = 0; i < str.Length; i++)
+            {
+                if (!isUsed[i])
+                {
+                    isUsed[i] = true;
+                    temp[index] = str[i];
+                    NPerm(index + 1, i, str, isUsed, resParentheses);
+                    isUsed[i] = false;
+                }
+            }
+
+        }
+
+    }
+
+    // old
+    public partial class Permutations
     {
         static string letters = "abc";
         static bool[] used = new bool[letters.Length];
@@ -19,34 +85,18 @@ namespace KataCSharp.Recursion.Backtracking
         char[] pRes;
         bool[] pUsed;
         static HashSet<string> resParentheses = new HashSet<string>();
-        public void Start()
-        {
-
-             //PermuteLetters(0);
-            //string str = "abc";
-
-            //InPlacePerm(str, 0, str.Length - 1);
-            string parentheses = GenerateParentheses(nParentheses);
-            pn = parentheses.Length;
-            pRes = new char[pn];
-            pUsed = new bool[pn];
-            PermuteParentheses(0, parentheses);
-
-            //AreParenthesesValid("()()",0,0,0);
-           //var v = ArePValid(")");
-
-        }
+        
         public IList<string> GenerateParenthesis(int n)
         {
             var t = resParentheses.ToList();
             return t;
         }
 
-            void PermuteParentheses(int index, string parentheses)
+        void PermuteParentheses(int index, string parentheses)
         {
             if(index >= pn)
             {
-                if (ArePValid(pRes)){
+                if (AreParenthesesValid(pRes)){
                     resParentheses.Add(new string(pRes));
                 }
                 return;
@@ -75,7 +125,7 @@ namespace KataCSharp.Recursion.Backtracking
 
             return init;
         }
-        bool ArePValid(char[] chars)
+        bool AreParenthesesValid(char[] chars)
         {
             var stack = new Stack<char>();
 
@@ -89,18 +139,18 @@ namespace KataCSharp.Recursion.Backtracking
 
             return stack.Count == 0;
         }
-        bool AreParenthesesValid(string str, int index, int start, int end)
-        {
-            if (index >= str.Length)
-                if (start < end && str[start] == '(' && str[end] == ')') return true;
-                else return false;
+        //bool AreParenthesesValid(string str, int index, int start, int end)
+        //{
+        //    if (index >= str.Length)
+        //        if (start < end && str[start] == '(' && str[end] == ')') return true;
+        //        else return false;
 
-            if (str[index] == '(') start = index;
-            else end = index;
+        //    if (str[index] == '(') start = index;
+        //    else end = index;
 
-            return AreParenthesesValid(str, index + 1, start,end);
-        }
-        bool ArePValid(string str)
+        //    return AreParenthesesValid(str, index + 1, start,end);
+        //}
+        bool AreParenthesesValid(string str)
         {
             var chars = str.ToCharArray();
             var stack = new Stack<char>();
