@@ -8,7 +8,8 @@ namespace KataCSharp.Recursion.Backtracking
         {
             int n = 3;
             var list = new List<string>();
-            Generate(n, new char[n*2], list);
+            Generate(0, new char[n*2], list);
+            Common.PrintArray(list);
         }
 
         void Generate(int pos, char[] chars, List<string> res)
@@ -16,7 +17,7 @@ namespace KataCSharp.Recursion.Backtracking
 
             if (chars.Length == pos)
             {
-                if (IsValid(chars))
+                if (IsValid2(chars))
                     res.Add(new String(chars));
             }
             else
@@ -27,17 +28,38 @@ namespace KataCSharp.Recursion.Backtracking
                 Generate(pos + 1, chars, res);
 
             }
+        }
+        bool IsValid2(char[] chars)
+        {
 
+            int balance = 0;
 
-
+            foreach (var parenthes in chars)
+            {
+                if (parenthes == '(')
+                    balance++;
+                else
+                    balance--;
+                if (balance < 0)
+                    return false;
+            }
+            return balance == 0;
         }
 
         bool IsValid(char[] chars)
         {
+            var stack = new Stack<char>();
 
-            return true;
+            foreach (var p in chars)
+            {
+                if (p == '(')
+                    stack.Push(')');
+                else if (stack.Count == 0 || stack.Pop() != p)
+                    return false;
+            }
+
+            return stack.Count == 0;
         }
-
     }
 }
 

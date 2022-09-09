@@ -23,6 +23,15 @@ namespace KataCSharp.Recursion
             }
             Console.WriteLine();
         }
+
+        public static void PrintArray<T>(List<T> list)
+        {
+            for (int i = 0; i < list.Count; i++)
+            {
+                Console.Write(list[i] + " ");
+            }
+            Console.WriteLine();
+        }
     }
 }
 
