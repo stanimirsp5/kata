@@ -11,8 +11,32 @@ namespace KataCSharp.Recursion.Backtracking
         {
             int n = 3;
             var list = new List<string>();
-            Generate(0, new char[n*2], list);
-            Common.PrintArray(list);
+            //Generate(0, new char[n*2], list);
+            //Common.PrintArray(list);
+            GenerateBacktracking(list, new StringBuilder(), 0, 0, n);
+        }
+
+        void GenerateBacktracking(List<string> res, StringBuilder sb, int open, int close, int n)
+        {
+            // print 
+            if(sb.Length == n * 2)
+            {
+                res.Add(sb.ToString());
+            }
+            // add open parenthesis
+            if(open < n)
+            {
+                sb.Append('(');
+                GenerateBacktracking(res, sb, open + 1, close, n);
+                sb.Remove(open,1); // sb.Length-1
+            }
+            // add close parenthesis
+            if(open > close)
+            {
+                sb.Append(')');
+                GenerateBacktracking(res, sb, open, close + 1, n);
+                sb.Remove(close, 1);
+            }
         }
 
         void Generate(int pos, char[] chars, List<string> res)
