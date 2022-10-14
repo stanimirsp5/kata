@@ -1,4 +1,6 @@
-﻿using System;
+﻿using KataCSharp.Sandbox;
+using System;
+using System.Reflection;
 using System.Runtime.InteropServices;
 
 namespace KataCSharp.Recursion.Backtracking
@@ -34,19 +36,35 @@ namespace KataCSharp.Recursion.Backtracking
         }
     }
 
+//Given an array nums of distinct integers, return all the possible permutations.You can return the answer in any order.
+//Example 1:
+//Input: nums = [1, 2, 3]
+//Output: [[1,2,3], [1,3,2], [2,1,3], [2,3,1], [3,1,2], [3,2,1]]
+//Example 2:
+//Input: nums = [0,1]
+//    Output: [[0,1],[1,0]]
+//Example 3:
+//Input: nums = [1]
+//    Output: [[1]]
+//Constraints:
+//1 <= nums.length <= 6
+//-10 <= nums[i] <= 10
+//All the integers of nums are unique.
+
     // new
     public partial class Permutations
     {
         char[] temp;
         void InitPMain()
         {
-            string str = "abc";
-            //string str = "()()()()()()";
-            temp = new char[str.Length];
-            bool[] isUsed = new bool[str.Length];
-            HashSet<string> resParentheses = new HashSet<string>();
-
-            NPerm(0, 0, str, isUsed, resParentheses);
+            //string str = "abc";
+            ////string str = "()()()()()()";
+            //temp = new char[str.Length];
+            //bool[] isUsed = new bool[str.Length];
+            //HashSet<string> resParentheses = new HashSet<string>();
+            //NPerm(0, 0, str, isUsed, resParentheses);
+            int[] nums = new int[] { 1, 2, 3 };
+            Permute(nums);
         }
         void NPerm(int index,int start, string str, bool[] isUsed, HashSet<string> resParentheses)
         {
@@ -68,7 +86,57 @@ namespace KataCSharp.Recursion.Backtracking
             }
 
         }
+        List<IList<int>> listRes = new List<IList<int>>();
+        public IList<IList<int>> Permute(int[] nums)
+        {
+            DistinctIntegers(nums, new int[nums.Length], new bool[nums.Length], 0);
+            return listRes;
+        }
+        void DistinctIntegers(int[] nums,int[] res,bool[] isUsed, int index)
+        {
 
+            if (index >= nums.Length)
+            {
+                Common.PrintArray(res);
+                listRes.Add(res.ToList());
+                return;
+            }
+
+            for (int i = 0; i < nums.Length; i++)
+            {
+                if (!isUsed[i])
+                {
+                    res[index] = nums[i];
+                    isUsed[i]= true;
+                    DistinctIntegers(nums, res, isUsed, index + 1);
+                    isUsed[i] = false;
+                }
+            }
+        }
+
+        void DistinctIntegersInPlace(int[] nums,int arrLength, int start)
+        {
+
+            if (start >= arrLength)
+            {
+                Common.PrintArray(nums);
+                return;
+            }
+
+            for (int i = start; i <= arrLength; i++)
+            {
+                SwapRes(nums, arrLength, i);
+                DistinctIntegersInPlace(nums, arrLength,start + 1);
+
+                SwapRes(nums, i, arrLength);
+            }
+        }
+        void SwapRes(int[] nums, int start, int end)
+        {
+            var temp = nums[start];
+            nums[start] = nums[end];
+            nums[end] = temp;
+        }
     }
 
     // old

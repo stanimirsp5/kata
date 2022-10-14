@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 
 namespace KataCSharp.Recursion.Backtracking
@@ -28,15 +29,16 @@ namespace KataCSharp.Recursion.Backtracking
             {
                 sb.Append('(');
                 GenerateBacktracking(res, sb, open + 1, close, n);
-                sb.Remove(open,1); // sb.Length-1
+                sb.Remove(sb.Length - 1, 1); // sb.Length-1
             }
             // add close parenthesis
             if(open > close)
             {
                 sb.Append(')');
                 GenerateBacktracking(res, sb, open, close + 1, n);
-                sb.Remove(close, 1);
+                sb.Remove(sb.Length - 1,  1);
             }
+
         }
 
         void Generate(int pos, char[] chars, List<string> res)
