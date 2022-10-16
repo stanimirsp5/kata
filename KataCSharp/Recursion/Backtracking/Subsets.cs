@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,29 +11,102 @@ namespace KataCSharp.Recursion.Backtracking
     //  Output: [[],[1],[2],[1,2],[3],[1,3],[2,3],[1,2,3]]
     internal class Subsets
     {
-        int[] arr = new int[] { 1, 2, 3 };
-        static int n = 2;
-        int[] res = new int[n];
        
+        List<IList<int>> endRes = new List<IList<int>>();
+
         public void Start()
         {
-            Combination(0,0);
-        } 
+            
+            int[] arr = new int[] { 1, 2, 3 };
 
-        void Combination(int index, int start)
+            //Subset(arr);
+            //Cascading(arr);
+            SubsetBack(arr);
+        }
+
+        public IList<IList<int>> Subset(int[] nums)
+        {
+            int n = 0;
+            int[] res = new int[n];
+
+            for (int i = 0; i <= nums.Length; i++)
+            {
+                n = i;
+                res = new int[n];
+                Combination(0, 0, n, res, nums);
+            }
+            return endRes;
+        }
+
+        void Combination(int index, int start, int n, int[] res, int[] nums)
         {
             if(index >= n)
             {
-                Common.PrintArray(res);
+                endRes.Add(res.ToList());
+                return;
+            }
+            
+            for (int i = start; i < nums.Length; i++)
+            {
+
+                res[index] = nums[i];
+                Combination(index + 1, i+1,n,res,nums);
+
+            }
+
+        }
+
+        // iterative approach
+        List<IList<int>> Cascading(int[] arr)
+        {
+            List<IList<int>> outputs = new List<IList<int>>();
+            outputs.Add(new List<int>());
+
+            foreach (var num in arr)
+            {
+                List<List<int>> temp = new List<List<int>>();
+
+                foreach (var output in outputs)
+                {
+
+                    temp.Add(new List<int>(output) { { num } });
+
+                }
+
+                foreach (var item in temp)
+                {
+                    outputs.Add(item);
+                }
+
+            }
+            return outputs;
+        }
+
+        List<IList<int>> outBack = new List<IList<int>>();
+        int kb;
+        public IList<IList<int>> SubsetBack(int[] nums)
+        {
+            for (int i = 0; i <= nums.Length; i++)
+            {
+                kb = i;
+                Backtrack(0, new List<int>(), nums);
+            }
+            return outBack;
+        }
+
+        void Backtrack(int first, List<int> curr, int[] nums)
+        {
+            if(curr.Count == kb)
+            {
+                outBack.Add(new List<int>(curr));
                 return;
             }
 
-            for (int i = start; i < arr.Length; i++)
+            for (int i = first; i < nums.Length; i++)
             {
-
-                res[index] = arr[i];
-                Combination(index + 1, i+1);
-
+                curr.Add(nums[i]);
+                Backtrack(i+1, curr, nums);
+                curr.RemoveAt(curr.Count - 1);
             }
 
         }

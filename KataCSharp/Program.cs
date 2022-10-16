@@ -5,6 +5,19 @@ using KataCSharp.Recursion;
 MyMainRec main = new MyMainRec();
 main.MyMain();
 
+
+var listCtor = new List<int>() { 1,2,3};
+var listCtor2 = new List<int>(listCtor) { 4, 5 };
+var nestedListBase = new List<List<int>>() { listCtor };
+//var nestedList = new List<List<int>>(nestedListBase) { new List<int> { 8 } };// or
+var nestedList = new List<List<int>>();
+nestedList.Add(new List<int>(listCtor) { 8 });
+nestedList.Add( new List<int>(listCtor) {  9 });
+
+var nestedListCtor = new List<List<int>>() { listCtor };//count 1
+var nestedListCtor2 = new List<List<int>>(nestedListCtor) {  listCtor2  };// count 2
+var nestedListCtor3 = new List<List<int>>(nestedListCtor) { { listCtor2 } };// count 1 with nested list count 2
+
 var list1 = new List<string>() {"test1", "test2" };
 var list2 = new List<string>() {"file1", "file2" };
 
