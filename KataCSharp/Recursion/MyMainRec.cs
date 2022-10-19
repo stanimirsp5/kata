@@ -12,7 +12,8 @@ namespace KataCSharp.Recursion
             //TowersOfHanoi f = new TowersOfHanoi();
             //var f = new NumberCombinations();
             //var f = new Permutations();
-            var f = new Subsets();
+            //var f = new Subsets();
+            var f = new WordSearch();
            // var f = new GenerateParentheses();
             f.Start();
         }

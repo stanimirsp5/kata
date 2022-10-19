@@ -21,7 +21,8 @@ namespace KataCSharp.Recursion.Backtracking
 
             //Subset(arr);
             //Cascading(arr);
-            SubsetBack(arr);
+            //SubsetBack(arr);
+            GenerateBitmask(arr);
         }
 
         public IList<IList<int>> Subset(int[] nums)
@@ -109,6 +110,27 @@ namespace KataCSharp.Recursion.Backtracking
                 curr.RemoveAt(curr.Count - 1);
             }
 
+        }
+
+        public List<IList<int>> GenerateBitmask(int[] arr)
+        {
+            var res = new List<IList<int>>();
+            int n = arr.Length;
+            for(int i = (int) Math.Pow(2,n); i < (int)Math.Pow(2,n+1); ++i)
+            {
+                string bitmask = Convert.ToString(i, 2).Substring(1);
+
+                var tempRes = new List<int>();
+                for (int j = 0; j < n; j++)
+                {
+                    if (bitmask.ToCharArray()[j] == '1')
+                    {
+                        tempRes.Add(arr[j]);
+                    }
+                }
+                res.Add(tempRes);
+            }
+            return res;
         }
 
     }
