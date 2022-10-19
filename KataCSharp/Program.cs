@@ -1,10 +1,33 @@
 ﻿
 using KataCSharp.LeetCode.B;
 using KataCSharp.Recursion;
+using System.Linq;
 
 MyMainRec main = new MyMainRec();
 main.MyMain();
 
+// merge dictionary
+var dict1 = new Dictionary<string, string>() { { "en", "dict 1 t1 en" }, { "bg", "dict 1 t2 bg" } };
+var dict2 = new Dictionary<string, string>() { { "en", "dict 22 t1 en" }, { "bg", "dict 22 t2 bg" } };
+var listDict = new List<Dictionary<string, string>>() { dict1, dict2 };
+var mergedDict = new Dictionary<string, string>();
+
+var res = listDict.SelectMany(dict => dict).ToLookup(dict => dict.Key, dict => dict.Value);//.ToDictionary(group => group.Key, group => group.First());
+
+foreach (var group in res)
+{
+    Console.WriteLine(group.Key);
+    foreach (var item in group)
+    {
+        Console.WriteLine(item);
+    }
+}
+
+var emptyList1 = new List<string>();
+var emptyList2 = new List<string>();
+List<string> nullList = null;
+var notEmptyList = new List<List<string>>() { emptyList1, emptyList2, nullList};
+var eresu = notEmptyList.SelectMany(notEmptyList => notEmptyList).ToList();
 
 var listCtor = new List<int>() { 1,2,3};
 var listCtor2 = new List<int>(listCtor) { 4, 5 };
@@ -27,8 +50,6 @@ var t = list3.GroupBy(x => x.idx);
 var d = t.ToDictionary(g => g.Key, g => g.Select(x => new { t1 = x.l, t2 = list2.ElementAt(x.idx) } ));
 
 //var elements = list1.Zip(list2, (first, second) => );
-
-
 
 IEnumerable<string> keys = new List<string>() { "A", "B", "C", "A", "B", "C", "D" };
 IEnumerable<string> values = new List<string>() { "Val A", "Val B", "Val C", "Val A", "Val B", "Val C", "Val D" };
