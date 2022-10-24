@@ -27,7 +27,7 @@ var emptyList1 = new List<string>();
 var emptyList2 = new List<string>();
 List<string> nullList = null;
 var notEmptyList = new List<List<string>>() { emptyList1, emptyList2, nullList};
-var eresu = notEmptyList.SelectMany(notEmptyList => notEmptyList).ToList();
+//var eresu = notEmptyList.SelectMany(notEmptyList => notEmptyList).ToList();
 
 var listCtor = new List<int>() { 1,2,3};
 var listCtor2 = new List<int>(listCtor) { 4, 5 };
