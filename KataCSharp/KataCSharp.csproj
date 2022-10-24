@@ -15,4 +15,7 @@
     <Folder Include="Sandbox\" />
     <Folder Include="Recursion\Princeton\" />
   </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="xunit.core" Version="2.4.2" />
+  </ItemGroup>
 </Project>
