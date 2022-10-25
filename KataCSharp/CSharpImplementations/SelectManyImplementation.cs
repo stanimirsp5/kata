@@ -5,7 +5,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
-using Xunit;
+//using Xunit;
 
 namespace KataCSharp.CSharpImplementations
 {
@@ -18,6 +18,7 @@ namespace KataCSharp.CSharpImplementations
         }
 
 
+       // [Fact]
         public void FlattenWithProjectionAndIndex()
         {
             int[] numbers = { 3, 5, 20, 15 };

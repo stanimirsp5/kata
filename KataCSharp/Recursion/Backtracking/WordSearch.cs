@@ -94,9 +94,21 @@ namespace KataCSharp.Recursion.Backtracking
         {
             char[] word = word1.ToCharArray();
             char[] tempWord = new char[word.Length];
-
-           // tempWord[0] = 'A';
-            return SearchWord(board, word, tempWord, 0, 0, 0);
+            bool res = false;
+            for (int r = 0; r < board.Length; r++)
+            {
+                for (int c = 0; c < board[1].Length; c++)
+                {
+                    bool isFirstLetterFound = board[r][c] == word[0];
+                    if (isFirstLetterFound)
+                    {
+                        tempWord[0] = word[0];
+                       res = SearchWord(board, word, tempWord, 1, r, c);
+                    }
+                }
+            }
+            return res;
+           // return SearchWord(board, word, tempWord, 0, 0, 0);
         }
 
         public bool SearchWord(char[][] board, char[] word, char[] tempWord, int index, int row, int col)
@@ -105,59 +117,55 @@ namespace KataCSharp.Recursion.Backtracking
             {
                 return true;
             }
-
-            for (int r = row; r < board[0].Length; r++)
+            int[] directions = new int[4];
+            for (int i = 0; i < board.Length; i++)
             {
-                for (int c = col; c < board[1].Length; c++)
+               (bool isMove, int r, int c, directions) = CanMove(board, word, index, row, col, directions);
+                if (isMove)
                 {
-                    bool isValid = board[r][c] == word[index];
-                    if (isValid)
-                    {
-                        tempWord[index] = word[index];
-                        return SearchWord(board, word, tempWord, index + 1, r, c);
-                    }
+                    tempWord[index] = word[index];
+
+                    return SearchWord(board, word, tempWord, index + 1, r, c);
                 }
             }
-
             return false;
         }
 
-        public (bool,int,int) CanMove(char[][] board, char[] word, int index, int row, int col)
+        public (bool, int, int, int[]) CanMove(char[][] board, char[] word, int index, int row, int col, int[] directions)
         {
-            int r = board[0].Length - 1;
+            int r = board.Length - 1;
             int c = board[1].Length - 1;
-
-            // check first
-            if(board[row][col] == word[index])
-            {
-                return (true, row, col);
-            }
+            
             // go right
-            else if ((col + 1 <= c && row <= r) && board[row][col + 1] == word[index])
+            if (directions[0] == 0 && (col + 1 <= c && row <= r) && board[row][col + 1] == word[index])
             {
                 ++col;
-                return (true,row,col);
+                directions[0] = 1;
+                return (true, row, col, directions);
             }
             // go left
-            else if ((col - 1 >= 0 && row <= r) && board[row][col - 1] == word[index])
+            else if (directions[1] == 0 && (col - 1 >= 0 && row <= r) && board[row][col - 1] == word[index])
             {
                 --col;
-                return (true, row, col);
+                directions[1] = 1;
+                return (true, row, col, directions);
             }
             // go up
-            else if ((row - 1 >= 0 && col <= c) && board[row - 1][col] == word[index])
+            else if (directions[2] == 0 && (row - 1 >= 0 && col <= c) && board[row - 1][col] == word[index])
             {
                 --row;
-                return (true, row, col);
+                directions[2] = 1;
+                return (true, row, col, directions);
             }
             // go down
-            else if ((row + 1 <= r && col <= c) && board[row + 1][col] == word[index])
+            else if (directions[3] == 0 && (row + 1 <= r && col <= c) && board[row + 1][col] == word[index])
             {
                 ++row;
-                return (true, row, col);
+                directions[3] = 1;
+                return (true, row, col, directions);
             }
 
-            return (false, row, col);
+            return (false, row, col, directions);
         }
     }
 }
