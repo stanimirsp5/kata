@@ -92,10 +92,21 @@ string resStr = string.Join("",ch);
 
 
 
-Console.WriteLine();
 
+
+
+var files = new List<File>() {
+    new File { Id=1,Code="1", Name = "File 1"},
+    new File { Id=2,Code="1", Name = "File 2"},
+    new File { Id=3,Code="1", Name = "File 3"},
+    new File { Id=4,Code="2", Name = "File 4"},
+};
+var groupedFiles = files.GroupBy(f => f.Code);
+
+Console.WriteLine();
 class File
 {
     public int Id { get; set; }
+    public string Code { get; set; }
     public string Name { get; set; }
 }
