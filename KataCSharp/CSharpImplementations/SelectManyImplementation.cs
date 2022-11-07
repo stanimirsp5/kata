@@ -12,15 +12,41 @@ using Xunit.Sdk;
 namespace KataCSharp.CSharpImplementations
 {
     //https://codeblog.jonskeet.uk/2010/12/27/reimplementing-linq-to-objects-part-9-selectmany/
-    public static class SelectManyImplementation
+    public abstract class SelectManyImplementation
     {
-        public static void Start()
+        public void Start()
         {
             // FlattenWithProjectionAndIndex();
 
-            CallSelect();
-        }
+            //CallSelect();
+            PrintString myDelegate = Func2;
 
+            Func<string, string> funcDelegate = s => "name: " + s;
+
+            var t = myDelegate("Stan");
+            var t2 = funcDelegate("Stan");
+        }
+        public delegate string PrintString(string s);
+        public abstract string PrintString1(string s);
+
+
+
+
+        void AccDel(PrintString ps1)
+        {
+            ps1("test");
+        }
+        string Func2(string str)
+        {
+            var r = str + "1";
+            return r;
+        }
+        string GetName(Func<string,string> func)
+        {
+
+
+            return "";
+        }
 
         // [Fact]
         public static void FlattenWithProjectionAndIndex()
@@ -52,8 +78,10 @@ namespace KataCSharp.CSharpImplementations
         static void CallSelect()
         {
             List<int> list = new List<int>() { 1, 2, 3 };
-            //Func<bool, IEnumerable<int>> selector = n => n > 1;
-            //var res = SelectImpl(list,);
+            Func<int, bool> selector = n => n > 1;
+            Func<IEnumerable<int>, IEnumerable<int>> selector2 = list => list;
+            
+           // var res = SelectImpl(list, selector2);
 
         }
 
@@ -71,6 +99,7 @@ namespace KataCSharp.CSharpImplementations
            // var t = selector(source.First());    
             //return t;
         }
+
 
         static void CallYield()
         {
@@ -113,6 +142,64 @@ namespace KataCSharp.CSharpImplementations
         //        }
         //    }
         //}
+
+        public delegate int Del1(int a, int b);
+        public int SumNumders(int a, int b)
+        {
+            return a + b;
+        }
+
+        public void DelMethod()
+        {
+            //1
+            var sum = new Del1(SumNumders);
+            var rsum = sum(1, 2);
+
+                //1.2
+                Del1 sum12 = SumNumders;
+                var rsum12 = sum12(1, 2);
+
+            //2
+            Del1 sum2 = (a,b) => a + b;
+            var rsum2 = sum2(1, 2);
+
+            //3
+            var sum3 = delegate (int a, int b)
+            {
+                return a + b;
+            };
+            var rsum3 = sum3(1, 2);
+
+            //4
+            Del1 sum4 = (a, b) =>
+            {
+                return a + b;
+            };
+        }
+    }
+
+    public static class Queries
+    {
+        public static void MyMain()
+        {
+           // Func<IEnumerable<int>, bool> selector = x => x. > 0;
+
+        }
+
+        //public static IEnumerable<T> Where2<T>(this IEnumerable<T> source, Func<IEnumerable<int>, bool> selector)
+        public static IEnumerable<int> Where2 (this IEnumerable<int> source, Func<int, bool> predicate)
+        {
+            //var newColection = new List<int>();
+            foreach (var item in source)
+            {
+                if(predicate(item))
+                {
+                    //newColection.Add(item);
+                    yield return item;
+                }
+            }
+            //return newColection;
+        }
 
     }
 }
