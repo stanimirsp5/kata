@@ -12,26 +12,18 @@ using Xunit.Sdk;
 namespace KataCSharp.CSharpImplementations
 {
     //https://codeblog.jonskeet.uk/2010/12/27/reimplementing-linq-to-objects-part-9-selectmany/
-    public abstract class SelectManyImplementation
+    // LINQ implementations https://dotnetcorecentral.com/blog/linq-internals/
+    //yield in one sentence - yield holds the state of an enumeration
+    public class SelectManyImplementation
     {
         public void Start()
         {
             // FlattenWithProjectionAndIndex();
 
             //CallSelect();
-            PrintString myDelegate = Func2;
-
-            Func<string, string> funcDelegate = s => "name: " + s;
-
-            var t = myDelegate("Stan");
-            var t2 = funcDelegate("Stan");
+            Queries.Run();
         }
         public delegate string PrintString(string s);
-        public abstract string PrintString1(string s);
-
-
-
-
         void AccDel(PrintString ps1)
         {
             ps1("test");
@@ -176,30 +168,43 @@ namespace KataCSharp.CSharpImplementations
                 return a + b;
             };
         }
+
+        delegate bool BoolDelegate(int num);
+        bool ExDel(int num)
+        {
+            return num > 5;
+        }
+
+        void RunDel()
+        {
+            var predicate = new BoolDelegate(ExDel);
+
+            BoolDelegate pr = el => el > 5;
+            var pr2 = new BoolDelegate(el => el > 5);
+
+            var t = pr(6);
+        }
+
     }
 
     public static class Queries
     {
-        public static void MyMain()
+        public static void Run()
         {
-           // Func<IEnumerable<int>, bool> selector = x => x. > 0;
-
+            var list = new List<int> { 1, 2, 3, 4, 5, 6, 7 };
+            list.MyWhere(el => el >= 5).ToList().ForEach(el => Console.Write(el + " "));
         }
 
-        //public static IEnumerable<T> Where2<T>(this IEnumerable<T> source, Func<IEnumerable<int>, bool> selector)
-        public static IEnumerable<int> Where2 (this IEnumerable<int> source, Func<int, bool> predicate)
+        public static IEnumerable<int> MyWhere (this IEnumerable<int> source, Func<int, bool> predicate)
         {
-            //var newColection = new List<int>();
             foreach (var item in source)
             {
                 if(predicate(item))
                 {
-                    //newColection.Add(item);
                     yield return item;
                 }
             }
-            //return newColection;
         }
-
     }
+
 }
