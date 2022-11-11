@@ -16,10 +16,10 @@ var res = listDict.SelectMany(dict => dict).ToLookup(dict => dict.Key, dict => d
 
 foreach (var group in res)
 {
-    Console.WriteLine(group.Key);
+    //Console.WriteLine(group.Key);
     foreach (var item in group)
     {
-        Console.WriteLine(item);
+        //Console.WriteLine(item);
     }
 }
 
@@ -73,7 +73,7 @@ List<string> originalList = new List<string>();
 
 ListRefTest(originalList);
 
-originalList.ForEach(l => Console.WriteLine(l));
+//originalList.ForEach(l => Console.WriteLine(l));
 
 void ListRefTest(List<string> list)
 {

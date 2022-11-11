@@ -170,6 +170,7 @@ namespace KataCSharp.CSharpImplementations
         }
 
         delegate bool BoolDelegate(int num);
+        delegate int IntDelegate(int num);
         bool ExDel(int num)
         {
             return num > 5;
@@ -183,8 +184,26 @@ namespace KataCSharp.CSharpImplementations
             var pr2 = new BoolDelegate(el => el > 5);
 
             var t = pr(6);
+
+            IntDelegate intDelegate = el => el + 5;
+            var intRes = intDelegate(5);
+
+
+
         }
 
+    }
+
+    class IntObj
+    {
+        private string? _str;
+
+        public int Num { get; set; }
+        public string? NumStr { get; set; }
+        //{
+        //    get => _str;
+        //    set => _str = value + "";
+        //}
     }
 
     public static class Queries
@@ -192,10 +211,25 @@ namespace KataCSharp.CSharpImplementations
         public static void Run()
         {
             var list = new List<int> { 1, 2, 3, 4, 5, 6, 7 };
-            list.MyWhere(el => el >= 5).ToList().ForEach(el => Console.Write(el + " "));
+            var listStr = new List<string> { "a", "b", "c", "d", };
+            //list.MyWhere(el => el > 5).ToList().ForEach(el => Console.Write(el + " "));
+            //listStr.MyWhere(el => el == "c").ToList().ForEach(el => Console.Write(el + " "));
+
+            //var t = list.Select(el => el + 5);//.ToList().ForEach(el => Console.Write(el + " "));
+
+            //var t2 = list.MySelect(el => el + 5 + "" ).ToList();
+            //var intObjRes = list.MySelect(el => new IntObj { Num = el, NumStr = el + ""} ).ToList();
+            var list2d = new List<List<int>> { new List<int> { 1, 2, 3, 4, 5, 6, 7 } };
+
+            var listToString = list2d.Select(el => el + "");
+            var tt = list2d.Select(el => el.Select(e => e + ""));
+            foreach (var item in tt)
+            {
+                Console.WriteLine(item);
+            }
         }
 
-        public static IEnumerable<int> MyWhere (this IEnumerable<int> source, Func<int, bool> predicate)
+        public static IEnumerable<T> MyWhere<T> (this IEnumerable<T> source, Func<T, bool> predicate)
         {
             foreach (var item in source)
             {
@@ -205,6 +239,17 @@ namespace KataCSharp.CSharpImplementations
                 }
             }
         }
-    }
 
+        public static IEnumerable<TResult> MySelect<TSource,TResult>(this IEnumerable<TSource> source, Func<TSource, TResult> predicate)
+        {
+
+            foreach(var item in source)
+            {
+                var t = predicate(item);
+                yield return t;
+            }
+
+        }
+
+    }
 }
