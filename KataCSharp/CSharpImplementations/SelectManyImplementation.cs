@@ -205,13 +205,87 @@ namespace KataCSharp.CSharpImplementations
         //    set => _str = value + "";
         //}
     }
+    class Company
+    {
+        public string CompanyName { get; set; }
+        public IEnumerable<Employee> Employees { get; set; }
+    }
+    class Employee
+    {
+        public string Name { get; set; }
+        public IEnumerable<Phone> Phones{ get; set; }
+    }
+    class Phone
+    {
+        public string Number { get; set; }
+    }
 
     public static class Queries
     {
+        static List<Employee> CreateEmployees()
+        {
+            Employee emp11 = new Employee()
+            {
+                Name = "Misho",
+                Phones = new List<Phone>() { new Phone { Number = "088 1234567" }, new Phone { Number = "0000000000" } }
+            };
+            Employee emp12 = new Employee()
+            {
+                Name = "Stef",
+                Phones = new List<Phone>() { new Phone { Number = "088 77777777" }, new Phone { Number = "1111111111" } }
+            };
+            Employee emp21 = new Employee()
+            {
+                Name = "Misho",
+                Phones = new List<Phone>() { new Phone { Number = "088 1234567" }, new Phone { Number = "0000000000" } }
+            };
+            Employee emp22 = new Employee()
+            {
+                Name = "Stef",
+                Phones = new List<Phone>() { new Phone { Number = "088 77777777" }, new Phone { Number = "1111111111" } }
+            };
+
+
+
+            return new List<Employee>() { emp11, emp12 };
+        }
+        static List<Company> CreateCompanies()
+        {
+            Employee emp11 = new Employee()
+            {
+                Name = "Misho",
+                Phones = new List<Phone>() { new Phone { Number = "088 1234567" }, new Phone { Number = "0000000000" } }
+            };
+            Employee emp12 = new Employee()
+            {
+                Name = "Stef",
+                Phones = new List<Phone>() { new Phone { Number = "088 77777777" }, new Phone { Number = "1111111111" } }
+            };
+            Employee emp21 = new Employee()
+            {
+                Name = "Misho",
+                Phones = new List<Phone>() { new Phone { Number = "088 1234567" }, new Phone { Number = "0000000000" } }
+            };
+            Employee emp22 = new Employee()
+            {
+                Name = "Stef",
+                Phones = new List<Phone>() { new Phone { Number = "088 77777777" }, new Phone { Number = "1111111111" } }
+            };
+
+            var companies = new List<Company> { 
+                new Company { CompanyName="Nestle", Employees = new List<Employee>{emp11,emp12}},
+                new Company { CompanyName="Milka", Employees = new List<Employee>{emp21,emp22}}
+            };
+
+
+            return companies;
+        }
         public static void Run()
         {
+            var employees = CreateEmployees();
+            var companies = CreateCompanies();
             var list = new List<int> { 1, 2, 3, 4, 5, 6, 7 };
-            var listStr = new List<string> { "a", "b", "c", "d", };
+            var listStr = new List<List<string>> { new List<string> { "abc","def","ghij" }, new List<string> { "Test 1", "Test 2" } };
             //list.MyWhere(el => el > 5).ToList().ForEach(el => Console.Write(el + " "));
             //listStr.MyWhere(el => el == "c").ToList().ForEach(el => Console.Write(el + " "));
 
@@ -220,12 +294,33 @@ namespace KataCSharp.CSharpImplementations
             //var t2 = list.MySelect(el => el + 5 + "" ).ToList();
             //var intObjRes = list.MySelect(el => new IntObj { Num = el, NumStr = el + ""} ).ToList();
             var list2d = new List<List<int>> { new List<int> { 1, 2, 3, 4, 5, 6, 7 } };
+            var list1d = new List<int> { 1, 2, 3, 4, 5, 6, 7 };
 
             var listToString = list2d.Select(el => el + "");
             var tt = list2d.Select(el => el.Select(e => e + ""));
-            foreach (var item in tt)
+            foreach (var items in tt)
             {
-                Console.WriteLine(item);
+                foreach (var subItem in items)
+                {
+                    Console.WriteLine(subItem);
+                }
+            }
+
+            //var resListStr = employees.Select(el => el);
+            var empPhones = employees.SelectMany(el => el.Phones);
+            var myEmpPhones = employees.MySelectMany(el => el.Phones).ToList();
+            //var myCompPhones = companies.SelectMany(el => el, (comp, emp) => new { CompanyName = comp.CompanyName, Phones  });
+
+
+        }
+        public static IEnumerable<TResult> MySelectMany<TResult, TSource>(this IEnumerable<TSource> source, Func<TSource, IEnumerable<TResult>> func)
+        {
+            foreach (var obj in source)
+            {
+                foreach (var objItem in func(obj))
+                {
+                    yield return objItem;
+                }
             }
         }
 
@@ -248,8 +343,6 @@ namespace KataCSharp.CSharpImplementations
                 var t = predicate(item);
                 yield return t;
             }
-
         }
-
     }
 }
