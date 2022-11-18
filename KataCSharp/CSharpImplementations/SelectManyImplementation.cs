@@ -306,10 +306,11 @@ namespace KataCSharp.CSharpImplementations
                 }
             }
 
-            //var resListStr = employees.Select(el => el);
+            var resListStr = employees.Select((el,i) => i + ": "+el.Name);
             var empPhones = employees.SelectMany(el => el.Phones);
             var myEmpPhones = employees.MySelectMany(el => el.Phones).ToList();
-            //var myCompPhones = companies.SelectMany(el => el, (comp, emp) => new { CompanyName = comp.CompanyName, Phones  });
+            var empPhonesByCompany = employees.SelectMany(emp => emp.Phones, (emp, phone) => new { emp, phone});
+            //var myCompPhones = companies.SelectMany(comp => comp.CompanyName, (comp, emp) => new { comp.Employees });
 
 
         }
