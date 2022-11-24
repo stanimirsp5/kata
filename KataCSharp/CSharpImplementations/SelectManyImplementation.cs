@@ -220,6 +220,12 @@ namespace KataCSharp.CSharpImplementations
         public string Number { get; set; }
     }
 
+    class Name
+    {
+        public string CompanyName { get; set; }
+        public string EmployeeName { get; set; }
+    }
+
     public static class Queries
     {
         static List<Employee> CreateEmployees()
@@ -280,6 +286,29 @@ namespace KataCSharp.CSharpImplementations
 
             return companies;
         }
+
+        delegate IEnumerable<Phone> CollDel(Employee employee);
+        delegate T CompAndEmpDel<T>(Company company, Employee employee);
+        delegate IEnumerable<T> CompAndEmpDelCol<T>(Company company, Employee employee);
+        //delegate T CompAndEmpDel(Company company,Employee employee);
+
+        static void GetPhoneFromEmployee()
+        {
+            Employee emp11 = new Employee()
+            {
+                Name = "Misho",
+                Phones = new List<Phone>() { new Phone { Number = "088 1234567" }, new Phone { Number = "0000000000" } }
+            };
+            CollDel del = em => em.Phones;
+            var t = del(emp11);
+            Func<Employee, IEnumerable<Phone>> func = emp => emp.Phones;
+
+            CompAndEmpDel<Name> compAndEmp = (comp, emp) => new Name { CompanyName = comp.CompanyName, EmployeeName = emp.Name };
+            CompAndEmpDel<object> compAndEmp2 = (comp, emp) => new { comp.CompanyName, emp.Name };
+            //CompAndEmpDelCol<IEnumerable <object>> compAndEmp3 = (comp, emp) => new { comp.CompanyName, emp.Name };
+            var compAndEmp3 = new CompAndEmpDelCol<object>(GetNames);
+        }
+
         public static void Run()
         {
             var employees = CreateEmployees();
@@ -311,48 +340,22 @@ namespace KataCSharp.CSharpImplementations
             var myEmpPhones = employees.MySelectMany(el => el.Phones).ToList();
             var empPhonesByCompany = employees.SelectMany(emp => emp.Phones, (emp, phone) => new { emp.Name, phone.Number});
             var companyNameAndEmp = companies.SelectMany(cmp => cmp.Employees, (cmp, emp) => new { cmp.CompanyName, emp.Name });
-           // var myEmpPhonesByCompany = employees.MySelectMany(emp => emp.Phones, (emp, phone) => new { emp.Name, phone.Number});
+            var myEmpPhonesByCompany = employees.MySelectMany<object,Employee, Phone >(emp => emp.Phones, (emp, phone) => new { emp.Name, phone.Number});
             //var myCompPhones = companies.SelectMany(comp => comp.CompanyName, (comp, emp) => new { comp.Employees });
 
 
         }
-
-        //public static IEnumerable<TResult2> MySelectMany<TResult, TResult2, TSource, TSource2>(this IEnumerable<TSource> source, 
-        //    Func<TSource, IEnumerable<TSource>> first, 
-        //    Func<TSource, TSource2, TResult2> second)
-        //{
-
-        //}
-
-
-        delegate IEnumerable<Phone> CollDel(Employee employee);
-        delegate IEnumerable<T> CompAndEmpDel<T>(Company company,Employee employee);
-
-        static void GetPhoneFromEmployee()
+        public static IEnumerable<TResult> MySelectMany<TResult, TSource, TSourceCollection>(this IEnumerable<TSource> source,
+            Func<TSource, IEnumerable<TSourceCollection>> first,
+            Func<TSource, TSourceCollection, TResult> second)
         {
-            Employee emp11 = new Employee()
-            {
-                Name = "Misho",
-                Phones = new List<Phone>() { new Phone { Number = "088 1234567" }, new Phone { Number = "0000000000" } }
-            };
-            CollDel del = em => em.Phones;
-            var t = del(emp11);
-            Func<Employee,IEnumerable<Phone>> func = emp => emp.Phones;
-            
-           // CompAndEmpDel<object> compAndEmp = (comp, emp) => new { comp.CompanyName, emp.Name };
 
         }
-       
 
-
-
-
-
-
-
-
-
-
+        static IEnumerable<object> GetNames(Company comp, Employee emp)
+        {
+            yield return new { comp.CompanyName, emp.Name };
+        }
 
         public static IEnumerable<TResult> MySelectMany<TResult, TSource>(this IEnumerable<TSource> source, Func<TSource, IEnumerable<TResult>> func)
         {

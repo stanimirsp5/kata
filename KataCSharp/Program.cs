@@ -74,13 +74,14 @@ List<string> originalList = new List<string>();
 ListRefTest(originalList);
 
 //originalList.ForEach(l => Console.WriteLine(l));
+//https://stackoverflow.com/questions/8708632/passing-objects-by-reference-or-value-in-c-sharp
 
 void ListRefTest(List<string> list)
 {
     var localList = new List<string>();
-
     localList.Add("localList value");
-    list = localList.Select(l => l).ToList();
+    list = localList;
+    //list = localList.Select(l => l).ToList();
     //list.Add("A");
    
 }
