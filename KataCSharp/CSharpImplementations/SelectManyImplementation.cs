@@ -315,6 +315,7 @@ namespace KataCSharp.CSharpImplementations
             var companies = CreateCompanies();
             var list = new List<int> { 1, 2, 3, 4, 5, 6, 7 };
             var listStr = new List<List<string>> { new List<string> { "abc","def","ghij" }, new List<string> { "Test 1", "Test 2" } };
+            list.Where(el => el > 5);//.ToList().ForEach(el => Console.Write(el + " "));
             //list.MyWhere(el => el > 5).ToList().ForEach(el => Console.Write(el + " "));
             //listStr.MyWhere(el => el == "c").ToList().ForEach(el => Console.Write(el + " "));
 
@@ -340,15 +341,50 @@ namespace KataCSharp.CSharpImplementations
             var myEmpPhones = employees.MySelectMany(el => el.Phones).ToList();
             var empPhonesByCompany = employees.SelectMany(emp => emp.Phones, (emp, phone) => new { emp.Name, phone.Number});
             var companyNameAndEmp = companies.SelectMany(cmp => cmp.Employees, (cmp, emp) => new { cmp.CompanyName, emp.Name });
-            var myEmpPhonesByCompany = employees.MySelectMany<object,Employee, Phone >(emp => emp.Phones, (emp, phone) => new { emp.Name, phone.Number});
-            //var myCompPhones = companies.SelectMany(comp => comp.CompanyName, (comp, emp) => new { comp.Employees });
 
+            var myEmpPhonesByCompany = employees.MySelectMany<object, Employee, Phone>(emp => emp.Phones, (emp, phone) => new { emp.Name, phone.Number });
+            
+            
+            var myEmpPhonesByCompanyWithIndex = employees.MySelectMany(emp => emp.Phones, (emp, phone) => new { emp.Name, phone.Number });
+
+            //var myCompPhones = companies.SelectMany(comp => comp.CompanyName, (comp, emp) => new { comp.Employees });
+            var genericNames = new GenericNames<Company>();
+            genericNames.GetNames(employees.First());
+
+
+            //if (employees is Enumerable.It Iterator<Employee> iterator)
+            //{
+            //    return iterator.Where(predicate);
+            //}
 
         }
-        public static IEnumerable<TResult> MySelectMany<TResult, TSource, TSourceCollection>(this IEnumerable<TSource> source,
-            Func<TSource, IEnumerable<TSourceCollection>> first,
-            Func<TSource, TSourceCollection, TResult> second)
+
+        class GenericNames<T>
         {
+            // CS0693
+            public void GetNames(T names) {
+                Console.WriteLine();
+            }
+            public void GetNames<U>(U names)
+            {
+
+                Console.WriteLine();
+            }
+        }
+
+        public static IEnumerable<TResult> MySelectMany<TResult, TSource, TSourceInner>(this IEnumerable<TSource> source,
+            Func<TSource, IEnumerable<TSourceInner>> collectionSelector,
+            Func<TSource, TSourceInner, TResult> resultSelector)
+        {
+
+            foreach (var firstItem in source)
+            {
+                var phones = collectionSelector(firstItem);
+                foreach (var secondItem in collectionSelector(firstItem))
+                {
+                    yield return resultSelector(firstItem,secondItem);
+                }
+            }
 
         }
 

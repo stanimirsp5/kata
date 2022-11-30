@@ -12,7 +12,7 @@ namespace KataCSharp.Recursion.Backtracking
         char[,] board = new char[,]
         {
             {'A', 'B', 'C','E' },
-            {'S', 'F', 'C','S' },
+            {'B', 'F', 'C','S' },
             {'A', 'D', 'E','E' }
         };
 
@@ -28,13 +28,56 @@ namespace KataCSharp.Recursion.Backtracking
         {
             tempWord[0] = 'A';
             //var t = SearchWord(1, 0, 0);
-
-            string myWord = "SEE";
-            boardM[0] = new char[] { 'A', 'B', 'C', 'E' };
-            boardM[1] = new char[] { 'S', 'F', 'C', 'S' };
-            boardM[2] = new char[] { 'A', 'D', 'E', 'E' };
-            var tt = Exist(boardM, myWord);
+            // CSEE
+            string myWord = "ABA";
+            //boardM[0] = new char[] { 'A', 'B', 'C', 'E' };
+            //boardM[1] = new char[] { 'S', 'F', 'C', 'S' };
+            //boardM[2] = new char[] { 'A', 'D', 'E', 'E' };
+            //var tt = Exist(boardM, myWord);
+            var isVisited = new bool[board.GetLength(0), board.GetLength(1)];
+            IsContainsWord(0,0,myWord,"", isVisited);
         }
+
+
+        public bool IsContainsWord(int x, int y,string word, string tempWord, bool[,] isVisited)
+        {
+
+            if(word.Length == tempWord.Length)
+            {
+                return true;
+            }
+
+
+            if (isVisited[x, y])
+            {
+                return false;
+            }
+            //boundaries check
+
+
+            int[,] directions = new int[,] { { 0, 1 }, {1,0 }, { -1,0 }, { 0 ,-1 } };// down, right, left, up
+            int[][] directions2 = new int[][] { new int[] {1,0}, new int[] { 1, 2 } };// down, right, left, up
+            var t5 = directions2[1];
+            var t6 = directions[0];
+            foreach (var direction in directions)
+            {
+                //var tt = direction.;
+                //var isRes = IsContainsWord(direction[0] + x);
+               // if(isRes)return true;
+            }
+            return false;
+        }
+
+
+
+
+
+
+
+
+
+
+
 
         public bool SearchWord(int index, int row, int col)
         {
@@ -103,12 +146,12 @@ namespace KataCSharp.Recursion.Backtracking
                     if (isFirstLetterFound)
                     {
                         tempWord[0] = word[0];
-                       res = SearchWord(board, word, tempWord, 1, r, c);
+                        res = SearchWord(board, word, tempWord, 1, r, c);
                     }
                 }
             }
             return res;
-           // return SearchWord(board, word, tempWord, 0, 0, 0);
+            // return SearchWord(board, word, tempWord, 0, 0, 0);
         }
 
         public bool SearchWord(char[][] board, char[] word, char[] tempWord, int index, int row, int col)
@@ -120,7 +163,7 @@ namespace KataCSharp.Recursion.Backtracking
             int[] directions = new int[4];
             for (int i = 0; i < board.Length; i++)
             {
-               (bool isMove, int r, int c, directions) = CanMove(board, word, index, row, col, directions);
+                (bool isMove, int r, int c, directions) = CanMove(board, word, index, row, col, directions);
                 if (isMove)
                 {
                     tempWord[index] = word[index];
@@ -135,7 +178,7 @@ namespace KataCSharp.Recursion.Backtracking
         {
             int r = board.Length - 1;
             int c = board[1].Length - 1;
-            
+
             // go right
             if (directions[0] == 0 && (col + 1 <= c && row <= r) && board[row][col + 1] == word[index])
             {
