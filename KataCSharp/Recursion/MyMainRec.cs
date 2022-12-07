@@ -14,9 +14,11 @@ namespace KataCSharp.Recursion
             //var f = new NumberCombinations();
             //var f = new Permutations();
             //var f = new Subsets();
-             var f = new WordSearch();
+            //var f = new WordSearch();
             //var f = new SelectManyImplementation();
-           // var f = new GenerateParentheses();
+            // var f = new GenerateParentheses();
+            var f = new GroupByImplementation();
+
             f.Start();
         }
     }

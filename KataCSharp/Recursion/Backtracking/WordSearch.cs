@@ -58,7 +58,7 @@ namespace KataCSharp.Recursion.Backtracking
             int[,] directions = new int[,] { { 0, 1 }, {1,0 }, { -1,0 }, { 0 ,-1 } };// down, right, left, up
             int[][] directions2 = new int[][] { new int[] {1,0}, new int[] { 1, 2 } };// down, right, left, up
             var t5 = directions2[1];
-            var t6 = directions[0];
+            //var t6 = directions[0];
             foreach (var direction in directions)
             {
                 //var tt = direction.;
