@@ -1,4 +1,6 @@
 ﻿using System;
+using KataCSharp.LeetCode.LinkedLists;
+
 namespace KataCSharp.Recursion
 {
     public static class Common
@@ -32,6 +34,18 @@ namespace KataCSharp.Recursion
             }
             Console.WriteLine();
         }
+
+        public static void PrintLinkedList(ListNode node)
+        {
+            if (node == null)
+            {
+                Console.WriteLine();
+                return;
+            }
+
+            Console.Write(node.val + " ");
+
+            PrintLinkedList(node.next);
+        }
     }
 }
-
