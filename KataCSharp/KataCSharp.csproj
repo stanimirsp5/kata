@@ -10,10 +10,13 @@
   <ItemGroup>
     <None Remove="Sandbox\" />
     <None Remove="Recursion\Princeton\" />
+    <None Remove="xunit.core" />
+    <None Remove="LeetCode\LinkedLists\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Sandbox\" />
     <Folder Include="Recursion\Princeton\" />
+    <Folder Include="LeetCode\LinkedLists\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="xunit.core" Version="2.4.2" />

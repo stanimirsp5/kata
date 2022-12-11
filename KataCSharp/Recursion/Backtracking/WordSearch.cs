@@ -18,53 +18,83 @@ namespace KataCSharp.Recursion.Backtracking
 
         static char[][] boardM = new char[3][];
 
-        // boardM[0] = new char[] {'A', 'B', 'C','E' };
+       
 
         //    {'S', 'F', 'C','S' },
-        //    {'A', 'D', 'E','E' }
+        //    { 'A', 'D', 'E','E' }
         //};
 
         public void Start()
         {
-            tempWord[0] = 'A';
-            //var t = SearchWord(1, 0, 0);
-            // CSEE
+            boardM[0] = new char[] { 'A', 'B', 'C', 'E' };
+            boardM[1] = new char[] { 'B', 'F', 'C', 'S' };
+            boardM[2] = new char[] { 'A', 'D', 'E', 'E' };
             string myWord = "ABA";
-            //boardM[0] = new char[] { 'A', 'B', 'C', 'E' };
-            //boardM[1] = new char[] { 'S', 'F', 'C', 'S' };
-            //boardM[2] = new char[] { 'A', 'D', 'E', 'E' };
-            //var tt = Exist(boardM, myWord);
-            var isVisited = new bool[board.GetLength(0), board.GetLength(1)];
-            IsContainsWord(0,0,myWord,"", isVisited);
+            var t = MyExist(boardM, myWord);
         }
 
+        int n;
+        int m;
+        public bool MyExist(char[][] board, string word)
+        {
+            n = board.GetLength(0);
+            if (n == 0) return false;
+            m = board.GetLength(1);
 
-        public bool IsContainsWord(int x, int y,string word, string tempWord, bool[,] isVisited)
+            var isVisited = new bool[n, m];
+
+            var result = false;
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = 0; j < m; j++)
+                {
+                    result = IsContainsWord(i, j, word, isVisited, 0);
+                    if (result) return true;
+                }
+            }
+
+            return result;
+        }
+
+        public bool IsContainsWord(int x, int y,string word, bool[,] isVisited, int wordIndex)
         {
 
-            if(word.Length == tempWord.Length)
+            if(word.Length == wordIndex)
             {
                 return true;
             }
 
+            if (x >= n || x < 0 || y >= m || y < 0)
+            {
+                return false;
+            }
+
+            if (word[wordIndex] != boardM[x][y])
+            {
+                return false;
+            }
 
             if (isVisited[x, y])
             {
                 return false;
             }
+
             //boundaries check
+            isVisited[x,y] = true;
+            // int[,] directions = new int[,] { { 0, 1 }, {1,0 }, { -1,0 }, { 0 ,-1 } };// down, right, left, up
+            var directions = new (int, int)[] { (0, 1), (0, -1), (1, 0), (-1, 0) };
 
-
-            int[,] directions = new int[,] { { 0, 1 }, {1,0 }, { -1,0 }, { 0 ,-1 } };// down, right, left, up
-            int[][] directions2 = new int[][] { new int[] {1,0}, new int[] { 1, 2 } };// down, right, left, up
-            var t5 = directions2[1];
-            //var t6 = directions[0];
             foreach (var direction in directions)
             {
-                //var tt = direction.;
-                //var isRes = IsContainsWord(direction[0] + x);
-               // if(isRes)return true;
+
+                if(IsContainsWord(x + direction.Item1, y + direction.Item2,word, isVisited, wordIndex+1))
+                {
+                    return true;
+                }
+
             }
+            isVisited[x, y] = false;
+
             return false;
         }
 
