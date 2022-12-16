@@ -10,10 +10,18 @@ namespace KataCSharp.CSharpImplementations
     {
         public void Start()
         {
-           
+            GroupEmployeesByCompany();
         }
 
+        void GroupEmployeesByCompany()
+        {
+            var employees = CommonObjects.CreateEmployees();
 
+            var groupedEmployees = employees.GroupBy(em => em.Position);
+
+            var groupedEmployeesQuery = from employee in employees
+                                        group employee by employee.Position;
+        }
 
     }
 }
