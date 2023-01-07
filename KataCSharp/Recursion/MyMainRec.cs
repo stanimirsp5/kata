@@ -27,7 +27,8 @@ namespace KataCSharp.Recursion
             // var f = new GenerateParentheses();
             //var f = new RemoveLinkedListElements();
             //var f = new PowerOfThree();
-            var f = new AddTwoNumbers();
+            //var f = new AddTwoNumbers();
+            var f = new OddEvenLinkedLisrt();
 
             f.Start();
         }
