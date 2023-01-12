@@ -19,7 +19,7 @@ namespace KataCSharp.Recursion
             //var f = new WordSearch();
             //var f = new SelectManyImplementation();
             // var f = new GenerateParentheses();
-            //var f = new GroupByImplementation();
+            var f = new GroupByImplementation();
 
 
             // var f = new WordSearch();
@@ -27,7 +27,7 @@ namespace KataCSharp.Recursion
             // var f = new GenerateParentheses();
             //var f = new RemoveLinkedListElements();
             //var f = new PowerOfThree();
-            var f = new AddTwoNumbers();
+            //var f = new AddTwoNumbers();
 
             f.Start();
         }

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using Xunit.Sdk;
 //using Xunit;
 
-namespace KataCSharp.CSharpImplementations
+namespace KataCSharp.CSharpImplementations.SelectMany
 {
     //https://codeblog.jonskeet.uk/2010/12/27/reimplementing-linq-to-objects-part-9-selectmany/
     // LINQ implementations https://dotnetcorecentral.com/blog/linq-internals/
