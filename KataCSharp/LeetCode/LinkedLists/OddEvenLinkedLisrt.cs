@@ -9,9 +9,10 @@ namespace KataCSharp.LeetCode.LinkedLists
         {
             //int[] arr = new int[] {1,2,3,4,5};
             //int[] arr = new int[] { 2, 1, 3, 5, 6, 4, 7 };
-            int[] arr = new int[] {1};
+            int[] arr = new int[] {1, 2,3,4};
             var listNode = ListNode.LinkedListFromArray(arr);
-            OddEvenList(listNode);
+           // OddEvenList(listNode);
+            OddEvenListLoop(listNode);
         }
 
         public ListNode OddEvenList(ListNode head)
@@ -52,6 +53,23 @@ namespace KataCSharp.LeetCode.LinkedLists
             return GetLastNode(node.next);
         }
 
+        ListNode OddEvenListLoop(ListNode node)
+        {
+            if (node == null) return null;
+            ListNode oddList = node, evenList = node.next, evenHead = evenList;
+
+            while (evenList != null && evenList.next != null)
+            {
+                oddList.next = evenList.next;
+                oddList = oddList.next;
+
+                evenList.next = oddList.next;
+                evenList = evenList.next;
+            }
+            oddList.next = evenHead;
+            return node;
+        }
     }
+
 }
 

@@ -2,7 +2,7 @@
 using KataCSharp.LeetCode.LinkedLists;
 using KataCSharp.Recursion.Backtracking;
 using KataCSharp.Recursion.Princeton;
-
+using KataCSharp.TaskParallelLibrary;
 using System;
 namespace KataCSharp.Recursion
 {
@@ -19,7 +19,7 @@ namespace KataCSharp.Recursion
             //var f = new WordSearch();
             //var f = new SelectManyImplementation();
             // var f = new GenerateParentheses();
-            var f = new GroupByImplementation();
+            //var f = new GroupByImplementation();
 
 
             // var f = new WordSearch();
@@ -30,7 +30,18 @@ namespace KataCSharp.Recursion
             //var f = new AddTwoNumbers();
             //var f = new OddEvenLinkedLisrt();
 
-            f.Start();
+
+            //f.Start();
+        }
+    }
+    public class MyMainAsync
+    {
+        public async Task RunMainAsync()
+        {
+            //Tasks
+            var f = new TaskMain();
+
+            await f.Start();
         }
     }
 }
