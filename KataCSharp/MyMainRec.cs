@@ -30,8 +30,8 @@ namespace KataCSharp.Recursion
             //var f = new AddTwoNumbers();
             //var f = new OddEvenLinkedLisrt();
 
-
-            //f.Start();
+            var f = new IntersectionOfTwoLinkedLists();
+            f.Start();
         }
     }
     public class MyMainAsync
@@ -39,9 +39,9 @@ namespace KataCSharp.Recursion
         public async Task RunMainAsync()
         {
             //Tasks
-            var f = new TaskMain();
+            //var f = new TaskMain();
 
-            await f.Start();
+            //await f.Start();
         }
     }
 }

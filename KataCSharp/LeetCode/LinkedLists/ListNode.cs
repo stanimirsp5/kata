@@ -19,7 +19,7 @@ namespace KataCSharp.LeetCode.LinkedLists
         {
             var root = new ListNode(arr[0]);
 
-            BuildLinkedList(arr,1,root);
+            BuildLinkedList(arr, 1, root);
 
             return root;
         }
@@ -32,6 +32,25 @@ namespace KataCSharp.LeetCode.LinkedLists
             BuildLinkedList(arr, index + 1, node.next);
         }
 
+
+        
+    }
+
+    public static class ListNodeHelper {
+
+        public static void ComposeLists(this ListNode baseList, ListNode newList)
+        {
+            var lastBaseNode = GetLastNode(baseList);
+            lastBaseNode.next = newList;
+            //return baseList;
+        }
+
+        static ListNode GetLastNode(ListNode listNode)
+        {
+            if (listNode.next == null)
+                return listNode;
+            return GetLastNode(listNode.next);
+        }
     }
 }
 

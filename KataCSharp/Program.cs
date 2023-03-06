@@ -3,11 +3,11 @@ using KataCSharp.LeetCode.B;
 using KataCSharp.Recursion;
 using System.Linq;
 
-//MyMainRec main = new MyMainRec();
-//main.MyMain();
+MyMainRec main = new MyMainRec();
+main.MyMain();
 
-MyMainAsync main = new MyMainAsync();
-await main.RunMainAsync();
+//MyMainAsync main = new MyMainAsync();
+//await main.RunMainAsync();
 
 // merge dictionary
 var dict1 = new Dictionary<string, string>() { { "en", "dict 1 t1 en" }, { "bg", "dict 1 t2 bg" } };
