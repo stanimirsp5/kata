@@ -12,11 +12,13 @@
     <None Remove="Recursion\Princeton\" />
     <None Remove="xunit.core" />
     <None Remove="LeetCode\LinkedLists\" />
+    <None Remove="TaskParallelLibrary\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Sandbox\" />
     <Folder Include="Recursion\Princeton\" />
     <Folder Include="LeetCode\LinkedLists\" />
+    <Folder Include="TaskParallelLibrary\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="xunit.core" Version="2.4.2" />
