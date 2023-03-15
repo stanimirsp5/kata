@@ -2,6 +2,7 @@
 using KataCSharp.LeetCode.LinkedLists;
 using KataCSharp.Recursion.Backtracking;
 using KataCSharp.Recursion.Princeton;
+using KataCSharp.Sandbox;
 using KataCSharp.TaskParallelLibrary;
 using System;
 namespace KataCSharp.Recursion
@@ -30,7 +31,8 @@ namespace KataCSharp.Recursion
             //var f = new AddTwoNumbers();
             //var f = new OddEvenLinkedLisrt();
 
-            var f = new IntersectionOfTwoLinkedLists();
+            //var f = new IntersectionOfTwoLinkedLists();
+            var f = new References();
             f.Start();
         }
     }
