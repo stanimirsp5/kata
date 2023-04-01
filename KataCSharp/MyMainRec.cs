@@ -31,8 +31,8 @@ namespace KataCSharp.Recursion
             //var f = new AddTwoNumbers();
             //var f = new OddEvenLinkedLisrt();
 
-            //var f = new IntersectionOfTwoLinkedLists();
-            var f = new References();
+            var f = new IntersectionOfTwoLinkedLists();
+            //var f = new References();
             f.Start();
         }
     }
