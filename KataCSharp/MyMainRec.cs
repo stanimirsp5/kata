@@ -1,4 +1,5 @@
 ﻿using KataCSharp.CSharpImplementations;
+using KataCSharp.LeetCode.B;
 using KataCSharp.LeetCode.LinkedLists;
 using KataCSharp.Recursion.Backtracking;
 using KataCSharp.Recursion.Princeton;
@@ -31,8 +32,10 @@ namespace KataCSharp.Recursion
             //var f = new AddTwoNumbers();
             //var f = new OddEvenLinkedLisrt();
 
-            var f = new IntersectionOfTwoLinkedLists();
+            //var f = new IntersectionOfTwoLinkedLists();
             //var f = new References();
+            var f = new Sum3();
+
             f.Start();
         }
     }
