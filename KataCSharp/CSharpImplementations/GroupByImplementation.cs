@@ -82,13 +82,13 @@ namespace KataCSharp.CSharpImplementations
 
     }
 
-    public interface IMyGrouping<TKey, TElement> : IEnumerable<TElement>, IEnumerable
+    public interface IMyGrouping<TKey, TElement> : IEnumerable<TElement>
     {
         TKey key { get; set; }
         IEnumerable<TElement> elements { get; set; }
     }
 
-    class MyGrouping<TKey, TElement> : IMyGrouping<TKey, TElement>, IEnumerable
+    class MyGrouping<TKey, TElement> : IMyGrouping<TKey, TElement>
     {
         TKey _key;
         IEnumerable<TElement> _elements = new List<TElement>();
@@ -109,16 +109,38 @@ namespace KataCSharp.CSharpImplementations
             //elements = elements.Append(element);
         }
 
-        public IEnumerator GetEnumerator()
+        IEnumerator IEnumerable.GetEnumerator()
         {
-            throw new NotImplementedException();
+            return GetEnumerator();
         }
 
-        IEnumerator<TElement> IEnumerable<TElement>.GetEnumerator()
+        public IEnumerator<TElement> GetEnumerator()
         {
             throw new NotImplementedException();
         }
     }
+
+    public class GroupByEnum : IEnumerator
+    {
+       // public MyGrouping<TKey, TElement>[] _myGroupings;
+        public GroupByEnum()
+        {
+
+        }
+
+        public object Current => throw new NotImplementedException();
+
+        public bool MoveNext()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Reset()
+        {
+            throw new NotImplementedException();
+        }
+    }
+
 
     interface ITestable
     {

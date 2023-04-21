@@ -114,3 +114,19 @@ class File
     public string Code { get; set; }
     public string Name { get; set; }
 }
+
+class Types
+{
+    // value type
+        // point directly to value
+
+    // reference type
+        // point to address in memory where is the value
+
+    // mutable
+        // value can be changed
+
+    // immutable
+        // creates new value whenvalue is changhed
+
+}
