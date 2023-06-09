@@ -1,4 +1,5 @@
-﻿using KataCSharp.CSharpImplementations;
+﻿using KataCSharp.Algorithms.Sorting;
+using KataCSharp.CSharpImplementations;
 using KataCSharp.LeetCode.B;
 using KataCSharp.LeetCode.LinkedLists;
 using KataCSharp.Recursion.Backtracking;
@@ -35,7 +36,8 @@ namespace KataCSharp.Recursion
             //var f = new IntersectionOfTwoLinkedLists();
             //var f = new References();
             //var f = new Sum3();
-            var f = new OrderByImplementation();
+            //var f = new OrderByImplementation();
+            var f = new InsertionSort();
 
 
 
