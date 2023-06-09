@@ -1,4 +1,5 @@
-﻿using System;
+﻿using KataCSharp.Algorithms.Sorting;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -40,19 +41,18 @@ namespace KataCSharp.CSharpImplementations
     // 7, 3, 1, 2, 9,  5, 6,  4, 8
     public static class OrderByImpl
     {
-        //public static IEnumerable<T> COrderBy<T>(this IEnumerable<T> source, Func<T, bool> func)
-        //{
-            //var orderedList = InsertionSort(source.ToList());
+        public static IEnumerable<int> COrderBy(this IEnumerable<int> source)
+        {
+            if (source == null)
+                throw new ArgumentNullException(nameof(source));
+            
+            var orderedList = InsertionSort.Sort((List<int>)source);
 
-            //foreach (var item in orderedList)
-            //{
-            //    if (func(item))
-            //    {
-            //        yield return item;
-            //    }
-            //}
-
-        //}
+            foreach (var item in orderedList)
+            {
+                    yield return item;
+            }
+        }
 
 
         public static IEnumerable<int> COrderBy2(this IEnumerable<int> source, Func<int, int> func)

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace KataCSharp.Algorithms.Sorting
 {
-    public class InsertionSort
+    public static class InsertionSort
     {
         public void Start()
         {
@@ -29,7 +29,7 @@ namespace KataCSharp.Algorithms.Sorting
         // 1 3 2 7
         // 1 2 3 7
 
-        public List<int> Sort(List<int> list)
+        public static List<int> Sort(List<int> list)
         {
 
             for (int i = 1; i < list.Count; i++)
@@ -50,7 +50,7 @@ namespace KataCSharp.Algorithms.Sorting
             return list;
         }
 
-        public List<int> InsertionSort2(List<int> list)
+        public static List<int> InsertionSort2(List<int> list)
         {
             // 3,7,1
             var array = list.ToArray();
