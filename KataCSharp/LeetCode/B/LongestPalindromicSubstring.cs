@@ -19,12 +19,49 @@ namespace KataCSharp.LeetCode.B
 
         string FindLongestpalindrome(string s)
         {
+            var t = s.Split();
+            var letters = s.ToCharArray();
+            var longestPalindrome = string.Empty;
+            for (int i = 0; i < letters.Length; i++)
+            {
+                var curLetter = letters[i];
+
+                for (int j = 0; j < letters.Length; j++)
+                {
+                    if(i != j && curLetter == letters[j])
+                    {
+                       var possiblePalindromeArr = GetArrayFromIndexes(letters, i,j);
+                        if (IsPalindrome(possiblePalindromeArr) &&
+                            possiblePalindromeArr.Length > longestPalindrome.Length)
+                            longestPalindrome = possiblePalindromeArr.ToString();
+                    }
+                }
+            }
 
 
             return s;
         }
 
+        char[] GetArrayFromIndexes(char[] letters, int fromIndex, int toIndex)
+        {
+            char[] arr = new char[toIndex-fromIndex];
+            for (int i = 0; i < letters.Length; i++)
+            {
+                if(i >= fromIndex && i < toIndex)
+                {
+                    arr[i] = letters[i];
+                }
+            }
 
+            return letters;
+        }
+
+        bool IsPalindrome(char[] possiblePalindromeArr)
+        {
+
+            return false;
+        }
+        
 
     }
 }
