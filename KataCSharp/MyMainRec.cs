@@ -35,9 +35,9 @@ namespace KataCSharp.Recursion
             //var f = new IntersectionOfTwoLinkedLists();
             //var f = new References();
            // var f = new Sum3();
-            //var f = new OrderByImplementation();
+            var f = new OrderByImplementation();
             //var f = new InsertionSort();
-            var f = new LongestPalindromicSubstring();
+            //var f = new LongestPalindromicSubstring();
 
 
 

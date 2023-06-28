@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace KataCSharp.Algorithms.Sorting
 {
-    public static class InsertionSort
+    public class InsertionSort
     {
         public void Start()
         {

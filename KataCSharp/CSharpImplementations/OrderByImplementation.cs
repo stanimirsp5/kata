@@ -1,5 +1,6 @@
 ﻿using KataCSharp.Algorithms.Sorting;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -28,15 +29,13 @@ namespace KataCSharp.CSharpImplementations
             };
             
             //  var t = InsertionSort(list);
-            var res = list.COrderBy2(x => x);
+            var res = list.OrderByComparer(x => x);
             var res2 = list.OrderBy(x => x > 0);
+
             list.Sort();
             list.FindAll(x => x > 4);
             //res.ToList().ForEach(el => Console.WriteLine(el));
         }
-
-   
-
     }
     // 7, 3, 1, 2, 9,  5, 6,  4, 8
     public static class OrderByImpl
@@ -53,7 +52,6 @@ namespace KataCSharp.CSharpImplementations
                     yield return item;
             }
         }
-
 
         public static IEnumerable<int> COrderBy2(this IEnumerable<int> source, Func<int, int> func)
         {
@@ -74,6 +72,23 @@ namespace KataCSharp.CSharpImplementations
             }
             return array;
         }
+
+        public static IEnumerable<T> OrderByComparer<T,TRes>(this IEnumerable<T> source, Func<T,TRes> keySelector)
+        {
+            var comparer = Comparer<TRes>.Default;
+            var list = new List<T>(source);
+            list.Sort((x,y) => comparer.Compare(keySelector(x), keySelector(y)));
+            return list;
+
+        }
+
+        static IEnumerable<T> OrderedEnum<T>(IEnumerable<T> source)
+        {
+
+           // var ordered = source
+            return source;
+        }
+
     }
 
 }
