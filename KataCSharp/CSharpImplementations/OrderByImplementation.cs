@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace KataCSharp.CSharpImplementations
 {
@@ -27,14 +28,20 @@ namespace KataCSharp.CSharpImplementations
                 new Person { Name = "Charlie", Age = 20 },
                 new Person { Name = "David", Age = 35 }
             };
-            
-            //  var t = InsertionSort(list);
-            var res = list.OrderByComparer(x => x);
-            var res2 = list.OrderBy(x => x > 0);
 
-            list.Sort();
-            list.FindAll(x => x > 4);
+            //  var t = InsertionSort(list);
+            //var res = list.OrderByComparer(x => x);
+            //var res2 = list.OrderBy(x => x > 0);
+
+            //list.Sort();
+            //list.FindAll(x => x > 4);
             //res.ToList().ForEach(el => Console.WriteLine(el));
+            var oc = new OrderedCollection(list);
+            foreach (var item in oc)
+            {
+
+            }
+            //var res = oc.MyOrderBy(list, x => x > 0);
         }
     }
     // 7, 3, 1, 2, 9,  5, 6,  4, 8
@@ -87,6 +94,32 @@ namespace KataCSharp.CSharpImplementations
 
            // var ordered = source
             return source;
+        }
+
+    }
+
+
+    class OrderedCollection<T> : IEnumerable
+    {
+        List<T> list { get; set; }
+
+        public OrderedCollection(List<T> list)
+        {
+            this.list = list;
+        }
+
+        public IEnumerator GetEnumerator()
+        {
+            List<T> elements = list.ToList();
+            while(elements.Count > 0)
+            {
+                T minElement = elements[0];
+                int minIndex = 0;
+                for (int i = 1; i < elements.Count; i++)
+                {
+                    if(curr)
+                }
+            }
         }
 
     }
