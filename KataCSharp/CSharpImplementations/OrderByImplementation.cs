@@ -31,22 +31,27 @@ namespace KataCSharp.CSharpImplementations
 
             //  var t = InsertionSort(list);
             //var res = list.OrderByComparer(x => x);
-            //var res2 = list.OrderBy(x => x > 0);
+            var res1 = list.COrderBy();
 
-            //list.Sort();
-            //list.FindAll(x => x > 4);
-            //res.ToList().ForEach(el => Console.WriteLine(el));
-            var oc = new OrderedCollection(list);
+            
+            var oc = new OrderedCollection<int>(list);
             foreach (var item in oc)
             {
-
+                Console.Write(item + ", ");
             }
+
             //var res = oc.MyOrderBy(list, x => x > 0);
         }
     }
     // 7, 3, 1, 2, 9,  5, 6,  4, 8
     public static class OrderByImpl
     {
+        /// <summary>
+        /// Order using sorting algorithm
+        /// </summary>
+        /// <param name="source"></param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException"></exception>
         public static IEnumerable<int> COrderBy(this IEnumerable<int> source)
         {
             if (source == null)
@@ -60,26 +65,6 @@ namespace KataCSharp.CSharpImplementations
             }
         }
 
-        public static IEnumerable<int> COrderBy2(this IEnumerable<int> source, Func<int, int> func)
-        {
-            var array = source.ToArray();
-            for (int i = 0; i < array.Length; i++)
-            {
-                var currNum = array[i];
-                var j = i - 1;
-               
-                while (j >= 0 && array[j] > currNum)
-                {
-                    array[j + 1] = array[j];
-                    j = j - 1;
-                }
-                array[j + 1] = currNum;
-
-             //   yield return currNum;
-            }
-            return array;
-        }
-
         public static IEnumerable<T> OrderByComparer<T,TRes>(this IEnumerable<T> source, Func<T,TRes> keySelector)
         {
             var comparer = Comparer<TRes>.Default;
@@ -88,17 +73,12 @@ namespace KataCSharp.CSharpImplementations
             return list;
 
         }
-
-        static IEnumerable<T> OrderedEnum<T>(IEnumerable<T> source)
-        {
-
-           // var ordered = source
-            return source;
-        }
-
     }
 
-
+    /// <summary>
+    /// Order using iteration
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     class OrderedCollection<T> : IEnumerable
     {
         List<T> list { get; set; }
@@ -110,18 +90,22 @@ namespace KataCSharp.CSharpImplementations
 
         public IEnumerator GetEnumerator()
         {
-            List<T> elements = list.ToList();
+            List<int> elements = list.Select(el => int.Parse(el.ToString())).ToList();
             while(elements.Count > 0)
             {
-                T minElement = elements[0];
                 int minIndex = 0;
-                for (int i = 1; i < elements.Count; i++)
+                int smallestNum = elements.FirstOrDefault();
+                for (int i = 0; i < elements.Count; i++)
                 {
-                    if(curr)
+                    if (smallestNum.CompareTo(elements[i]) == 1)
+                    {
+                        smallestNum = elements[i];
+                        minIndex = i;
+                    }
                 }
+                elements.RemoveAt(minIndex);
+                yield return smallestNum;
             }
         }
-
     }
-
 }
