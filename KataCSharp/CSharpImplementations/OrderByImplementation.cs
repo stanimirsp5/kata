@@ -31,10 +31,11 @@ namespace KataCSharp.CSharpImplementations
 
             //  var t = InsertionSort(list);
             //var res = list.OrderByComparer(x => x);
+            var orderPeople = people.OrderBy(p => p.Age);
             var res1 = list.COrderBy();
 
             
-            var oc = new OrderedCollection<int>(list);
+            var oc = new OrderedCollection<Person, int>(people, p => p.Age);
             foreach (var item in oc)
             {
                 Console.Write(item + ", ");
@@ -75,31 +76,36 @@ namespace KataCSharp.CSharpImplementations
         }
     }
 
+    public delegate void FuncDel(string msg);
     /// <summary>
     /// Order using iteration
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    class OrderedCollection<T> : IEnumerable
+    class OrderedCollection<T, TRes> : IEnumerable
     {
         List<T> list { get; set; }
+        Func<T, TRes> func { get; set; }
 
-        public OrderedCollection(List<T> list)
+        public OrderedCollection(List<T> list, Func<T,TRes> func)
         {
             this.list = list;
+            this.func = func;
         }
 
         public IEnumerator GetEnumerator()
         {
-            List<int> elements = list.Select(el => int.Parse(el.ToString())).ToList();
+            List<T> elements = list.ToList();
             while(elements.Count > 0)
             {
                 int minIndex = 0;
-                int smallestNum = elements.FirstOrDefault();
+                var smallestNum = func(elements.FirstOrDefault());
                 for (int i = 0; i < elements.Count; i++)
                 {
-                    if (smallestNum.CompareTo(elements[i]) == 1)
+                    var item = func(elements[i]);
+                    var comparer = Comparer<TRes>.Default.Compare(smallestNum, item);
+                    if (comparer == 1)
                     {
-                        smallestNum = elements[i];
+                        smallestNum = item;
                         minIndex = i;
                     }
                 }
@@ -107,5 +113,26 @@ namespace KataCSharp.CSharpImplementations
                 yield return smallestNum;
             }
         }
+        //public IEnumerator GetEnumerator()
+        //{
+        //    List<T> elements = list.ToList();
+        //    while(elements.Count > 0)
+        //    {
+        //        int minIndex = 0;
+        //        var smallestNum = elements.FirstOrDefault();
+        //        for (int i = 0; i < elements.Count; i++)
+        //        {
+        //            var item = func(elements[i]);
+        //            var comparer = Comparer<T>.Default.Compare(smallestNum, elements[i]);
+        //            if (comparer == 1)
+        //            {
+        //                smallestNum = elements[i];
+        //                minIndex = i;
+        //            }
+        //        }
+        //        elements.RemoveAt(minIndex);
+        //        yield return smallestNum;
+        //    }
+        //}
     }
 }

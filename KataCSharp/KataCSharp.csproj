@@ -15,7 +15,6 @@
     <None Remove="TaskParallelLibrary\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Sandbox\" />
     <Folder Include="Recursion\Princeton\" />
     <Folder Include="LeetCode\LinkedLists\" />
     <Folder Include="TaskParallelLibrary\" />
