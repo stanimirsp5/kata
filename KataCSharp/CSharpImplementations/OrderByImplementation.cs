@@ -1,12 +1,6 @@
 ﻿using KataCSharp.Algorithms.Sorting;
-using System;
+using KataCSharp.Sandbox;
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
 
 namespace KataCSharp.CSharpImplementations
 {
@@ -29,19 +23,16 @@ namespace KataCSharp.CSharpImplementations
                 new Person { Name = "David", Age = 35 }
             };
 
-            //  var t = InsertionSort(list);
-            //var res = list.OrderByComparer(x => x);
             var orderPeople = people.OrderBy(p => p.Age);
             var res1 = list.COrderBy();
 
-            
-            var oc = new OrderedCollection<Person, int>(people, p => p.Age);
+            FuncDel<Person, int> funcDelWithMethod = ClassA.ExtractAgeProperty;
+            var oc = new OrderedCollection<Person, int>(people, funcDelWithMethod);
             foreach (var item in oc)
             {
                 Console.Write(item + ", ");
             }
 
-            //var res = oc.MyOrderBy(list, x => x > 0);
         }
     }
     // 7, 3, 1, 2, 9,  5, 6,  4, 8
@@ -76,7 +67,9 @@ namespace KataCSharp.CSharpImplementations
         }
     }
 
-    public delegate void FuncDel(string msg);
+
+
+
     /// <summary>
     /// Order using iteration
     /// </summary>
@@ -84,9 +77,9 @@ namespace KataCSharp.CSharpImplementations
     class OrderedCollection<T, TRes> : IEnumerable
     {
         List<T> list { get; set; }
-        Func<T, TRes> func { get; set; }
+        FuncDel<T, TRes> func { get; set; }
 
-        public OrderedCollection(List<T> list, Func<T,TRes> func)
+        public OrderedCollection(List<T> list, FuncDel<T,TRes> func)
         {
             this.list = list;
             this.func = func;
@@ -97,6 +90,7 @@ namespace KataCSharp.CSharpImplementations
             List<T> elements = list.ToList();
             while(elements.Count > 0)
             {
+                var resObject = elements.FirstOrDefault();
                 int minIndex = 0;
                 var smallestNum = func(elements.FirstOrDefault());
                 for (int i = 0; i < elements.Count; i++)
@@ -105,12 +99,13 @@ namespace KataCSharp.CSharpImplementations
                     var comparer = Comparer<TRes>.Default.Compare(smallestNum, item);
                     if (comparer == 1)
                     {
+                        resObject = elements[i];
                         smallestNum = item;
                         minIndex = i;
                     }
                 }
                 elements.RemoveAt(minIndex);
-                yield return smallestNum;
+                yield return resObject;
             }
         }
         //public IEnumerator GetEnumerator()
