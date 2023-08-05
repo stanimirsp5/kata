@@ -3,8 +3,8 @@ using KataCSharp.LeetCode.B;
 using KataCSharp.Recursion;
 using System.Linq;
 
-MyMainRec main = new MyMainRec();
-main.MyMain();
+MyMain myMain = new MyMain();
+myMain.Main();
 
 //MyMainAsync main = new MyMainAsync();
 //await main.RunMainAsync();
