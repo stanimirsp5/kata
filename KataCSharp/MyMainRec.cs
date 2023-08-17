@@ -5,6 +5,7 @@ using KataCSharp.LeetCode.LinkedLists;
 using KataCSharp.Recursion.Backtracking;
 using KataCSharp.Recursion.Princeton;
 using KataCSharp.Sandbox;
+using KataCSharp.Sandbox.DataStructures;
 using KataCSharp.TaskParallelLibrary;
 using System;
 namespace KataCSharp.Recursion
@@ -24,6 +25,8 @@ namespace KataCSharp.Recursion
             // var f = new GenerateParentheses();
             //var f = new GroupByImplementation();
 
+            var f = new DictionaryExercises();
+
             // var f = new WordSearch();
             //var f = new SelectManyImplementation();
             // var f = new GenerateParentheses();
@@ -34,8 +37,8 @@ namespace KataCSharp.Recursion
 
             //var f = new IntersectionOfTwoLinkedLists();
             //var f = new References();
-           // var f = new Sum3();
-            var f = new OrderByImplementation();
+            // var f = new Sum3();
+          //  var f = new OrderByImplementation();
             //var f = new InsertionSort();
             //var f = new LongestPalindromicSubstring();
 

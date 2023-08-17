@@ -81,5 +81,43 @@ namespace KataCSharp.CSharpImplementations
 
             return companies;
         }
+
+        public class Grocery
+        {
+            public int Id { get; set; }
+            public string Name { get; set; }
+            public GroceryTypeEnum Type { get; set; }
+        }
+
+        public static List<Grocery> BuildGroceries()
+        {
+            return new List<Grocery> {
+                new Grocery {
+                    Id = 1,
+                    Name = "Danone",
+                    Type = GroceryTypeEnum.BEVARAGE
+                },new Grocery {
+                    Id = 2,
+                    Name = "Pork",
+                    Type = GroceryTypeEnum.MEAT
+                },new Grocery {
+                    Id = 3,
+                    Name = "Burger beans",
+                    Type = GroceryTypeEnum.BREAD
+                },new Grocery {
+                    Id = 4,
+                    Name = "Water",
+                    Type = GroceryTypeEnum.BEVARAGE
+                },
+            };
+        }
+
+        public enum GroceryTypeEnum
+        {
+            MEAT,
+            BEVARAGE,
+            BREAD,
+
+        }
     }
 }

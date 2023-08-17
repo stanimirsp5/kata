@@ -9,6 +9,9 @@ main.MyMain();
 //MyMainAsync main = new MyMainAsync();
 //await main.RunMainAsync();
 
+var listOfNumbers = new List<int>() { 1,2,3,4,5};
+var emptyListOfNumbers = new List<int>();
+
 // merge dictionary
 var dict1 = new Dictionary<string, string>() { { "en", "dict 1 t1 en" }, { "bg", "dict 1 t2 bg" } };
 var dict2 = new Dictionary<string, string>() { { "en", "dict 22 t1 en" }, { "bg", "dict 22 t2 bg" } };
@@ -127,6 +130,6 @@ class Types
         // value can be changed
 
     // immutable
-        // creates new value whenvalue is changhed
+        // creates new value when value is changhed
 
 }
