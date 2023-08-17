@@ -8,7 +8,7 @@ namespace KataCSharp.LeetCode.B
 {
     public class LongestPalindromicSubstring
     {
-       
+
         public void Start()
         {
             var s = "a";
@@ -16,16 +16,20 @@ namespace KataCSharp.LeetCode.B
 
             var pal = "bab";
             //var t = IsPalindrome(s.ToCharArray());
-           var t = FindLongestpalindrome(s);
+            var t = FindLongestpalindrome(s);
         }
 
         string FindLongestpalindrome(string s)
         {
             var letters = s.ToCharArray();
             var longestPalindrome = string.Empty;
-            if(letters.Length == 0) return longestPalindrome;
-           else if (letters.Length <= 2)
-                return s[0].ToString();
+            if (letters.Length == 0) return longestPalindrome;
+            else if (letters.Length == 1) return s[0].ToString();
+            else if (letters.Length == 2)
+            {
+                if (letters[0] == letters[1]) return s;
+                else return s[0].ToString();
+            }
 
             for (int i = 0; i < letters.Length; i++)
             {
@@ -33,9 +37,9 @@ namespace KataCSharp.LeetCode.B
 
                 for (int j = 0; j < letters.Length; j++)
                 {
-                    if(i != j && i <= j && curLetter == letters[j])
+                    if (i != j && i <= j && curLetter == letters[j])
                     {
-                       var possiblePalindromeArr = GetArrayFromIndexes(letters, i,j);
+                        var possiblePalindromeArr = GetArrayFromIndexes(letters, i, j);
                         if (IsPalindrome(possiblePalindromeArr) &&
                             possiblePalindromeArr.Length > longestPalindrome.Length)
                             longestPalindrome = string.Join("", possiblePalindromeArr);
@@ -43,14 +47,15 @@ namespace KataCSharp.LeetCode.B
                 }
             }
 
+            if (longestPalindrome == string.Empty) return s[0].ToString();
 
             return longestPalindrome;
         }
 
         char[] GetArrayFromIndexes(char[] letters, int fromIndex, int toIndex)
         {
-            char[] arr = new char[(toIndex-fromIndex)+1];
-            for (int i = fromIndex, j = 0; j < arr.Length; i++,j++)
+            char[] arr = new char[(toIndex - fromIndex) + 1];
+            for (int i = fromIndex, j = 0; j < arr.Length; i++, j++)
             {
                 arr[j] = letters[i];
             }
@@ -65,15 +70,10 @@ namespace KataCSharp.LeetCode.B
                 if (startIdx > endIdx)
                     break;
 
-                if(possiblePalindromeArr[startIdx] == possiblePalindromeArr[endIdx]) 
-                    continue;
-                else
+                if (possiblePalindromeArr[startIdx] != possiblePalindromeArr[endIdx])
                     return false;
-
             }
             return true;
         }
-        
-
     }
 }
