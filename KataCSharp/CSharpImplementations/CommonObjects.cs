@@ -16,6 +16,7 @@ namespace KataCSharp.CSharpImplementations
 
         public class Employee
         {
+            public int Id { get; set; }
             public string Name { get; set; }
             public string Position { get; set; }
             public IEnumerable<Phone> Phones { get; set; }
@@ -42,30 +43,32 @@ namespace KataCSharp.CSharpImplementations
         {
             Employee emp11 = new Employee()
             {
+                Id = 1,
                 Name = "Misho",
                 Position = "HR",
                 Phones = new List<Phone>() { new Phone { Number = "088 1234567" }, new Phone { Number = "0000000000" } }
             };
             Employee emp12 = new Employee()
             {
+                Id = 2,
                 Name = "Stef",
                 Position = "HR",
                 Phones = new List<Phone>() { new Phone { Number = "088 77777777" }, new Phone { Number = "1111111111" } }
             };
             Employee emp21 = new Employee()
             {
+                Id = 3,
                 Name = "Tosho",
                 Position = "IT",
                 Phones = new List<Phone>() { new Phone { Number = "0899999999" } }
             };
             Employee emp22 = new Employee()
             {
+                Id = 4,
                 Name = "Qnko",
                 Position = "IT",
                 Phones = new List<Phone>() { new Phone { Number = "088 8888888888888" }, new Phone { Number = "22222222222" } }
             };
-
-
 
             return new List<Employee>() { emp11, emp12, emp21, emp22 };
         }
