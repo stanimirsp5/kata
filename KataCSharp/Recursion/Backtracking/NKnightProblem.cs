@@ -1,4 +1,6 @@
 ﻿using System;
+using KataCSharp.Common;
+
 namespace KataCSharp.Recursion.Backtracking
 {
     public class NKnightProblem
@@ -11,7 +13,7 @@ namespace KataCSharp.Recursion.Backtracking
         {
             board[0,0]= 1;
             Knight(0, 0);
-            Common.PrintMatrix(board);
+            CommonMethods.PrintMatrix(board);
         }
 
         int[] rowMoves = new int[] { 2,1,-2,-1,2,1,-1,-2 };
@@ -52,7 +54,7 @@ namespace KataCSharp.Recursion.Backtracking
         {
             if (N * N == counter)
             {
-                Common.PrintMatrix(board);
+                CommonMethods.PrintMatrix(board);
                 return true;
             }
             //if (row == N || col == N) return;

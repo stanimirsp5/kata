@@ -1,4 +1,6 @@
-﻿using System;
+﻿using KataCSharp.Common;
+using System;
+
 namespace KataCSharp.Recursion.Backtracking
 {
     public class SubsetSum
@@ -17,7 +19,7 @@ namespace KataCSharp.Recursion.Backtracking
         {
             if(num == m)
             {
-                Common.PrintArray(board);
+                CommonMethods.PrintArray(board);
             }
             if (num > m) return;
 

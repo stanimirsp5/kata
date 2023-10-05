@@ -1,4 +1,4 @@
-﻿using KataCSharp.CSharpImplementations;
+﻿using KataCSharp.Common;
 
 namespace KataCSharp.Sandbox.DataStructures
 {

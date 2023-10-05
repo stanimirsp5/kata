@@ -2,6 +2,7 @@
 using System;
 using System.Reflection;
 using System.Runtime.InteropServices;
+using KataCSharp.Common;
 
 namespace KataCSharp.Recursion.Backtracking
 {
@@ -72,7 +73,7 @@ namespace KataCSharp.Recursion.Backtracking
                 //if (AreParenthesesValid(temp))
                 //{
                 //    resParentheses.Add(new string(temp));
-                Common.PrintArray(temp);
+                CommonMethods.PrintArray(temp);
                 //}
             for (int i = 0; i < str.Length; i++)
             {
@@ -97,7 +98,7 @@ namespace KataCSharp.Recursion.Backtracking
 
             if (index >= nums.Length)
             {
-                Common.PrintArray(res);
+                CommonMethods.PrintArray(res);
                 listRes.Add(res.ToList());
                 return;
             }
@@ -119,7 +120,7 @@ namespace KataCSharp.Recursion.Backtracking
 
             if (start >= arrLength)
             {
-                Common.PrintArray(nums);
+                CommonMethods.PrintArray(nums);
                 return;
             }
 
@@ -240,7 +241,7 @@ namespace KataCSharp.Recursion.Backtracking
 
             if(index >= letters.Length)
             {
-                Common.PrintArray(charArr);
+                CommonMethods.PrintArray(charArr);
             }
 
             for (int i = 0; i < letters.Length; i++)
@@ -261,7 +262,7 @@ namespace KataCSharp.Recursion.Backtracking
 
             if(index >= letters.Length)
             {
-                Common.PrintArray(charArr);
+                CommonMethods.PrintArray(charArr);
                 return;
             }
 

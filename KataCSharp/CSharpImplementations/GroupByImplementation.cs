@@ -6,8 +6,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
-using static KataCSharp.CSharpImplementations.CommonObjects;
-using Employee = KataCSharp.CSharpImplementations.CommonObjects.Employee;
+using static KataCSharp.Common.CommonObjects;
+using Employee = KataCSharp.Common.CommonObjects.Employee;
 
 namespace KataCSharp.CSharpImplementations
 {

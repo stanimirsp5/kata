@@ -97,11 +97,6 @@ char[] ch = new char[] { 'a', 'b' };
 string resStr = string.Join("",ch);
 
 
-
-
-
-
-
 var files = new List<File>() {
     new File { Id=1,Code="1", Name = "File 1"},
     new File { Id=2,Code="1", Name = "File 2"},

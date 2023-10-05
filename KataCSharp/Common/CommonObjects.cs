@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KataCSharp.CSharpImplementations
+namespace KataCSharp.Common
 {
     public class CommonObjects
     {
         public class Company
         {
+            public int Id { get; set; }
             public string CompanyName { get; set; }
             public IEnumerable<Employee> Employees { get; set; }
         }
@@ -26,11 +27,12 @@ namespace KataCSharp.CSharpImplementations
         {
             private string? _number;
 
-            public string Number {
+            public string Number
+            {
                 get { return _number; }
                 set { _number = value; }
             }
-           
+
         }
 
         public class Name

@@ -1,5 +1,6 @@
 ﻿using System;
 using KataCSharp.Recursion;
+using KataCSharp.Common;
 
 namespace KataCSharp.LeetCode.LinkedLists
 {
@@ -16,7 +17,7 @@ namespace KataCSharp.LeetCode.LinkedLists
             int val = 6;
            if(MyRemoveElements(linkedList, val))
             {
-            Common.PrintLinkedList(linkedList);
+            CommonMethods.PrintLinkedList(linkedList);
             }
             else
             {

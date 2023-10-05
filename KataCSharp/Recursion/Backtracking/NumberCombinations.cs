@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using KataCSharp.Common;
 
 namespace KataCSharp.Recursion.Backtracking
 {
@@ -78,7 +79,7 @@ namespace KataCSharp.Recursion.Backtracking
         void CombRepetition(int index,int start)
         {
             if(index >= k)
-                Common.PrintArray(arr);
+                CommonMethods.PrintArray(arr);
             else
                 for (int i = start; i < n; i++)
                 {
@@ -91,7 +92,7 @@ namespace KataCSharp.Recursion.Backtracking
         void Comb(int index, int start)
         {
             if (index >= k)
-                Common.PrintArray(arr);
+                CommonMethods.PrintArray(arr);
             else
                 for (int i = start; i < n; i++)
                 {

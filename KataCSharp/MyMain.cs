@@ -26,6 +26,8 @@ namespace KataCSharp.Recursion
             //var f = new GroupByImplementation();
 
             //var f = new DictionaryExercises();
+            var f = new SearchInQueriable();
+
 
             // var f = new WordSearch();
             //var f = new SelectManyImplementation();
@@ -41,7 +43,8 @@ namespace KataCSharp.Recursion
           //  var f = new OrderByImplementation();
             //var f = new InsertionSort();
            // var f = new LongestPalindromicSubstring();
-            var f = new SortImplementation();
+            //var f = new SortImplementation();
+           // var f = new FindLongestPalindromeDynamicProgramming();
 
 
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using KataCSharp.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -36,7 +37,7 @@ namespace KataCSharp.Recursion.Backtracking
 
             if (N-1 == row && M-1 == col)
             {
-                Common.PrintMatrix(mousePathMatrix);
+                CommonMethods.PrintMatrix(mousePathMatrix);
                 return true;
             }
 

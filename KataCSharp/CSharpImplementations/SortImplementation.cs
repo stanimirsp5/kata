@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static KataCSharp.CSharpImplementations.CommonObjects;
+using KataCSharp.Common;
+using static KataCSharp.Common.CommonObjects;
 
 namespace KataCSharp.CSharpImplementations
 {
