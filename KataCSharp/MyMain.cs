@@ -1,5 +1,6 @@
 ﻿using KataCSharp.Algorithms.Sorting;
 using KataCSharp.CSharpImplementations;
+using KataCSharp.DynamicProgramming;
 using KataCSharp.LeetCode.B;
 using KataCSharp.LeetCode.LinkedLists;
 using KataCSharp.Recursion.Backtracking;
@@ -26,7 +27,8 @@ namespace KataCSharp.Recursion
             //var f = new GroupByImplementation();
 
             //var f = new DictionaryExercises();
-            var f = new SearchInQueriable();
+            // var f = new SearchInQueriable();
+            var f = new PairOfNumbers();
 
 
             // var f = new WordSearch();
@@ -40,11 +42,11 @@ namespace KataCSharp.Recursion
             //var f = new IntersectionOfTwoLinkedLists();
             //var f = new References();
             // var f = new Sum3();
-          //  var f = new OrderByImplementation();
+            //  var f = new OrderByImplementation();
             //var f = new InsertionSort();
-           // var f = new LongestPalindromicSubstring();
+            // var f = new LongestPalindromicSubstring();
             //var f = new SortImplementation();
-           // var f = new FindLongestPalindromeDynamicProgramming();
+            // var f = new FindLongestPalindromeDynamicProgramming();
 
 
 
