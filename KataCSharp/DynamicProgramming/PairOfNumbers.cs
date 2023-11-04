@@ -1,3 +1,4 @@
+using System;
 namespace KataCSharp.DynamicProgramming
 {
     public class PairOfNumbers
@@ -6,7 +7,8 @@ namespace KataCSharp.DynamicProgramming
 
         public void Start()
         {
-            List<int> result = PairValues(13);
+            // List<int> result = PairValues(11);
+            var t = PrintFibonnacciMemorizedAproach(6);
         }
 
         //In a technical interview, you've been given an array of numbers 
@@ -15,12 +17,18 @@ namespace KataCSharp.DynamicProgramming
         //Can you design an algorithm that works in O(n)—linear time or greater?
         public List<int> PairValues(int num)
         {
-
-
-
+            var set = new HashSet<int>();
+            foreach (var currNum in sequence)
+            {
+                var neededNum = num - currNum;
+                if (set.Contains(neededNum))
+                {
+                    return new List<int> { currNum, neededNum };
+                }
+                set.Add(currNum);
+            }
             return new List<int>();
         }
-
 
         public List<int> PairValuesBruteForce(int num)
         {
@@ -39,6 +47,36 @@ namespace KataCSharp.DynamicProgramming
                 }
             }
             return new List<int>();
+        }
+
+        // 0,1,1,2,3,5,8,13
+        public int PrintFibonnacci(int num)
+        {
+            if (num < 2)
+            {
+                return num;
+            }
+            else
+            {
+                var res = PrintFibonnacci(num - 1) + PrintFibonnacci(num - 2);
+                return res;
+            }
+        }
+
+        public int PrintFibonnacciMemorizedAproach(int num)
+        {
+            int prevNum = 0;
+            int currNum = 1;
+
+            while (currNum <= num)
+            {
+                int tempNum = currNum;
+                currNum = prevNum + currNum;
+                prevNum = tempNum;
+                Console.Write(currNum + " ");
+            }
+
+            return currNum;
         }
     }
 }
