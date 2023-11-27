@@ -22,16 +22,16 @@ namespace KataCSharp.Recursion
 
             //var f = new WordSearch();
             //var f = new SelectManyImplementation();
-            // var f = new GenerateParentheses();
+            //var f = new GenerateParentheses();
             //var f = new GroupByImplementation();
 
             //var f = new DictionaryExercises();
-            var f = new SearchInQueriable();
+            //var f = new SearchInQueriable();
 
 
             // var f = new WordSearch();
             //var f = new SelectManyImplementation();
-            // var f = new GenerateParentheses();
+            //var f = new GenerateParentheses();
             //var f = new RemoveLinkedListElements();
             //var f = new PowerOfThree();
             //var f = new AddTwoNumbers();
@@ -39,12 +39,13 @@ namespace KataCSharp.Recursion
 
             //var f = new IntersectionOfTwoLinkedLists();
             //var f = new References();
-            // var f = new Sum3();
-          //  var f = new OrderByImplementation();
+            //var f = new Sum3();
+            //var f = new OrderByImplementation();
             //var f = new InsertionSort();
-           // var f = new LongestPalindromicSubstring();
+            //var f = new LongestPalindromicSubstring();
             //var f = new SortImplementation();
-           // var f = new FindLongestPalindromeDynamicProgramming();
+            //var f = new FindLongestPalindromeDynamicProgramming();
+            var f = new IncreasingTripletSubsequence();
 
 
 
