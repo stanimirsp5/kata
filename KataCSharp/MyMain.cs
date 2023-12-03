@@ -1,4 +1,5 @@
-﻿using KataCSharp.Algorithms.Sorting;
+﻿using KataCSharp.AdventOfCode;
+using KataCSharp.Algorithms.Sorting;
 using KataCSharp.CSharpImplementations;
 using KataCSharp.DynamicProgramming;
 using KataCSharp.LeetCode.B;
@@ -65,8 +66,9 @@ namespace KataCSharp.Recursion
         {
             //Tasks
             //var f = new TaskMain();
+            var f = new Day1_Trebuchet();
 
-            //await f.Start();
+            await f.Start();
         }
     }
 }
