@@ -3,13 +3,13 @@ using KataCSharp.LeetCode.B;
 using KataCSharp.Recursion;
 using System.Linq;
 
-MyMain myMain = new MyMain();
-myMain.Main();
+// MyMain myMain = new MyMain();
+// myMain.Main();
 
-//MyMainAsync main = new MyMainAsync();
-//await main.RunMainAsync();
+MyMainAsync main = new MyMainAsync();
+await main.RunMainAsync();
 
-var listOfNumbers = new List<int>() { 1,2,3,4,5};
+var listOfNumbers = new List<int>() { 1, 2, 3, 4, 5 };
 var emptyListOfNumbers = new List<int>();
 
 // merge dictionary
@@ -32,28 +32,28 @@ foreach (var group in res)
 var emptyList1 = new List<string>();
 var emptyList2 = new List<string>();
 List<string> nullList = null;
-var notEmptyList = new List<List<string>>() { emptyList1, emptyList2, nullList};
+var notEmptyList = new List<List<string>>() { emptyList1, emptyList2, nullList };
 //var eresu = notEmptyList.SelectMany(notEmptyList => notEmptyList).ToList();
 
-var listCtor = new List<int>() { 1,2,3};
+var listCtor = new List<int>() { 1, 2, 3 };
 var listCtor2 = new List<int>(listCtor) { 4, 5 };
 var nestedListBase = new List<List<int>>() { listCtor };
 //var nestedList = new List<List<int>>(nestedListBase) { new List<int> { 8 } };// or
 var nestedList = new List<List<int>>();
 nestedList.Add(new List<int>(listCtor) { 8 });
-nestedList.Add( new List<int>(listCtor) {  9 });
+nestedList.Add(new List<int>(listCtor) { 9 });
 
 var nestedListCtor = new List<List<int>>() { listCtor };//count 1
-var nestedListCtor2 = new List<List<int>>(nestedListCtor) {  listCtor2  };// count 2
+var nestedListCtor2 = new List<List<int>>(nestedListCtor) { listCtor2 };// count 2
 var nestedListCtor3 = new List<List<int>>(nestedListCtor) { { listCtor2 } };// count 1 with nested list count 2
 
-var list1 = new List<string>() {"test1", "test2" };
-var list2 = new List<string>() {"file1", "file2" };
+var list1 = new List<string>() { "test1", "test2" };
+var list2 = new List<string>() { "file1", "file2" };
 
-var list3 = list1.Select((l,idx) => new {l,idx});
+var list3 = list1.Select((l, idx) => new { l, idx });
 
 var t = list3.GroupBy(x => x.idx);
-var d = t.ToDictionary(g => g.Key, g => g.Select(x => new { t1 = x.l, t2 = list2.ElementAt(x.idx) } ));
+var d = t.ToDictionary(g => g.Key, g => g.Select(x => new { t1 = x.l, t2 = list2.ElementAt(x.idx) }));
 
 //var elements = list1.Zip(list2, (first, second) => );
 
@@ -62,7 +62,7 @@ IEnumerable<string> values = new List<string>() { "Val A", "Val B", "Val C", "Va
 
 var groupBy = values.GroupBy(x => "Val B", x => "Val C");
 
-var filesFromDb = new List<File>() { 
+var filesFromDb = new List<File>() {
     new File { Id=1,Name = "File 1"},
     new File { Id=2,Name = "File 2"}
 };
@@ -89,12 +89,12 @@ void ListRefTest(List<string> list)
     list = localList;
     //list = localList.Select(l => l).ToList();
     //list.Add("A");
-   
+
 }
 
 
 char[] ch = new char[] { 'a', 'b' };
-string resStr = string.Join("",ch);
+string resStr = string.Join("", ch);
 
 
 var files = new List<File>() {
@@ -116,15 +116,15 @@ class File
 class Types
 {
     // value type
-        // point directly to value
+    // point directly to value
 
     // reference type
-        // point to address in memory where is the value
+    // point to address in memory where is the value
 
     // mutable
-        // value can be changed
+    // value can be changed
 
     // immutable
-        // creates new value when value is changhed
+    // creates new value when value is changhed
 
 }
