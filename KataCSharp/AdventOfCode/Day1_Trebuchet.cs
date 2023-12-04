@@ -11,12 +11,12 @@ namespace KataCSharp.AdventOfCode
             // string[] inputs = new string[]{
             //     "thfdzxfqcthqfcnrt2"
             //  };
-            string[] inputs = new string[]{
-                "1abc2",
-                "pqr3stu8vwx",
-                "a1b2c3d4e5f",
-                "treb7uchet"
-            };
+            //string[] inputs = new string[]{
+            //    "1abc2",
+            //    "pqr3stu8vwx",
+            //    "a1b2c3d4e5f",
+            //    "treb7uchet"
+            //};
             // string[] inputs = new string[]{
             //     "two1nine",
             //     "eightwothree",
@@ -26,7 +26,7 @@ namespace KataCSharp.AdventOfCode
             //     "zoneight234",
             //     "7pqrstsixteen"
             // };
-            //var inputs = ReadFromFile();
+            var inputs = AdventHelper.ReadFromFile("/Users/stanimirpetrov/Documents/Projects/kata/KataCSharp/AdventOfCode/inputs.txt");
             int res = FindSum(inputs);
         }
 
@@ -166,39 +166,6 @@ namespace KataCSharp.AdventOfCode
             var charArr = s.ToCharArray();
             Array.Reverse(charArr);
             return new string(charArr);
-        }
-
-        private string[] ReadFromFile()
-        {
-            var lineRes = new List<string>();
-            try
-            {
-                //Pass the file path and file name to the StreamReader constructor
-                StreamReader sr = new StreamReader("/Users/stanimirpetrov/Documents/Projects/kata/KataCSharp/AdventOfCode/inputs.txt");
-                //Read the first line of text
-                string line = string.Empty;
-                line = sr.ReadLine();
-                //Continue to read until you reach end of file
-                while (line != null)
-                {
-                    //write the line to console window
-                    Console.WriteLine(line);
-                    lineRes.Add(line);
-                    //Read the next line
-                    line = sr.ReadLine();
-                }
-                //close the file
-                sr.Close();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Exception: " + e.Message);
-            }
-            finally
-            {
-                Console.WriteLine("Executing finally block.");
-            }
-            return lineRes.ToArray();
         }
     }
 }

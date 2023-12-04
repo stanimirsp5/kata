@@ -53,7 +53,8 @@ namespace KataCSharp.Recursion
             //var f = new SortImplementation();
             // var f = new FindLongestPalindromeDynamicProgramming();
             //var f = new FindLongestPalindromeDynamicProgramming();
-            var f = new IncreasingTripletSubsequence();
+            //var f = new IncreasingTripletSubsequence();
+            var f = new Day2_CubeConundrum();
 
             //var f = new LongestPalindrome();
 
@@ -66,9 +67,9 @@ namespace KataCSharp.Recursion
         {
             //Tasks
             //var f = new TaskMain();
-            var f = new Day1_Trebuchet();
+            //var f = new Day1_Trebuchet();
 
-            await f.Start();
+            //await f.Start();
         }
     }
 }
