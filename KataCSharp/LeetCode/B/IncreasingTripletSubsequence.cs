@@ -24,27 +24,25 @@ namespace KataCSharp.LeetCode.B
 		{
 			//int[] arr = new int[] { 1, 2, 3, 4, 5 }; // 6,7,1,2
 			//int[] arr = new int[] { 20, 100, 10, 12, 5, 13 };
-			int[] arr = new int[] { 6, 7, 1, 2 };
+			//int[] arr = new int[] { 6, 7, 1, 2 };
 			//int[] arr = new int[] { 5, 4, 3, 2, 1 };
-			//int[] arr = new int[] { 2, 1, 5, 0, 4, 6 };
+			//int[] arr = new int[] { 20,100,10,12,5,13 };
+			int[] arr = new int[] { 2, 1, 5, 0, 4, 6 };
 			var res = FindTriplet(arr);
 		}
 
 		public bool FindTriplet(int[] arr)
 		{
 			int count = 0;
-			int maxNum = int.MaxValue;
-			for (int i = 0, j=1; j < arr.Length; i++,j++)
+			int maxNum = arr[0];
+			for (int i = 0, j = 1; j < arr.Length; i++, j++)
 			{
-				if (arr[i] < arr[j])
+				if (maxNum < arr[j])
 				{
 					maxNum = arr[j];
 					count++;
 				}
-				//else
-				//{
-				//	count = 0;
-				//}
+
 				if (count == 2) return true;
 			}
 			return false;
