@@ -54,7 +54,8 @@ namespace KataCSharp.Recursion
             // var f = new FindLongestPalindromeDynamicProgramming();
             //var f = new FindLongestPalindromeDynamicProgramming();
             //var f = new IncreasingTripletSubsequence();
-            var f = new Day2_CubeConundrum();
+            //var f = new Day2_CubeConundrum();
+            var f = new Day3_GearRatios();
 
             //var f = new LongestPalindrome();
 
