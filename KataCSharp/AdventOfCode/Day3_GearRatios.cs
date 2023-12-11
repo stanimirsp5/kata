@@ -1,19 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.IO;
+using System.Text.RegularExpressions;
 
 namespace KataCSharp.AdventOfCode
 {
 	internal class Day3_GearRatios
 	{
-		List<KeyValuePair<List<string>, int>> starAndNumbersTest = new List<KeyValuePair<List<string>, int>>();
-		List<int> usedNums = new List<int>();
-		List<string> usedNumsStr = new List<string>();
-		//TODO check tempNums
-		//OK - multiple values can be on same key e.g. 122 row 1 col 22, row 12 col 2
-		string test = "";
 		public void Start()
 		{
 			var path = "C:\\Users\\stanimir.petrov\\source\\repos\\kata\\KataCSharp\\AdventOfCode\\Inputs\\input3-2.txt";
@@ -32,13 +23,7 @@ namespace KataCSharp.AdventOfCode
 			}
 
 			var res = FindNumbers2(inputMatrix);
-			var resSum = res.Sum();// 4361 //539637 538237|| 467835, 82865063
-								   //Console.WriteLine(resSum);		
-								   //82298385
-								   //83384685
-								   //135896276
-			var t = starAndNumbersTest.GroupBy(el => el.Key).SelectMany(el => el.Key);
-			var tt = starAndNumbersTest.Select(el => el.Key).GroupBy(el => el).Any(el => el.Count() > 1);// no two stars for one num
+			var resSum = res.Sum();
 		}
 
 		public List<int> FindNumbers2(string[,] inputMatrix)
@@ -59,16 +44,11 @@ namespace KataCSharp.AdventOfCode
 					} 
 					else if (tempNums != "" && starsPosition.Any())
 					{
-						starAndNumbersTest.Add(new KeyValuePair<List<string>, int>(starsPosition, int.Parse(tempNums)));
 						if (starAndNumbers.TryGetValue(starsPosition.First(), out int value))
-						{
-							usedNumsStr.Add(value.ToString() + " * "+ tempNums);
 							resOfMultipliedNums.Add(value * int.Parse(tempNums));
-						}
 						else
-						{
 							starAndNumbers.Add(starsPosition.First(), int.Parse(tempNums));
-						}
+						
 						tempNums = "";
 						starsPosition = new List<string>();
 						continue;
@@ -86,7 +66,6 @@ namespace KataCSharp.AdventOfCode
 					// if end of the row
 					if(j == colLength - 1 && tempNums != "" && starsPosition.Any())
 					{
-						starAndNumbersTest.Add(new KeyValuePair<List<string>, int>(starsPosition, int.Parse(tempNums)));
 						if (starAndNumbers.TryGetValue(starsPosition.First(), out int value))
 							resOfMultipliedNums.Add(value * int.Parse(tempNums));
 						else
@@ -120,7 +99,6 @@ namespace KataCSharp.AdventOfCode
 			return false;
 		}
 		bool IsStarSymbol(string symbol) => symbol == "*" && !int.TryParse(symbol, out int num);
-
 		public List<int> FindNumbers(string[,] inputMatrix)
 		{
 			var resNumbers = new List<int>();
@@ -207,7 +185,5 @@ namespace KataCSharp.AdventOfCode
 			return resNumbers;
 		}
 		bool IsSpecialSymbol(string symbol) => symbol != "." && !int.TryParse(symbol, out int num);
-		
-
 	}
 }

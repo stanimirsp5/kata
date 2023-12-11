@@ -8,6 +8,7 @@ using KataCSharp.Recursion.Backtracking;
 using KataCSharp.Recursion.Princeton;
 using KataCSharp.Sandbox;
 using KataCSharp.Sandbox.DataStructures;
+using KataCSharp.Sandbox.DynamicObjects;
 using KataCSharp.TaskParallelLibrary;
 using System;
 namespace KataCSharp.Recursion
@@ -56,6 +57,7 @@ namespace KataCSharp.Recursion
             //var f = new IncreasingTripletSubsequence();
             //var f = new Day2_CubeConundrum();
             var f = new Day3_GearRatios();
+            //var f = new DynamicExercise();
 
             //var f = new LongestPalindrome();
 
