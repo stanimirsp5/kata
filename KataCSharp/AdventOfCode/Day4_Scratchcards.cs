@@ -11,7 +11,7 @@ namespace KataCSharp.AdventOfCode
 		//Card 1: 41 48 83 86 17 | 83 86  6 31 17  9 48 53
 		public void Start()
 		{
-			var path = "C:\\Users\\stanimir.petrov\\source\\repos\\kata\\KataCSharp\\AdventOfCode\\Inputs\\input4-2.txt";
+			var path = "C:\\Users\\stanimir.petrov\\source\\repos\\kata\\KataCSharp\\AdventOfCode\\Inputs\\input4.txt";
 			var inputs = AdventHelper.ReadFromFile(path);
 			//var res = FindWinningNumbers(inputs);
 			var res = FindCards(inputs);
@@ -23,26 +23,24 @@ namespace KataCSharp.AdventOfCode
 			var cardsDict = new Dictionary<int, int>();
 			foreach (var input in inputs)
 			{
-				var splitByCard = (input.Split(':'))[1].Split('|');
-				var splitWinningNumbers = splitByCard[0].Split(' ', StringSplitOptions.RemoveEmptyEntries);
-				var splitMyNumbers = splitByCard[1].Split(' ', StringSplitOptions.RemoveEmptyEntries);
+				var splitedCardNameAndNumbers = input.Split(':');
+				var splitedNumbers = splitedCardNameAndNumbers[1].Split('|');
+				var splitedWinningNumbers = splitedNumbers[0].Split(' ', StringSplitOptions.RemoveEmptyEntries);
+				var splitedMyNumbers = splitedNumbers[1].Split(' ', StringSplitOptions.RemoveEmptyEntries);
+				var cardNumber = int.Parse(splitedCardNameAndNumbers[0].Split(" ", StringSplitOptions.RemoveEmptyEntries)[1]);
 
-				var cardNum = int.Parse(input.Split(':')[0].Split(" ", StringSplitOptions.RemoveEmptyEntries)[1]);
-				var matchingNumCount = splitWinningNumbers.Where(el => splitMyNumbers.Contains(el)).Count();
-				AddCard(cardsDict, cardNum);
-				
-				for (int j = 0; j < cardsDict[cardNum]; j++)
+				var matchingNumCount = splitedWinningNumbers.Where(el => splitedMyNumbers.Contains(el)).Count();
+				AddCard(cardsDict, cardNumber);
+
+				var valuesCount = 0;
+				while (cardsDict[cardNumber] > valuesCount)
 				{
 					for (int i = 1; i <= matchingNumCount; i++)
-					{
-						AddCard(cardsDict, cardNum + i);
-					}
+						AddCard(cardsDict, cardNumber + i);
+					valuesCount++;
 				}
 			}
-
-			var totalSum = cardsDict.Values.Sum();
-
-			return totalSum;
+			return cardsDict.Values.Sum();
 		}
 
 		void AddCard(Dictionary<int, int> cardsDict, int cardNum)

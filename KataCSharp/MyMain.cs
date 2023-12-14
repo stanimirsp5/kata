@@ -57,10 +57,13 @@ namespace KataCSharp.Recursion
             //var f = new IncreasingTripletSubsequence();
             //var f = new Day2_CubeConundrum();
             //var f = new Day3_GearRatios();
-            var f = new Day4_Scratchcards();
-            //var f = new DynamicExercise();
 
+            //var f = new DynamicExercise();
             //var f = new LongestPalindrome();
+
+            //var f = new Day4_Scratchcards();
+            var f = new Day6_WaitForIt();
+
 
             f.Start();
         }
