@@ -62,7 +62,8 @@ namespace KataCSharp.Recursion
             //var f = new LongestPalindrome();
 
             //var f = new Day4_Scratchcards();
-            var f = new Day6_WaitForIt();
+            //var f = new Day6_WaitForIt();
+            var f = new Day7_CamelCards();
 
 
             f.Start();
