@@ -34,5 +34,8 @@
 			}
 			return lineRes.ToArray();
 		}
+	
+		internal static int Multiply(List<int> nums) => nums.Aggregate((acc, el) => acc * el);
+	
 	}
 }
