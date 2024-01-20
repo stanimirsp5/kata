@@ -1,37 +1,122 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace KataCSharp.LeetCode.B
 {
 	public class IncreasingTripletSubsequence
 	{
-		//Given an integer array nums, return true if there exists a triple of indices (i, j, k)
-		//such that i < j < k and nums[i] < nums[j] < nums[k]. If no such indices exists, return false.
-
-		//Input: nums = [1,2,3,4,5]
-		//Output: true
-		//Explanation: Any triplet where i<j < k is valid.
-		//Input: nums = [5,4,3,2,1]
-		//Output: false
-		//Explanation: No triplet exists.
-		//Input: nums = [2,1,5,0,4,6]
-		//Output: true
-		//Explanation: The triplet(3, 4, 5) is valid because nums[3] == 0 < nums[4] == 4 < nums[5] == 6.
 		public void Start()
 		{
-			//int[] arr = new int[] { 1, 2, 3, 4, 5 }; // 6,7,1,2
-			//int[] arr = new int[] { 20, 100, 10, 12, 5, 13 };
-			//int[] arr = new int[] { 6, 7, 1, 2 };
-			//int[] arr = new int[] { 5, 4, 3, 2, 1 };
-			//int[] arr = new int[] { 20,100,10,12,5,13 };
-			int[] arr = new int[] { 2, 1, 5, 0, 4, 6 };
+			var arr = new int[] { 1, 2, 3, 4, 5 };
 			var res = FindTriplet(arr);
+			//TODO solve with backtracking
+		}
+
+		[Theory]
+		[InlineData(new int[] { 1, 2, 3, 4, 5 }, true)]
+		[InlineData(new int[] { 5, 4, 3, 2, 1 }, false)]
+		[InlineData(new int[] { 2, 1, 5, 0, 4, 6 }, true)]
+		[InlineData(new int[] { 6, 7, 1, 2 }, false)]
+		[InlineData(new int[] { 1, 5, 0, 4, 1, 3 }, true)]
+		[InlineData(new int[] { 20, 100, 10, 12, 5, 13 }, true)]
+		public void FindTripletTest(int[] arr, bool expextedResult)
+		{
+			bool result = FindTripletB(arr);
+			Assert.Equal(expextedResult, result);
+		}
+
+		public bool FindTripletB(int[] arr)
+		{
+			// 1, 5, 0, 4, 1, 3
+			int maxNumIndex = 0, 
+				j = 0,
+				currNumIndex = 0, 
+				maxNum = -100, 
+				count = 0;
+
+			while (true)
+			{
+				var currNum = arr[j];
+				if (currNum > maxNum)
+				{
+					maxNum = currNum;
+					maxNumIndex = j;
+					count++;
+				}
+
+				if(count == 3)
+				{
+					return true;
+				}
+
+				if(j == arr.Length - 1)
+				{
+					maxNum = -100;
+					count = 1;
+					j = maxNumIndex;
+
+					if(maxNumIndex == arr.Length - 1)
+					{
+						currNumIndex++;
+						j = currNumIndex-1;
+						if(currNumIndex == arr.Length - 1)return false;
+					}
+				}
+
+				j++;
+			}
+		}
+
+		public bool FindTripletBacktracking(int[] arr, int index)
+		{
+			 
+			if(arr.Length == index) 
+			{ 
+				return false; 
+			}
+
+			if (arr[index+1]> arr[index])
+			{
+
+			}
+
+
+			index++;
+			return FindTripletBacktracking(arr,index);
 		}
 
 		public bool FindTriplet(int[] arr)
+		{
+			for (int i = 0; i < arr.Length; i++)
+			{
+				var k = 0;
+				var count = 0;
+				var maxNum = arr[i];
+				for (int j = i + 1; j < arr.Length; j++)
+				{
+					if (maxNum < arr[j])
+					{
+						maxNum = arr[j];
+						count++;
+					}
+
+					if (count == 2)
+					{
+						return true;
+					}
+
+					if (j == arr.Length - 1)
+					{
+						k++;
+						maxNum = arr[i];
+						j = i + k;
+						count = 0;
+					}
+				}
+			}
+			return false;
+		}
+
+		public bool FindTriplet2(int[] arr)
 		{
 			int count = 0;
 			int maxNum = arr[0];
