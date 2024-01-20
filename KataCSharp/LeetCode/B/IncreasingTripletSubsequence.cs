@@ -6,8 +6,9 @@ namespace KataCSharp.LeetCode.B
 	{
 		public void Start()
 		{
-			var arr = new int[] { 1, 2, 3, 4, 5 };
-			var res = FindTriplet(arr);
+			var arr = new int[] { 20, 100, 10, 12, 5, 13 };
+			//var arr = new int[] { 6, 7, 1, 2 };
+			var res = FindTripletB(arr);
 			//TODO solve with backtracking
 		}
 
@@ -27,10 +28,11 @@ namespace KataCSharp.LeetCode.B
 		public bool FindTripletB(int[] arr)
 		{
 			// 1, 5, 0, 4, 1, 3
-			int maxNumIndex = 0, 
+			// 6, 7, 1, 2
+			int i = 0,
 				j = 0,
-				currNumIndex = 0, 
-				maxNum = -100, 
+				currNumIndex = 0,
+				maxNum = -100,
 				count = 0;
 
 			while (true)
@@ -39,49 +41,52 @@ namespace KataCSharp.LeetCode.B
 				if (currNum > maxNum)
 				{
 					maxNum = currNum;
-					maxNumIndex = j;
 					count++;
 				}
 
-				if(count == 3)
+				if (count == 3)
 				{
 					return true;
 				}
-
-				if(j == arr.Length - 1)
+				// when reach the end of the array
+				// begin again from the next number after the max num
+				if (j == arr.Length - 1)
 				{
-					maxNum = -100;
+					i++;
+					j = i;
+					maxNum = arr[currNumIndex];
 					count = 1;
-					j = maxNumIndex;
 
-					if(maxNumIndex == arr.Length - 1)
+					if (i == arr.Length - 1)
 					{
+						maxNum = -100;
 						currNumIndex++;
-						j = currNumIndex-1;
-						if(currNumIndex == arr.Length - 1)return false;
+						j = currNumIndex - 1;
+						i = currNumIndex;
+						count = 0;
+						if (currNumIndex == arr.Length - 1) return false;
 					}
 				}
-
 				j++;
 			}
 		}
 
 		public bool FindTripletBacktracking(int[] arr, int index)
 		{
-			 
-			if(arr.Length == index) 
-			{ 
-				return false; 
+
+			if (arr.Length == index)
+			{
+				return false;
 			}
 
-			if (arr[index+1]> arr[index])
+			if (arr[index + 1] > arr[index])
 			{
 
 			}
 
 
 			index++;
-			return FindTripletBacktracking(arr,index);
+			return FindTripletBacktracking(arr, index);
 		}
 
 		public bool FindTriplet(int[] arr)
