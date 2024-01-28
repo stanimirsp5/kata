@@ -4,6 +4,7 @@ namespace KataCSharp.LeetCode.B
 {
 	public class IncreasingTripletSubsequence
 	{
+		int[] array = new int[] { };
 		public void Start()
 		{
 			var arr = new int[] { 20, 100, 10, 12, 5, 13 };
@@ -13,6 +14,7 @@ namespace KataCSharp.LeetCode.B
 		}
 
 		[Theory]
+		[InlineData(new int[] { 5, 2, 3, 4 }, true)]
 		[InlineData(new int[] { 1, 2, 3, 4, 5 }, true)]
 		[InlineData(new int[] { 5, 4, 3, 2, 1 }, false)]
 		[InlineData(new int[] { 2, 1, 5, 0, 4, 6 }, true)]
@@ -21,11 +23,12 @@ namespace KataCSharp.LeetCode.B
 		[InlineData(new int[] { 20, 100, 10, 12, 5, 13 }, true)]
 		public void FindTripletTest(int[] arr, bool expextedResult)
 		{
+			//bool result = FindTripletOneLoop(arr);
 			bool result = FindTripletB(arr);
 			Assert.Equal(expextedResult, result);
 		}
 
-		public bool FindTripletB(int[] arr)
+		public bool FindTripletOneLoop(int[] arr)
 		{
 			// 1, 5, 0, 4, 1, 3
 			// 6, 7, 1, 2
@@ -71,22 +74,40 @@ namespace KataCSharp.LeetCode.B
 			}
 		}
 
-		public bool FindTripletBacktracking(int[] arr, int index)
+		public bool FindTripletB(int[] arr)
 		{
-
-			if (arr.Length == index)
+			array = arr;
+			for (int i = 0; i < array.Length; i++)
 			{
-				return false;
+				var tripletCount = FindTripletBacktracking(i,i, int.MinValue, 0);
+				if(tripletCount==3)
+					return true;
 			}
 
-			if (arr[index + 1] > arr[index])
+			return false;
+		}
+
+		public int FindTripletBacktracking(int index,int currNumIndex, int maxNum, int tripletCount)
+		{	
+
+			if (index == array.Length || tripletCount == 3)
+				return tripletCount;
+
+			for (int i = currNumIndex; i < array.Length; i++)
 			{
+
+				var currNum = array[i];
+				if (currNum > maxNum)
+				{
+					maxNum = currNum;
+					tripletCount++;
+				}
 
 			}
 
+			FindTripletBacktracking(index, currNumIndex, maxNum, tripletCount);
 
-			index++;
-			return FindTripletBacktracking(arr, index);
+			return tripletCount;
 		}
 
 		public bool FindTriplet(int[] arr)
