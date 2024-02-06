@@ -29,7 +29,7 @@ namespace KataCSharp.Recursion
             //var f = new GenerateParentheses();
             //var f = new GroupByImplementation();
 
-            //var f = new DictionaryExercises();
+            var f = new DictionaryExercises();
             // var f = new SearchInQueriable();
             //var f = new PairOfNumbers();
             //var f = new SearchInQueriable();
@@ -58,7 +58,7 @@ namespace KataCSharp.Recursion
             //var f = new IncreasingTripletSubsequence();
             //var f = new Day2_CubeConundrum();
             //var f = new CreateFile();
-            var f = new IncreasingTripletSubsequence();
+           // var f = new IncreasingTripletSubsequence();
             //var f = new Day2_CubeConundrum();
             //var f = new Day3_GearRatios();
 
