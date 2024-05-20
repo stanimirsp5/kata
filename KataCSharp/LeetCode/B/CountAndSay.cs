@@ -35,7 +35,7 @@ namespace KataCSharp.LeetCode.B
         [InlineData(7, "13112221")]
         void CountAndSayTest(int input, string expectedResult)
         {
-            var res = GetCompressedString(input);
+            var res = CountAndSay3(input);
 
             Assert.Equal(expectedResult, res);
         }
@@ -108,9 +108,43 @@ namespace KataCSharp.LeetCode.B
         //For example, if you call this function with [[2,2], [3,2], [1,1], [4,5], [1, 2]], it should create "22"+"23"+"11"+"54"+"21" = "2223115421".
 
         //Now, with the two helper functions, you can start with "1" and call the two functions alternatively n-1 times. The answer is the last integer you will obtain.
-
-        public string CountAndSay2(int n)
+        public string CountAndSay3(int n)
         {
+            int i = 1;
+            var result = "1";
+            while (i < n)
+            {
+                var last = result[0];
+                var sb = new StringBuilder();
+                int count = 0;
+
+                foreach (var ch in result)
+                {
+                    if(last == ch)
+                    {
+                        count++;
+                    }
+                    else
+                    {
+                        sb.Append(count);
+                        sb.Append(last);
+                        last = ch;
+                        count = 1;
+                    }
+                }
+                sb.Append(count);
+                sb.Append(last);
+                result = sb.ToString();
+                i++;
+            }
+
+            return result;
+        }
+
+          
+        public string GetCompressedString2(int n)
+        {
+            //3, 1-1,2-11,3-21
             string result = "1";
 
             for (int i = 1; i < n; i++)
