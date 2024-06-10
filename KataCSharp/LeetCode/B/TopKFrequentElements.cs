@@ -22,14 +22,14 @@ namespace KataCSharp.LeetCode.B
         {
 
             yield return new object[] { new TestData(new int[] { 2, 4, 1, 3 }, 2), new int[] { 1, 2, 3, 4 } };
-            //yield return new object[] { new TestData(new int[] { 1, 1, 1, 2, 2, 3 }, 2), new int[] { 1, 2 } };
+            //yield return new object[] { new TestData(new int[] { 1, 1, 3, 2, 2, 1 }, 2), new int[] { 1, 2 } };
         }
 
         //[1,1,1,2,2,3], k = 2
         // 5, 2, 4, 1, 3
         public int[] GetTopKFrequent(int[] nums, int k)
         {
-            Sort(nums, 0, nums.Length);
+            Sort(nums, 0, nums.Length - 1);
             return nums;
         }
 
@@ -39,17 +39,16 @@ namespace KataCSharp.LeetCode.B
             {
                 int partial = GetPivot(nums, low, high);
 
-                Sort(nums, 0, partial);
-                Sort(nums, partial, high);
+                Sort(nums, low, partial-1);
+                Sort(nums, partial+1, high);
             }
         }
 
         int GetPivot(int[] nums, int low, int high)
         {
-            Console.WriteLine(high - 1);
-            int pivot = nums[high - 1];
+            int pivot = nums[high];
             int j = low;
-            for (int i = 0; i < high; i++)
+            for (int i = low; i <= high-1; i++)
             {
                 if (nums[i] < pivot)
                 {
@@ -57,7 +56,7 @@ namespace KataCSharp.LeetCode.B
                     j++;
                 }
             }
-            Swap(nums, high - 1, j);
+            Swap(nums, j, high);
 
             return j;
         }
