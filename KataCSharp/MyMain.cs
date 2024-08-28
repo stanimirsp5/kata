@@ -10,6 +10,7 @@ using KataCSharp.Sandbox;
 using KataCSharp.Sandbox.DataStructures;
 using KataCSharp.Sandbox.Dates;
 using KataCSharp.Sandbox.DynamicObjects;
+using KataCSharp.Sandbox.NullRef;
 using KataCSharp.Sandbox.Threads;
 using KataCSharp.TaskParallelLibrary;
 using System;
@@ -71,11 +72,13 @@ namespace KataCSharp.Recursion
 			//var f = new Day6_WaitForIt();
 			//var f = new Day7_CamelCards();
 			//var f = new DaylightSavingTime();
-			var f = new CountAndSay();
+			//var f = new CountAndSay();
+			var f = new NullCollection();
+			f.TestNullCollection();
 
+			//f.Start();
 
-			f.Start();
-        }
+		}
     }
     public class MyMainAsync
     {
