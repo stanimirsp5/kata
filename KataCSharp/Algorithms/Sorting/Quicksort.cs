@@ -13,16 +13,17 @@ namespace KataCSharp.Algorithms.Sorting
 		void TestSort(TestData testData)
 		{
 			var arr = testData.input;
-		//	IEnumerable<int> res = Sort(arr, arr.Length-1);
+			IEnumerable<int> res = Sort(arr, 0, arr.Length-1);
 
-			//Assert.Equal(res, testData.result);
+			Assert.Equal(res, testData.result);
 
 		}
 
 		public record TestData(int[] input, int[] result);
 		public static IEnumerable<object[]> GetTestData()
 		{
-			yield return new object[] { new TestData(new int[] { 4, 2, 1, 6, 5, 3 }, new int[] { 1, 2, 3, 4, 5, 6 }) };
+			yield return new object[] { new TestData(new int[] { 3, 2, 4, 1, 5 }, new int[] { 1, 2, 3, 4, 5 }) };
+			//yield return new object[] { new TestData(new int[] { 4, 2, 1, 6, 5, 3 }, new int[] { 1, 2, 3, 4, 5, 6 }) };
 		}
 
 		// 10,80,30,90,40; p-40
@@ -35,17 +36,19 @@ namespace KataCSharp.Algorithms.Sorting
 		//3,2,4,1,5 s-0 e-4
 		private IEnumerable<int> Sort(int[] input, int start, int end)
 		{
-			var partition = GetPartition(input, start, end);
+			if (start <= end)
+			{
+				var partition = GetPartition(input, start, end);
 
 
-			Sort(input, start, partition-1);
-			Sort(input, partition, end);
-
+				Sort(input, start, partition - 1);
+				Sort(input, partition+1, end);
+			}
             return input;
 		}
 
 		// 3,5,4,1,2
-		// 3,2,4,1,5 -> 3,2,4,1,5^ -> 1^,3,2,4,5 -> 1,3,2^,4,5 -> 1,2,3,4,5 
+		// 3,2,4,1,5 -> 3,2,4,1,5^ -> 3,2,4,1^,5 -> 1,2,4,3,5 -> 1,2^,4,3,5 -> 1^,2,4,3,5  ->  1,2,4,3,5 
 		private int GetPartition(int[] input, int start, int end)
 		{
 			//get parition
