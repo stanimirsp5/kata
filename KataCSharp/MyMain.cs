@@ -73,8 +73,8 @@ namespace KataCSharp.Recursion
 			//var f = new Day7_CamelCards();
 			//var f = new DaylightSavingTime();
 			//var f = new CountAndSay();
-			var f = new NullCollection();
-			f.TestNullCollection();
+			//var f = new NullCollection();
+			//f.TestNullCollection();
 
 			//f.Start();
 

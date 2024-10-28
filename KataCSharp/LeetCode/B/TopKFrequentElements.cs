@@ -18,6 +18,7 @@ namespace KataCSharp.LeetCode.B
 
 			Assert.Equal(result, res);
 		}
+
 		public static IEnumerable<object[]> GetTestData()
 		{
 
