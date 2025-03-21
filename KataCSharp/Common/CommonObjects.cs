@@ -15,16 +15,37 @@ namespace KataCSharp.Common
             public IEnumerable<Employee> Employees { get; set; }
         }
 
-        public class Employee
-        {
+        public class Employee : IEquatable<Employee>, IComparable<Employee>
+		{
             public int Id { get; set; }
             public string Name { get; set; }
             public string Position { get; set; }
             public IEnumerable<Phone> Phones { get; set; }
-        }
 
-        public class Phone
-        {
+			public int CompareTo(Employee? other) => CompareTo(other);
+
+			public bool Equals(Employee? other)
+			{
+                if (other == null)
+                    return false;
+
+                foreach (var phone in Phones)
+                {
+                    var isEqual = other.Phones.Any(el => phone.Equals(el));
+
+					if (!isEqual)
+                        return false;
+                }
+                bool phonesEqual = Phones.OrderBy(p => p).SequenceEqual(other.Phones.OrderBy(p => p));
+
+                return phonesEqual 
+                    && Name == other.Name 
+                    && Position == other.Position;
+			}
+		}
+
+        public class Phone : IEquatable<Phone>, IComparable<Phone>
+		{
             private string? _number;
 
             public string Number
@@ -33,7 +54,15 @@ namespace KataCSharp.Common
                 set { _number = value; }
             }
 
-        }
+            public int CompareTo(Phone? other) { return this.Number.CompareTo(other.Number); }
+
+			public bool Equals(Phone? other)
+			{
+                if (other == null) return false;
+
+                return Number == other.Number;
+			}
+		}
 
         public class Name
         {
