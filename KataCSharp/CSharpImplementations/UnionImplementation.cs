@@ -7,6 +7,7 @@ using static KataCSharp.Common.CommonObjects;
 
 namespace KataCSharp.CSharpImplementations
 {
+	//https://sasan-salem.medium.com/mystery-of-equality-in-c-iequatable-t-iequalitycomparer-t-icomparable-t-icomparer-t-ab98bd2fe541
 	// IEquatable - compares by equality(indicates wether two objects are equal)
 	// IEqualtyComparer - is used when you need more than one equal method for different situations
 	// IComparer - checks wether object is bigger, smaller or same as another object
