@@ -24,19 +24,23 @@ namespace KataCSharp.LeetCode.B
 		[InlineData(new int[] { 3, 2, 1, 0, 4 }, false)]
 		public void CanJumpTest(int[] nums, bool expected)
 		{
-			var result = CanJump(nums);
+			var result = CanJump(nums,0);
 			Assert.Equal(expected, result);
 		}		
 		
-		public bool CanJump(int[] nums)
+		public bool CanJump(int[] nums, int idx)
 		{
-			var n = nums.Length;
-			var jump = 0;
-			for (int i = jump; i < n; i++)
-			{
-				jump += nums[i];
+			var length = nums.Length-1;
+			if (idx > length || nums[idx] == 0) return false;
+			
+			var num = nums[idx];
+			if ((num+1 - length) == 0) return true;
 
+			for (int i = 1; i <= num; i++)
+			{
+				return CanJump(nums, i);
 			}
+
 			return false;
 		}
 
