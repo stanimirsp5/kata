@@ -21,24 +21,41 @@ namespace KataCSharp.LeetCode.B
 
 		[Theory]
 		[InlineData(new int[] { 2, 3, 1, 1, 4 }, true)]
+		[InlineData(new int[] { 2, 2, 1, 1, 2, 0, 4 }, true)]
+		[InlineData(new int[] { 2, 2, 1, 1, 2, 0, 4, 0, 0, 0, 1 }, true)]
+		[InlineData(new int[] { 2, 2, 1, 1, 2, 0, 4, 0, 0, 0, 0, 1 }, false)]
 		[InlineData(new int[] { 3, 2, 1, 0, 4 }, false)]
+		[InlineData(new int[] { 2, 1, 0, 4 }, false)]
+		[InlineData(new int[] { 2, 2, 0, 4 }, true)]
+		[InlineData(new int[] { 0 }, true)]
+		[InlineData(new int[] { 2,0 }, true)]
 		public void CanJumpTest(int[] nums, bool expected)
 		{
-			var result = CanJump(nums,0);
+			var result = CanJump(nums);
 			Assert.Equal(expected, result);
-		}		
-		
-		public bool CanJump(int[] nums, int idx)
+		}
+
+		public bool CanJump(int[] nums)
 		{
-			var length = nums.Length-1;
+			if(nums.Length == 1)
+				return true;
+
+			return Jump(nums, 0);
+		}
+
+		public bool Jump(int[] nums, int idx)
+		{
+			var length = nums.Length-1; 
 			if (idx > length || nums[idx] == 0) return false;
 			
 			var num = nums[idx];
-			if ((num+1 - length) == 0) return true;
+			if (num+idx >= length) return true;
 
 			for (int i = 1; i <= num; i++)
 			{
-				return CanJump(nums, i);
+				var res = Jump(nums, i+idx);
+				if(res)
+					return true;
 			}
 
 			return false;

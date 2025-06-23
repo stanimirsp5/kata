@@ -13,6 +13,7 @@ using KataCSharp.Sandbox.DataStructures;
 using KataCSharp.Sandbox.Dates;
 using KataCSharp.Sandbox.DynamicObjects;
 using KataCSharp.Sandbox.NullRef;
+using KataCSharp.Sandbox.Semaphore;
 using KataCSharp.Sandbox.Threads;
 using KataCSharp.TaskParallelLibrary;
 using System;
@@ -80,19 +81,21 @@ namespace KataCSharp.Recursion
 			//f.Start();
 
 			//StringInterpolationSandbox.Start();
-			ArrayIndices.Start();
+			//ArrayIndices.Start();
+			
 		}
     }
     public class MyMainAsync
     {
         public async Task RunMainAsync()
         {
-            //Tasks
-            //var f = new TaskMain();
-            //var f = new Day1_Trebuchet();
-
-            //await f.Start();
-        }
+			//Tasks
+			//var f = new TaskMain();
+			//var f = new Day1_Trebuchet();
+			//var f = new SemaphoreSlimInitCountSandbox();
+			//await f.Start();
+			//await f.Start();
+		}
     }
 }
 
