@@ -18,7 +18,7 @@
 
 			//contravariance
 			Action<Base> baseAction = b => b.Display();
-			baseAction = (Derived d) => d.Display(); // This is valid due to contravariance in Action<T>
+			//baseAction = (Derived d) => d.Display(); // This is valid due to contravariance in Action<T>
 
 
 		}
