@@ -14,6 +14,7 @@ using KataCSharp.Sandbox.Dates;
 using KataCSharp.Sandbox.DynamicObjects;
 using KataCSharp.Sandbox.NullRef;
 using KataCSharp.Sandbox.Semaphore;
+using KataCSharp.Sandbox.Span;
 using KataCSharp.Sandbox.Threads;
 using KataCSharp.TaskParallelLibrary;
 using System;
@@ -78,7 +79,12 @@ namespace KataCSharp.Recursion
 			//var f = new CountAndSay();
 			//var f = new NullCollection();
 			//f.TestNullCollection();
-			//f.Start();
+
+			var f = new FunWithSpan();
+			
+
+
+			f.Start();
 
 			//StringInterpolationSandbox.Start();
 			//ArrayIndices.Start();

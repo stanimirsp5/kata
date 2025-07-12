@@ -6,6 +6,26 @@ using System.Linq;
 MyMain myMain = new MyMain();
 myMain.Main();
 
+// shallow copy - yes
+var listBase = new List<string>() { "test1", "test2", "test3", "test4" };
+var listRef = listBase;
+var listNoRef = new List<string>(listBase);
+
+listBase.Remove("test1");
+
+// deep copy - no
+var filesBase = new List<File>() {
+	new File { Id=1,Code="1", Name = "File 1"},
+	new File { Id=2,Code="1", Name = "File 2"},
+	new File { Id=3,Code="1", Name = "File 3"},
+	new File { Id=4,Code="2", Name = "File 4"},
+};
+var listFilesRef = filesBase;
+var listFilesNoRef = new List<File>(filesBase);
+
+filesBase[0].Code = "3";
+filesBase[0] = new File { Id = 5, Code = "1111", Name = "File 5" };
+filesBase.RemoveAt(0);
 
 
 //MyMainAsync main = new MyMainAsync();
