@@ -6,6 +6,7 @@ using KataCSharp.LeetCode.B;
 using KataCSharp.LeetCode.LinkedLists;
 using KataCSharp.ProCSharpWithDotNET;
 using KataCSharp.ProCSharpWithDotNET.Arrays;
+using KataCSharp.ProCSharpWithDotNET.Exceptions;
 using KataCSharp.ProCSharpWithDotNET.Records;
 using KataCSharp.Recursion.Backtracking;
 using KataCSharp.Recursion.Princeton;
@@ -82,7 +83,8 @@ namespace KataCSharp.Recursion
 			//f.TestNullCollection();
 
 			//var f = new FunWithSpan();
-			var f = new FunWithRecords();
+			//var f = new FunWithRecords();
+			var f = new FunWithExcpetions();
 			
 
 
