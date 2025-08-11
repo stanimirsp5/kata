@@ -128,25 +128,55 @@ var files = new List<File>() {
 var groupedFiles = files.GroupBy(f => f.Code);
 
 Console.WriteLine();
+
+
+var glass = new Glass();
+
+if (glass?.Cup?.SmallCup?.isCup != false)
+{
+	Console.WriteLine("Is Cup");
+}
+else {
+	Console.WriteLine("Is no Cup");
+}
+
+
+class Glass
+{
+	public Cup Cup { get; set; }
+}
+class Cup
+{
+	public SmallCup SmallCup { get; set; }
+}
+
+class SmallCup
+{
+	public bool isCup { get; set; }
+	public string Name { get; set; }
+}
+
+
+
 class File
 {
-    public int Id { get; set; }
-    public string Code { get; set; }
-    public string Name { get; set; }
+	public int Id { get; set; }
+	public string Code { get; set; }
+	public string Name { get; set; }
 }
 
 class Types
 {
-    // value type
-    // point directly to value
+	// value type
+	// point directly to value
 
-    // reference type
-    // point to address in memory where is the value
+	// reference type
+	// point to address in memory where is the value
 
-    // mutable
-    // value can be changed
+	// mutable
+	// value can be changed
 
-    // immutable
-    // creates new value when value is changhed
+	// immutable
+	// creates new value when value is changhed
 
 }
