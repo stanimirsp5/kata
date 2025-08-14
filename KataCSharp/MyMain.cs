@@ -5,6 +5,7 @@ using KataCSharp.DynamicProgramming;
 using KataCSharp.LeetCode.B;
 using KataCSharp.LeetCode.LinkedLists;
 using KataCSharp.ProCSharpWithDotNET;
+using KataCSharp.ProCSharpWithDotNET.AbstarctionAndPolymorhism;
 using KataCSharp.ProCSharpWithDotNET.Arrays;
 using KataCSharp.ProCSharpWithDotNET.Exceptions;
 using KataCSharp.ProCSharpWithDotNET.Records;
@@ -84,11 +85,12 @@ namespace KataCSharp.Recursion
 
 			//var f = new FunWithSpan();
 			//var f = new FunWithRecords();
-			var f = new FunWithExcpetions();
+			//var f = new FunWithExcpetions();
+			var f = new FunWithPolymorphism();
 			
 
 
-			f.Start();
+			//f.Start();
 
 			//StringInterpolationSandbox.Start();
 			//ArrayIndices.Start();
