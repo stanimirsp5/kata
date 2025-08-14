@@ -8,6 +8,7 @@ using KataCSharp.ProCSharpWithDotNET;
 using KataCSharp.ProCSharpWithDotNET.AbstarctionAndPolymorhism;
 using KataCSharp.ProCSharpWithDotNET.Arrays;
 using KataCSharp.ProCSharpWithDotNET.Exceptions;
+using KataCSharp.ProCSharpWithDotNET.IEnumerableAndIEnumerator;
 using KataCSharp.ProCSharpWithDotNET.Records;
 using KataCSharp.Recursion.Backtracking;
 using KataCSharp.Recursion.Princeton;
@@ -86,11 +87,12 @@ namespace KataCSharp.Recursion
 			//var f = new FunWithSpan();
 			//var f = new FunWithRecords();
 			//var f = new FunWithExcpetions();
-			var f = new FunWithPolymorphism();
+			//var f = new FunWithPolymorphism();
+			var f = new FunWithEnumerator();
 			
 
 
-			//f.Start();
+			f.Start();
 
 			//StringInterpolationSandbox.Start();
 			//ArrayIndices.Start();
