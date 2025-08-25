@@ -3,8 +3,11 @@ using KataCSharp.LeetCode.B;
 using KataCSharp.Recursion;
 using System.Linq;
 
-MyMain myMain = new MyMain();
-myMain.Main();
+//MyMain myMain = new MyMain();
+//myMain.Main();
+
+MyMainAsync main = new MyMainAsync();
+await main.RunMainAsync();
 
 // shallow copy - yes
 var listBase = new List<string>() { "test1", "test2", "test3", "test4" };
@@ -28,8 +31,6 @@ filesBase[0] = new File { Id = 5, Code = "1111", Name = "File 5" };
 filesBase.RemoveAt(0);
 
 
-//MyMainAsync main = new MyMainAsync();
-//await main.RunMainAsync();
 
 var listOfNumbers = new List<int>() { 1, 2, 3, 4, 5 };
 var emptyListOfNumbers = new List<int>();

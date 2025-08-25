@@ -61,6 +61,29 @@ namespace KataCSharp.LeetCode.B
 			return false;
 		}
 		//TODO try loop
+		// Signs of DP
+		// 1. Overlapping subproblems: The problem can be broken down into smaller subproblems that are reused multiple times.
+		// 2. Optimal substructure: The optimal solution to the problem can be constructed from the optimal solutions of its subproblems.
+		// 3. Memoization or tabulation: The results of subproblems are stored to avoid redundant calculations.
+		
+
+
+		public void Start() {
+			Console.WriteLine(f(3));
+		}
+		
+		// Exercise with optimal subproblem and optimal substructure
+		// 1,1,2,3,5, 8, 13, 21, 34, 55, 89
+		int f(int n)
+		{
+			if (n <= 1) return n;
+			return f(n - 1) + f(n - 2);
+		}
+
+
+
+
+
 
 
 

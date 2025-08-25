@@ -88,7 +88,8 @@ namespace KataCSharp.Recursion
 			//var f = new FunWithRecords();
 			//var f = new FunWithExcpetions();
 			//var f = new FunWithPolymorphism();
-			var f = new FunWithEnumerator();
+			//var f = new FunWithEnumerator();
+			var f = new JumpGame();
 			
 
 
@@ -107,8 +108,11 @@ namespace KataCSharp.Recursion
 			//var f = new TaskMain();
 			//var f = new Day1_Trebuchet();
 			//var f = new SemaphoreSlimInitCountSandbox();
-			//await f.Start();
-			//await f.Start();
+			var f = new TaskAndValueTask();
+
+
+
+			await f.Start();
 		}
     }
 }
