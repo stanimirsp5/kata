@@ -3,12 +3,13 @@ using KataCSharp.LeetCode.B;
 using KataCSharp.Recursion;
 using System.Linq;
 
-//MyMain myMain = new MyMain();
-//myMain.Main();
+MyMain myMain = new MyMain();
+myMain.Main();
 
-MyMainAsync main = new MyMainAsync();
-await main.RunMainAsync();
+//MyMainAsync main = new MyMainAsync();
+//await main.RunMainAsync();
 
+var t = null ?? "is null";
 // shallow copy - yes
 var listBase = new List<string>() { "test1", "test2", "test3", "test4" };
 var listRef = listBase;
@@ -75,8 +76,8 @@ var list2 = new List<string>() { "file1", "file2" };
 
 var list3 = list1.Select((l, idx) => new { l, idx });
 
-var t = list3.GroupBy(x => x.idx);
-var d = t.ToDictionary(g => g.Key, g => g.Select(x => new { t1 = x.l, t2 = list2.ElementAt(x.idx) }));
+//var ttty = list3.GroupBy(x => x.idx);
+//var d = tttt.ToDictionary(g => g.Key, g => g.Select(x => new { t1 = x.l, t2 = list2.ElementAt(x.idx) }));
 
 //var elements = list1.Zip(list2, (first, second) => );
 

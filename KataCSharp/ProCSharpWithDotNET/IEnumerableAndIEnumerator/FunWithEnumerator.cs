@@ -23,7 +23,11 @@ class FunWithEnumerator
         var carEnumerator = enumerableGarage.GetEnumerator();
         carEnumerator.MoveNext();
         var firstCar = carEnumerator.Current;
-    }
+
+
+        var guards = new GuardsIEnumerator();
+        guards.IterateAddresses();
+	}
 
 
     class Car(string model)
@@ -44,5 +48,52 @@ class FunWithEnumerator
         }
 
         IEnumerator IEnumerable.GetEnumerator() => cars.GetEnumerator();
+    }
+
+    class Address : IEnumerable
+	{
+		public string Street { get; set; }
+		public string City { get; set; }
+
+        //public IEnumerator GetEnumerator()
+        //{
+        //    throw new NotImplementedException();
+
+        //    yield return new Address { Street = "123 Main St", City = "Anytown" };
+        //    yield return new Address { Street = "456 Oak Ave", City = "Othertown" };
+        //    yield return new Address { Street = "789 Pine Rd", City = "Sometown" };
+        //}
+
+        // With exception guard
+        public IEnumerator GetEnumerator()
+		{
+			//throw new NotImplementedException();
+
+            return ActualImplementation();
+
+
+			IEnumerator ActualImplementation()
+            {
+				yield return new Address { Street = "123 Main St", City = "Anytown" };
+				yield return new Address { Street = "456 Oak Ave", City = "Othertown" };
+				yield return new Address { Street = "789 Pine Rd", City = "Sometown" };
+			}
+		}
+	}
+
+
+	class GuardsIEnumerator
+    {
+        public void IterateAddresses()
+		{
+            var addresses = new Address();
+			// Using IEnumerator to iterate through the collection
+			IEnumerator enumerator = addresses.GetEnumerator();
+			while (enumerator.MoveNext())
+			{
+				Address address = (Address)enumerator.Current;
+				Console.WriteLine($"{address.Street}, {address.City}");
+			}
+		}
     }
 }
