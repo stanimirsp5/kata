@@ -8,6 +8,7 @@ using KataCSharp.ProCSharpWithDotNET;
 using KataCSharp.ProCSharpWithDotNET.AbstarctionAndPolymorhism;
 using KataCSharp.ProCSharpWithDotNET.Arrays;
 using KataCSharp.ProCSharpWithDotNET.Exceptions;
+using KataCSharp.ProCSharpWithDotNET.GarbageCollector;
 using KataCSharp.ProCSharpWithDotNET.IEnumerableAndIEnumerator;
 using KataCSharp.ProCSharpWithDotNET.Records;
 using KataCSharp.Recursion.Backtracking;
@@ -24,10 +25,10 @@ using KataCSharp.TaskParallelLibrary;
 using System;
 namespace KataCSharp.Recursion
 {
-    public class MyMain
-    {
-        public void Main()
-        {
+	public class MyMain
+	{
+		public void Main()
+		{
 			// Fibonnacci f = new Fibonnacci();
 			//TowersOfHanoi f = new TowersOfHanoi();
 			//var f = new NumberCombinations();
@@ -89,21 +90,22 @@ namespace KataCSharp.Recursion
 			//var f = new FunWithExcpetions();
 			//var f = new FunWithPolymorphism();
 			//var f = new FunWithEnumerator();
-			var f = new JumpGame();
-			
+			//var f = new JumpGame();
+			var f = new FunWithGarbageCollector();
+
 
 
 			f.Start();
 
 			//StringInterpolationSandbox.Start();
 			//ArrayIndices.Start();
-			
+
 		}
-    }
-    public class MyMainAsync
-    {
-        public async Task RunMainAsync()
-        {
+	}
+	public class MyMainAsync
+	{
+		public async Task RunMainAsync()
+		{
 			//Tasks
 			//var f = new TaskMain();
 			//var f = new Day1_Trebuchet();
@@ -114,6 +116,6 @@ namespace KataCSharp.Recursion
 
 			await f.Start();
 		}
-    }
+	}
 }
 

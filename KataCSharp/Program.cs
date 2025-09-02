@@ -6,8 +6,8 @@ using System.Linq;
 MyMain myMain = new MyMain();
 myMain.Main();
 
-//MyMainAsync main = new MyMainAsync();
-//await main.RunMainAsync();
+// MyMainAsync main = new MyMainAsync();
+// await main.RunMainAsync();
 
 var t = null ?? "is null";
 // shallow copy - yes
@@ -46,11 +46,11 @@ var res = listDict.SelectMany(dict => dict).ToLookup(dict => dict.Key, dict => d
 
 foreach (var group in res)
 {
-    //Console.WriteLine(group.Key);
-    foreach (var item in group)
-    {
-        //Console.WriteLine(item);
-    }
+	//Console.WriteLine(group.Key);
+	foreach (var item in group)
+	{
+		//Console.WriteLine(item);
+	}
 }
 
 var emptyList1 = new List<string>();
@@ -87,13 +87,13 @@ IEnumerable<string> values = new List<string>() { "Val A", "Val B", "Val C", "Va
 var groupBy = values.GroupBy(x => "Val B", x => "Val C");
 
 var filesFromDb = new List<File>() {
-    new File { Id=1,Name = "File 1"},
-    new File { Id=2,Name = "File 2"}
+	new File { Id=1,Name = "File 1"},
+	new File { Id=2,Name = "File 2"}
 };
 
 var newFiles = new List<File>() {
-    new File { Id=1,Name = "File 1"},
-    new File { Id=3,Name = "File 3"},
+	new File { Id=1,Name = "File 1"},
+	new File { Id=3,Name = "File 3"},
 };
 
 var deletedFiles = filesFromDb.Where(fd => newFiles.All(nf => nf.Id != fd.Id));
@@ -108,11 +108,11 @@ ListRefTest(originalList);
 
 void ListRefTest(List<string> list)
 {
-    var localList = new List<string>();
-    localList.Add("localList value");
-    list = localList;
-    //list = localList.Select(l => l).ToList();
-    //list.Add("A");
+	var localList = new List<string>();
+	localList.Add("localList value");
+	list = localList;
+	//list = localList.Select(l => l).ToList();
+	//list.Add("A");
 
 }
 
@@ -122,10 +122,10 @@ string resStr = string.Join("", ch);
 
 
 var files = new List<File>() {
-    new File { Id=1,Code="1", Name = "File 1"},
-    new File { Id=2,Code="1", Name = "File 2"},
-    new File { Id=3,Code="1", Name = "File 3"},
-    new File { Id=4,Code="2", Name = "File 4"},
+	new File { Id=1,Code="1", Name = "File 1"},
+	new File { Id=2,Code="1", Name = "File 2"},
+	new File { Id=3,Code="1", Name = "File 3"},
+	new File { Id=4,Code="2", Name = "File 4"},
 };
 var groupedFiles = files.GroupBy(f => f.Code);
 
@@ -136,9 +136,10 @@ var glass = new Glass();
 
 if (glass?.Cup?.SmallCup?.isCup != false)
 {
-	Console.WriteLine("Is Cup");
+	//Console.WriteLine("Is Cup");
 }
-else {
+else
+{
 	Console.WriteLine("Is no Cup");
 }
 

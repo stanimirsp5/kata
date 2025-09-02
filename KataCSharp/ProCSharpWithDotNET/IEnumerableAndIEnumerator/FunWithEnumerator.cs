@@ -30,12 +30,12 @@ class FunWithEnumerator
 	}
 
 
-    class Car(string model)
+    public class Car(string model)
     {
         public string Model { get; } = model;
     }
-    
-    class Garage : IEnumerable
+
+    public class Garage : IEnumerable
     {
         private Car[] cars;
 
@@ -46,6 +46,27 @@ class FunWithEnumerator
             cars[1] = new Car("Toyota");
             cars[2] = new Car("Mercedes");
         }
+
+        IEnumerator IEnumerable.GetEnumerator() => cars.GetEnumerator();
+    }
+}
+
+class Car(string model)
+{
+    public string Model { get; } = model;
+}
+
+class Garage : IEnumerable
+{
+    private Car[] cars;
+
+    public Garage()
+    {
+        cars = new Car[3];
+        cars[0] = new Car("BMW");
+        cars[1] = new Car("Toyota");
+        cars[2] = new Car("Mercedes");
+    }
 
         IEnumerator IEnumerable.GetEnumerator() => cars.GetEnumerator();
     }
