@@ -8,7 +8,7 @@
 			var weatherData = await GetWeatherData();
 			var weatherData2 = await GetWeatherData();
 			var weatherData3 = await GetWeatherData();
-
+			
 		}
 
 		private WeatherData _weatherData;
@@ -34,6 +34,16 @@
 
 			return weatherData;
 
+		}
+
+		async Task ReturnEmpty()
+		{
+			await Task.CompletedTask;
+		}
+
+		async Task ReturnEmpty2()
+		{
+			await Task.FromResult(1);
 		}
 
 		class WeatherData

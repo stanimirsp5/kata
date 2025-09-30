@@ -3,12 +3,13 @@ using KataCSharp.LeetCode.B;
 using KataCSharp.Recursion;
 using System.Linq;
 
-MyMain myMain = new MyMain();
-myMain.Main();
+//MyMain myMain = new MyMain();
+//myMain.Main();
 
-// MyMainAsync main = new MyMainAsync();
-// await main.RunMainAsync();
+MyMainAsync main = new MyMainAsync();
+await main.RunMainAsync();
 
+var t = null ?? "is null";
 // shallow copy - yes
 var listBase = new List<string>() { "test1", "test2", "test3", "test4" };
 var listRef = listBase;
@@ -23,6 +24,7 @@ var filesBase = new List<File>() {
 	new File { Id=3,Code="1", Name = "File 3"},
 	new File { Id=4,Code="2", Name = "File 4"},
 };
+var distinctFiles = filesBase.OrderBy(el => el.Code).DistinctBy(el => el.Code).ToList();// distinct by keeps first ocurrance and removes following
 var listFilesRef = filesBase;
 var listFilesNoRef = new List<File>(filesBase);
 
@@ -30,7 +32,22 @@ filesBase[0].Code = "3";
 filesBase[0] = new File { Id = 5, Code = "1111", Name = "File 5" };
 filesBase.RemoveAt(0);
 
+var filesTags = new List<File>() {
+	new File { Id=1,Code="1", Name = "File 1"},
+	new File { Id=2,Code="1", Name = "File 2"}
+};
+//, Tags = new List<Tag>{ { new Tag { Id = 1}}}  , Tags = new List<Tag>{ { new Tag { Id = 2}}}
+var fileTag = filesTags.FirstOrDefault();
+var filteredTagFiles = fileTag?.Tags?.Select(el => el.Id).ToList() ?? new List<int> { 1111};
 
+var fileWithNullTags = new File { Id = 3, Code = "3", Name = "File 3", Tags = null };
+if (fileWithNullTags.Tags != null)
+{
+	foreach (var file in fileWithNullTags.Tags)
+	{
+		//Console.WriteLine(file.Id);
+	}
+}
 
 var listOfNumbers = new List<int>() { 1, 2, 3, 4, 5 };
 var emptyListOfNumbers = new List<int>();
@@ -75,8 +92,8 @@ var list2 = new List<string>() { "file1", "file2" };
 
 var list3 = list1.Select((l, idx) => new { l, idx });
 
-var t = list3.GroupBy(x => x.idx);
-var d = t.ToDictionary(g => g.Key, g => g.Select(x => new { t1 = x.l, t2 = list2.ElementAt(x.idx) }));
+//var ttty = list3.GroupBy(x => x.idx);
+//var d = tttt.ToDictionary(g => g.Key, g => g.Select(x => new { t1 = x.l, t2 = list2.ElementAt(x.idx) }));
 
 //var elements = list1.Zip(list2, (first, second) => );
 
@@ -165,6 +182,14 @@ class File
 	public int Id { get; set; }
 	public string Code { get; set; }
 	public string Name { get; set; }
+
+	public List<Tag> Tags { get; set; }
+}
+
+class Tag
+{
+	public int Id { get; set; }
+	public List<string> Names { get; set; }
 }
 
 class Types
