@@ -160,13 +160,20 @@ else
 }
 
 
+var glassOfWater = new Glass();
+glassOfWater.Bottle ??= new Bottle("customName");
+var cupOfWater = new Cup();
+cupOfWater.Bottle ??= new Bottle("cupOfWaterBottle");
+Console.WriteLine();
 class Glass
 {
-	public Cup Cup { get; set; }
+	public Cup Cup { get; set; } = new();
+	public Bottle Bottle { get; set; } = new("DefaultName");
 }
 class Cup
 {
 	public SmallCup SmallCup { get; set; }
+	public Bottle Bottle { get; set; }
 }
 
 class SmallCup
@@ -175,6 +182,14 @@ class SmallCup
 	public string Name { get; set; }
 }
 
+class Bottle
+{
+	public string Name { get; set; }
+	public Bottle(string name)
+	{
+		Name = name;
+	}
+}
 
 
 class File
@@ -207,3 +222,5 @@ class Types
 	// creates new value when value is changhed
 
 }
+
+

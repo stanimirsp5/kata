@@ -31,7 +31,8 @@ namespace KataCSharp.LeetCode.B
 		[InlineData(new int[] { 2,0 }, true)]
 		public void CanJumpTest(int[] nums, bool expected)
 		{
-			var result = CanJump(nums);
+			//var result = CanJump(nums);
+			var result = JumpBottomUp2(nums);
 			Assert.Equal(expected, result);
 		}
 
@@ -65,7 +66,41 @@ namespace KataCSharp.LeetCode.B
 		// 1. Overlapping subproblems: The problem can be broken down into smaller subproblems that are reused multiple times.
 		// 2. Optimal substructure: The optimal solution to the problem can be constructed from the optimal solutions of its subproblems.
 		// 3. Memoization or tabulation: The results of subproblems are stored to avoid redundant calculations.
+
+
+
+
+		//  { 2, 2, 0, 1, 4 }, true
+		public bool JumpBottomUp(int[] nums)
+		{
+			int tempIdx = nums[0];
+			for (int i = tempIdx; i < nums.Length; i++)
+			{
+				if(i == nums.Length-1)
+					return true;
+				else if(i < nums.Length - 1)
+					tempIdx = nums[i];
+				
+			}
+
+			return false;
+		}
+
+		public bool JumpBottomUp2(int[] nums)
+		{
+			int lastPos = nums.Length - 1;
+			for (int i = nums.Length - 2; i >= 0; i--)
+			{
+				if (i + nums[i] >= lastPos)
+				{
+					lastPos = i;
+				}
+			}
+			return lastPos == 0;
+		}
+
 		
+
 
 
 		public void Start() {
