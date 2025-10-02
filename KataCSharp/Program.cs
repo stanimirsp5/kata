@@ -3,11 +3,11 @@ using KataCSharp.LeetCode.B;
 using KataCSharp.Recursion;
 using System.Linq;
 
-//MyMain myMain = new MyMain();
-//myMain.Main();
+MyMain myMain = new MyMain();
+myMain.Main();
 
-MyMainAsync main = new MyMainAsync();
-await main.RunMainAsync();
+//MyMainAsync main = new MyMainAsync();
+//await main.RunMainAsync();
 
 var t = null ?? "is null";
 // shallow copy - yes

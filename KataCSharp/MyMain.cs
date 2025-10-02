@@ -90,8 +90,8 @@ namespace KataCSharp.Recursion
 			//var f = new FunWithExcpetions();
 			//var f = new FunWithPolymorphism();
 			//var f = new FunWithEnumerator();
-			var f = new JumpGame();
-			//var f = new FunWithGarbageCollector();
+			//var f = new JumpGame();
+			var f = new FunWithGarbageCollector();
 
 
 
