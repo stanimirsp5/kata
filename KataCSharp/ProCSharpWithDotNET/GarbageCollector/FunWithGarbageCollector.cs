@@ -6,9 +6,17 @@ public class FunWithGarbageCollector
 {
     public void Start()
     {
-        // CallSystemGC();
+        //// CallSystemGC();
         CallGCCollect();
 
+        Console.ReadLine();
+        FinalizeClass();
+
+        GC.AddMemoryPressure(2147483647);
+        GC.Collect();
+        GC.WaitForPendingFinalizers();
+        // todo check in which generation is animals class
+        Console.WriteLine("Write input: ");
         Console.ReadLine();
     }
 
@@ -60,5 +68,34 @@ public class FunWithGarbageCollector
             Console.WriteLine("Car 444 has been collected!");
     }
 
+    private void FinalizeClass()
+    {
+        var count = 5_000_000;
+        Animal[] animals = new Animal[count];
+
+        for (int i = 0; i < count; i++)
+        {
+            animals[i] = new Animal($"Animal {i}");
+        }
+
+        animals = null;
+    }
+
+
+    class Animal
+    {
+        public string Name { get; set; }
+
+        public Animal(string name)
+        {
+            Name = name;
+        }
+
+        ~Animal()
+        {
+            Console.WriteLine("Finalizing {0}", Name);
+            Console.Beep();
+        }
+    }
 
 }
