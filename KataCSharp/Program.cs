@@ -3,11 +3,11 @@ using KataCSharp.LeetCode.B;
 using KataCSharp.Recursion;
 using System.Linq;
 
-//MyMain myMain = new MyMain();
-//myMain.Main();
+MyMain myMain = new MyMain();
+myMain.Main();
 
-MyMainAsync main = new MyMainAsync();
-await main.RunMainAsync();
+// MyMainAsync main = new MyMainAsync();
+// await main.RunMainAsync();
 
 var t = null ?? "is null";
 // shallow copy - yes
@@ -38,7 +38,7 @@ var filesTags = new List<File>() {
 };
 //, Tags = new List<Tag>{ { new Tag { Id = 1}}}  , Tags = new List<Tag>{ { new Tag { Id = 2}}}
 var fileTag = filesTags.FirstOrDefault();
-var filteredTagFiles = fileTag?.Tags?.Select(el => el.Id).ToList() ?? new List<int> { 1111};
+var filteredTagFiles = fileTag?.Tags?.Select(el => el.Id).ToList() ?? new List<int> { 1111 };
 
 var fileWithNullTags = new File { Id = 3, Code = "3", Name = "File 3", Tags = null };
 if (fileWithNullTags.Tags != null)
