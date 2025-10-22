@@ -95,7 +95,7 @@ namespace KataCSharp.Recursion
 
 
 
-			f.Start();
+			//f.Start();
 
 			//StringInterpolationSandbox.Start();
 			//ArrayIndices.Start();

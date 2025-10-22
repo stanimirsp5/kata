@@ -3,8 +3,8 @@ using System;
 
 namespace KataCSharp.LeetCode.B
 {
-    public class JumpGame
-    {
+	public class JumpGame
+	{
 
 		//You are given an integer array nums.You are initially positioned 
 		//at the array's first index,each element in the 
@@ -22,23 +22,27 @@ namespace KataCSharp.LeetCode.B
 		[Theory]
 		[InlineData(new int[] { 2, 3, 1, 1, 4 }, true)]
 		[InlineData(new int[] { 2, 2, 1, 1, 2, 0, 4 }, true)]
+		[InlineData(new int[] { 2, 2, 1, 1, 1, 6, 4 }, true)]
 		[InlineData(new int[] { 2, 2, 1, 1, 2, 0, 4, 0, 0, 0, 1 }, true)]
 		[InlineData(new int[] { 2, 2, 1, 1, 2, 0, 4, 0, 0, 0, 0, 1 }, false)]
 		[InlineData(new int[] { 3, 2, 1, 0, 4 }, false)]
 		[InlineData(new int[] { 2, 1, 0, 4 }, false)]
 		[InlineData(new int[] { 2, 2, 0, 4 }, true)]
 		[InlineData(new int[] { 0 }, true)]
-		[InlineData(new int[] { 2,0 }, true)]
+		[InlineData(new int[] { 2, 0 }, true)]
+		[InlineData(new int[] { 2, 2, 0, 0, 4 }, false)]
+		[InlineData(new int[] { 0, 1 }, false)]
+		[InlineData(new int[] { 3, 0, 8, 2, 0, 0, 1 }, true)]
 		public void CanJumpTest(int[] nums, bool expected)
 		{
 			//var result = CanJump(nums);
-			var result = JumpBottomUp2(nums);
+			var result = JumpBottomUp(nums);
 			Assert.Equal(expected, result);
 		}
 
 		public bool CanJump(int[] nums)
 		{
-			if(nums.Length == 1)
+			if (nums.Length == 1)
 				return true;
 
 			return Jump(nums, 0);
@@ -46,16 +50,16 @@ namespace KataCSharp.LeetCode.B
 
 		public bool Jump(int[] nums, int idx)
 		{
-			var length = nums.Length-1; 
+			var length = nums.Length - 1;
 			if (idx > length || nums[idx] == 0) return false;
-			
+
 			var num = nums[idx];
-			if (num+idx >= length) return true;
+			if (num + idx >= length) return true;
 
 			for (int i = 1; i <= num; i++)
 			{
-				var res = Jump(nums, i+idx);
-				if(res)
+				var res = Jump(nums, i + idx);
+				if (res)
 					return true;
 			}
 
@@ -69,27 +73,43 @@ namespace KataCSharp.LeetCode.B
 
 
 
-
-		//  { 2, 2, 0, 1, 4 }, true
+		// 2, 2, 0, 4 true
+		// 2, 2, 0, 0, 4 false
+		// 2, 2, 1, 1, 1, 6, 4 true
+		// 3, 2, 1, 0, 4 false
 		public bool JumpBottomUp(int[] nums)
 		{
 			int tempIdx = nums[0];
-			for (int i = tempIdx; i < nums.Length; i++)
+			if (tempIdx == 0 && nums.Length > 1) return false;
+			int lastValidIdx = int.MinValue;
+			for (int i = tempIdx; i < nums.Length; i--)
 			{
-				if(i == nums.Length-1)
-					return true;
-				else if(i < nums.Length - 1)
-					tempIdx = nums[i];
-				
+				if (i >= nums.Length - 1) return true;
+				if (nums[i] == 0)
+				{
+					int j = i;
+					while (nums[j] == 0)
+					{
+						j--;
+					}
+					if (lastValidIdx == i - 1) return false;
+					lastValidIdx = j;
+					continue;
+				}
+
+				i += nums[i] + 1;
+				tempIdx = i;
 			}
 
-			return false;
+			if (tempIdx >= nums.Length - 1) return true;
+			else return false;
 		}
 
+		// 2, 2, 0, 4 true
 		public bool JumpBottomUp2(int[] nums)
 		{
-			int lastPos = nums.Length - 1;
-			for (int i = nums.Length - 2; i >= 0; i--)
+			int lastPos = nums.Length - 1;//3
+			for (int i = nums.Length - 2; i >= 0; i--)//i=2
 			{
 				if (i + nums[i] >= lastPos)
 				{
@@ -99,16 +119,17 @@ namespace KataCSharp.LeetCode.B
 			return lastPos == 0;
 		}
 
-		
 
 
 
-		public void Start() {
+
+		public void Start()
+		{
 			var n = 11;
 			Console.WriteLine("r: " + f(n));
 			Console.WriteLine("l: " + fl(n));
 		}
-		
+
 		// Exercise with optimal subproblem and optimal substructure
 		// 1,1,2,3,5, 8, 13, 21, 34, 55, 89
 		int f(int n)
