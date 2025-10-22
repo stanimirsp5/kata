@@ -17,6 +17,9 @@
   <ItemGroup>
     <Folder Include="Recursion\Princeton\" />
     <Folder Include="LeetCode\LinkedLists\" />
+	<None Include="pinvokeconapp.dll">
+		<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	</None>
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="coverlet.collector" Version="3.1.2">

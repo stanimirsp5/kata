@@ -91,11 +91,12 @@ namespace KataCSharp.Recursion
 			//var f = new FunWithPolymorphism();
 			//var f = new FunWithEnumerator();
 			//var f = new JumpGame();
-			var f = new FunWithGarbageCollector();
+			//var f = new FunWithGarbageCollector();
+			var f = new FunWithPInvoke();
 
 
 
-			//f.Start();
+			f.Start();
 
 			//StringInterpolationSandbox.Start();
 			//ArrayIndices.Start();
