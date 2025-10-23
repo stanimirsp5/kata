@@ -77,33 +77,50 @@ namespace KataCSharp.LeetCode.B
 		// 2, 2, 0, 0, 4 false
 		// 2, 2, 1, 1, 1, 6, 4 true
 		// 3, 2, 1, 0, 4 false
-		public bool JumpBottomUp(int[] nums)
+		// 2, 8, 2, 1, 1, 0 true
+		public bool JumpBottomUp(int[] nums) // Start from end to start
 		{
-			int tempIdx = nums[0];
-			if (tempIdx == 0 && nums.Length > 1) return false;
-			int lastValidIdx = int.MinValue;
-			for (int i = tempIdx; i < nums.Length; i--)
+			int lastGoodIndex = nums.Length - 1;
+			for (int i = lastGoodIndex - 1; i >= 0; i--)
 			{
-				if (i >= nums.Length - 1) return true;
-				if (nums[i] == 0)
+				if(i + nums[i] >= lastGoodIndex)
 				{
-					int j = i;
-					while (nums[j] == 0)
-					{
-						j--;
-					}
-					if (lastValidIdx == i - 1) return false;
-					lastValidIdx = j;
-					continue;
+					lastGoodIndex = i;
 				}
-
-				i += nums[i] + 1;
-				tempIdx = i;
 			}
 
-			if (tempIdx >= nums.Length - 1) return true;
-			else return false;
+			return lastGoodIndex == 0;
 		}
+
+
+		// Can't work-start from start to end
+		//public bool JumpBottomUp(int[] nums)
+		//{
+		//	int tempIdx = nums[0];
+		//	if (tempIdx == 0 && nums.Length > 1) return false;
+		//	int lastValidIdx = int.MinValue;
+		//	for (int i = tempIdx; i < nums.Length; i--)
+		//	{
+		//		if (i >= nums.Length - 1) return true;
+		//		if (nums[i] == 0)
+		//		{
+		//			int j = i;
+		//			while (nums[j] == 0)
+		//			{
+		//				j--;
+		//			}
+		//			if (lastValidIdx == i - 1) return false;
+		//			lastValidIdx = j;
+		//			continue;
+		//		}
+
+		//		i += nums[i] + 1;
+		//		tempIdx = i;
+		//	}
+
+		//	if (tempIdx >= nums.Length - 1) return true;
+		//	else return false;
+		//}
 
 		// 2, 2, 0, 4 true
 		public bool JumpBottomUp2(int[] nums)
