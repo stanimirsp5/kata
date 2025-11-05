@@ -36,7 +36,9 @@ namespace KataCSharp.LeetCode.B
 		public void CanJumpTest(int[] nums, bool expected)
 		{
 			//var result = CanJump(nums);
-			var result = JumpBottomUp(nums);
+			//var result = JumpBottomUp(nums);
+			//var result = JumpDP(nums);
+			var result = JumpBottomUpStartBottom(nums);
 			Assert.Equal(expected, result);
 		}
 
@@ -83,7 +85,7 @@ namespace KataCSharp.LeetCode.B
 			int lastGoodIndex = nums.Length - 1;
 			for (int i = lastGoodIndex - 1; i >= 0; i--)
 			{
-				if(i + nums[i] >= lastGoodIndex)
+				if (i + nums[i] >= lastGoodIndex)
 				{
 					lastGoodIndex = i;
 				}
@@ -92,35 +94,24 @@ namespace KataCSharp.LeetCode.B
 			return lastGoodIndex == 0;
 		}
 
-
+		// 2, 2, 0, 4 true
+		// 2, 2, 0, 0, 4 false
 		// Can't work-start from start to end
-		//public bool JumpBottomUp(int[] nums)
-		//{
-		//	int tempIdx = nums[0];
-		//	if (tempIdx == 0 && nums.Length > 1) return false;
-		//	int lastValidIdx = int.MinValue;
-		//	for (int i = tempIdx; i < nums.Length; i--)
-		//	{
-		//		if (i >= nums.Length - 1) return true;
-		//		if (nums[i] == 0)
-		//		{
-		//			int j = i;
-		//			while (nums[j] == 0)
-		//			{
-		//				j--;
-		//			}
-		//			if (lastValidIdx == i - 1) return false;
-		//			lastValidIdx = j;
-		//			continue;
-		//		}
+		public bool JumpBottomUpStartBottom(int[] nums)
+		{
+			int validIndex = 0;
+			for (int i = 0; i < nums.Length - 1; i++)
+			{
+				if (nums[i] == 0 && validIndex == 0)
+					return false;
 
-		//		i += nums[i] + 1;
-		//		tempIdx = i;
-		//	}
+				if (nums[i] >= validIndex)
+					validIndex = nums[i];
 
-		//	if (tempIdx >= nums.Length - 1) return true;
-		//	else return false;
-		//}
+				validIndex--;
+			}
+			return true;
+		}
 
 		// 2, 2, 0, 4 true
 		public bool JumpBottomUp2(int[] nums)
@@ -134,6 +125,22 @@ namespace KataCSharp.LeetCode.B
 				}
 			}
 			return lastPos == 0;
+		}
+
+		public bool JumpDP(int[] nums)
+		{
+			int n = nums.Length;
+			var dp = new bool[n];
+			dp[n - 1] = true; // end is trivially “good”
+			for (int i = n - 2; i >= 0; i--)
+			{
+				int furthest = Math.Min(n - 1, i + nums[i]);
+				for (int j = i + 1; j <= furthest; j++)
+				{
+					if (dp[j]) { dp[i] = true; break; }
+				}
+			}
+			return dp[0];
 		}
 
 

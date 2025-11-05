@@ -54,6 +54,9 @@ var emptyListOfNumbers = new List<int>();
 
 // merge dictionary
 var dict1 = new Dictionary<string, string>() { { "en", "dict 1 t1 en" }, { "bg", "dict 1 t2 bg" } };
+var resLang = dict1.Where(kvp => kvp.Key == "en2").FirstOrDefault();
+var resLangKey = resLang.Key;
+
 var dict2 = new Dictionary<string, string>() { { "en", "dict 22 t1 en" }, { "bg", "dict 22 t2 bg" } };
 var listDict = new List<Dictionary<string, string>>() { dict1, dict2 };
 var mergedDict = new Dictionary<string, string>();
@@ -68,6 +71,8 @@ foreach (var group in res)
 		//Console.WriteLine(item);
 	}
 }
+
+
 
 var emptyList1 = new List<string>();
 var emptyList2 = new List<string>();
@@ -89,6 +94,7 @@ var nestedListCtor3 = new List<List<int>>(nestedListCtor) { { listCtor2 } };// c
 
 var list1 = new List<string>() { "test1", "test2" };
 var list2 = new List<string>() { "file1", "file2" };
+var defaultListTest = list1.Where(el => el == "test3").FirstOrDefault();
 
 var list3 = list1.Select((l, idx) => new { l, idx });
 
