@@ -7,6 +7,7 @@ using KataCSharp.LeetCode.LinkedLists;
 using KataCSharp.ProCSharpWithDotNET;
 using KataCSharp.ProCSharpWithDotNET.AbstarctionAndPolymorhism;
 using KataCSharp.ProCSharpWithDotNET.Arrays;
+using KataCSharp.ProCSharpWithDotNET.DataStructures;
 using KataCSharp.ProCSharpWithDotNET.Exceptions;
 using KataCSharp.ProCSharpWithDotNET.GarbageCollector;
 using KataCSharp.ProCSharpWithDotNET.IEnumerableAndIEnumerator;
@@ -92,7 +93,8 @@ namespace KataCSharp.Recursion
 			//var f = new FunWithEnumerator();
 			//var f = new JumpGame();
 			//var f = new FunWithGarbageCollector();
-			var f = new FunWithPInvoke();
+			//var f = new FunWithPInvoke();
+			var f = new FunWithObservableCollection();
 
 
 
