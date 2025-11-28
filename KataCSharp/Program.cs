@@ -2,6 +2,8 @@
 using KataCSharp.LeetCode.B;
 using KataCSharp.Recursion;
 using System.Linq;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 MyMain myMain = new MyMain();
 myMain.Main();
@@ -154,6 +156,19 @@ var groupedFiles = files.GroupBy(f => f.Code);
 Console.WriteLine();
 
 
+var nullPropCallWhere = new File
+{
+	Id = 1,
+	Code = "code1",
+	Name = "name1",
+	Tags = null
+};
+//var nullPropTag = nullPropCallWhere.Tags.Where(t => t.Id == 1).ToList();
+var checkDefaultEnum = nullPropCallWhere.FileType != default;
+var enumDefault = default(FileTypeEnum);
+nullPropCallWhere.FileType = FileTypeEnum.Image;
+var checkDefaultEnum2 = nullPropCallWhere.FileType != default;
+
 var glass = new Glass();
 
 if (glass?.Cup?.SmallCup?.isCup != false)
@@ -165,12 +180,38 @@ else
 	Console.WriteLine("Is no Cup");
 }
 
+string fileTypeEnum = FileTypeEnum.Image.ToString();
+string fileTypeEnum2 = Enum.GetName(FileTypeEnum.Image);
 
 var glassOfWater = new Glass();
 glassOfWater.Bottle ??= new Bottle("customName");
 var cupOfWater = new Cup();
 cupOfWater.Bottle ??= new Bottle("cupOfWaterBottle");
 Console.WriteLine();
+
+var smallCup = new SmallCup();
+Console.WriteLine(glass.ToString());
+var anonymousObj = new { Name = "test", Age = "12" };
+Console.WriteLine(anonymousObj.ToString());
+
+var tuple = new Tuple<int, string>(1, "Test");
+Console.WriteLine(tuple.ToString());
+
+
+var sideBetJson = "{\"EUR\":[0.511292],\"BGN\":[1],\"betCids\":[[\"238:955b428f-bed0-4396-9100-4fcd3ffcc695\",\"238:c3de6419-958f-4fb6-b6e6-d027fb3658a3\",\"238:762ef759-c0a2-42c3-87d9-c7dbe46ec97c\",\"238:d225b91a-c043-47b6-b228-480dc8ab77b7\",\"238:1119288f-d913-48a0-89c0-03fc81652e4a\",\"238:51f56ea5-612f-4cf0-a842-b2079c35bb35\",\"238:8bb31364-ff57-4004-ab64-43d416887964\",\"238:db5143e4-f61e-4189-b1a6-2326db05ef10\",\"238:575beed1-fe17-46a2-bdcd-2a2b81381530\"]],\"sideBetsCount\":[9]}";
+	
+var sideBet = JsonSerializer.Deserialize<AdditionalData>(sideBetJson);
+
+
+Console.WriteLine();
+
+public class AdditionalData
+{
+	[JsonPropertyName("sideBetsCount")]
+	public int[] SideBetsCount { get; set; }
+}
+
+
 class Glass
 {
 	public Cup Cup { get; set; } = new();
@@ -205,6 +246,8 @@ class File
 	public string Name { get; set; }
 
 	public List<Tag> Tags { get; set; }
+
+	public FileTypeEnum FileType { get; set; }
 }
 
 class Tag
@@ -230,3 +273,9 @@ class Types
 }
 
 
+enum FileTypeEnum
+{
+	Text =1,
+	Image=2,
+	Video=3
+}

@@ -11,6 +11,7 @@ using KataCSharp.ProCSharpWithDotNET.DataStructures;
 using KataCSharp.ProCSharpWithDotNET.Exceptions;
 using KataCSharp.ProCSharpWithDotNET.GarbageCollector;
 using KataCSharp.ProCSharpWithDotNET.IEnumerableAndIEnumerator;
+using KataCSharp.ProCSharpWithDotNET.OverloadingOperators;
 using KataCSharp.ProCSharpWithDotNET.Records;
 using KataCSharp.Recursion.Backtracking;
 using KataCSharp.Recursion.Princeton;
@@ -94,7 +95,8 @@ namespace KataCSharp.Recursion
 			//var f = new JumpGame();
 			//var f = new FunWithGarbageCollector();
 			//var f = new FunWithPInvoke();
-			var f = new FunWithObservableCollection();
+			//var f = new FunWithObservableCollection();
+			var f = new CustomConversion();
 
 
 
