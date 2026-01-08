@@ -1,6 +1,8 @@
 ﻿
 using KataCSharp.LeetCode.B;
 using KataCSharp.Recursion;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -199,11 +201,24 @@ Console.WriteLine(tuple.ToString());
 
 
 var sideBetJson = "{\"EUR\":[0.511292],\"BGN\":[1],\"betCids\":[[\"238:955b428f-bed0-4396-9100-4fcd3ffcc695\",\"238:c3de6419-958f-4fb6-b6e6-d027fb3658a3\",\"238:762ef759-c0a2-42c3-87d9-c7dbe46ec97c\",\"238:d225b91a-c043-47b6-b228-480dc8ab77b7\",\"238:1119288f-d913-48a0-89c0-03fc81652e4a\",\"238:51f56ea5-612f-4cf0-a842-b2079c35bb35\",\"238:8bb31364-ff57-4004-ab64-43d416887964\",\"238:db5143e4-f61e-4189-b1a6-2326db05ef10\",\"238:575beed1-fe17-46a2-bdcd-2a2b81381530\"]],\"sideBetsCount\":[9]}";
-	
+
 var sideBet = JsonSerializer.Deserialize<AdditionalData>(sideBetJson);
 
 
-Console.WriteLine();
+var dish = new Dish();
+var nullExpression = dish.Quantity > 0;
+var notNullExpression = dish.Quantity is > 0;
+if(dish.Quantity is int vall && vall >= 0)
+{
+
+}
+else
+{
+
+}
+var e1 = FileTypeEnum.Image.ToString();
+var e2 = nameof(FileTypeEnum.Image);
+	Console.WriteLine();
 
 public class AdditionalData
 {
@@ -223,10 +238,26 @@ class Cup
 	public Bottle Bottle { get; set; }
 }
 
-class SmallCup
+class SmallCup : Dish
 {
+	private int _capacity;
 	public bool isCup { get; set; }
-	public string Name { get; set; }
+	public new string? Name { get; set; }
+
+	public int Capacity
+	{
+		get => _capacity;
+		init
+		{
+			_capacity = 10;
+		}
+	}
+}
+
+class Dish
+{
+	public int? Quantity { get; set; }
+	public string? Name { get; set; }
 }
 
 class Bottle
@@ -275,7 +306,15 @@ class Types
 
 enum FileTypeEnum
 {
-	Text =1,
-	Image=2,
-	Video=3
+	[Display(Name = "My Text")]
+	[Description("My Text desc")]
+	Text = 1,
+
+	[Display(Name = "My Image")]
+	[Description("My Image desc")] 
+	Image = 2,
+
+	[Display(Name = "My Video")]
+	[Description("My Video desc")] 
+	Video = 3
 }
