@@ -8,6 +8,7 @@ using KataCSharp.ProCSharpWithDotNET;
 using KataCSharp.ProCSharpWithDotNET.AbstarctionAndPolymorhism;
 using KataCSharp.ProCSharpWithDotNET.Arrays;
 using KataCSharp.ProCSharpWithDotNET.DataStructures;
+using KataCSharp.ProCSharpWithDotNET.DelegatesAndEvents;
 using KataCSharp.ProCSharpWithDotNET.Exceptions;
 using KataCSharp.ProCSharpWithDotNET.GarbageCollector;
 using KataCSharp.ProCSharpWithDotNET.IEnumerableAndIEnumerator;
@@ -96,7 +97,8 @@ namespace KataCSharp.Recursion
 			//var f = new FunWithGarbageCollector();
 			//var f = new FunWithPInvoke();
 			//var f = new FunWithObservableCollection();
-			var f = new CustomConversion();
+			//var f = new CustomConversion();
+			var f = new FunWithEvents();
 
 
 
