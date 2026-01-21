@@ -155,7 +155,7 @@ var files = new List<File>() {
 };
 var groupedFiles = files.GroupBy(f => f.Code);
 
-Console.WriteLine();
+Console.WriteLine(nameof(File.Code));
 
 
 var nullPropCallWhere = new File

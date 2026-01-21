@@ -90,7 +90,7 @@ namespace KataCSharp.Recursion
 
 			//var f = new FunWithSpan();
 			//var f = new FunWithRecords();
-			//var f = new FunWithExcpetions();
+			var f = new FunWithExcpetions();
 			//var f = new FunWithPolymorphism();
 			//var f = new FunWithEnumerator();
 			//var f = new JumpGame();
@@ -98,11 +98,11 @@ namespace KataCSharp.Recursion
 			//var f = new FunWithPInvoke();
 			//var f = new FunWithObservableCollection();
 			//var f = new CustomConversion();
-			var f = new FunWithEvents();
+			//var f = new FunWithEvents();
 
 
 
-			f.Start();
+			//f.Start();
 
 			//StringInterpolationSandbox.Start();
 			//ArrayIndices.Start();

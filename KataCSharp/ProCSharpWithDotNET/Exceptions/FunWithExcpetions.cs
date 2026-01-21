@@ -7,7 +7,29 @@ public class FunWithExcpetions
     public void Start()
     {
         CallException();
-    }
+
+        try
+        {
+            CallExceptionThrow();
+        }catch(Exception ex)
+        {
+            throw;
+        }
+	}
+
+    void CallExceptionThrow()
+    {
+        try
+        {
+            throw new Exception("This is a test exception");
+        }
+        catch (Exception ex) {
+            throw;
+            //throw new Exception("Not original exception");
+        }
+
+	}
+
 
     void CallException()
     {
