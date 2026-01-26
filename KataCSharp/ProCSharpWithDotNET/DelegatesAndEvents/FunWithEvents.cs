@@ -1,4 +1,8 @@
-﻿namespace KataCSharp.ProCSharpWithDotNET.DelegatesAndEvents
+﻿//https://learn.microsoft.com/en-us/dotnet/csharp/event-pattern Standard .NET event patterns
+//https://learn.microsoft.com/en-us/dotnet/csharp/events-overview
+//https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/event
+// EventHandler and why there is no need to define custom delegate types for events
+namespace KataCSharp.ProCSharpWithDotNET.DelegatesAndEvents
 {
 	public class FunWithEvents
 	{
@@ -9,7 +13,7 @@
 			car1.AboutToBlow += CarIsAlmostDoomed;
 			car1.AboutToBlow += CarAboutToBlow;
 
-			Car.CarEngineHandler d = CarExlpoded;
+			EventHandler<CarEventArgs> d = CarExlpoded;
 			car1.Exploded += d;
 
 			Console.WriteLine("**** Speeding up ****");
@@ -36,19 +40,25 @@
 			Console.WriteLine("*************\n");
 		}
 
-		static void CarAboutToBlow(string msg)
+		static void CarAboutToBlow(object sender, CarEventArgs e)
 		{
-			Console.WriteLine("CarAboutToBlow: " + msg);
+			if (sender is Car car)
+				Console.WriteLine("{0} says: {1}", car.PetName, e.msg);
+			else
+				Console.WriteLine(sender + " says: " + e.msg);
 		}
 
-		static void CarIsAlmostDoomed(string msg)
+		static void CarIsAlmostDoomed(object sender, CarEventArgs e)
 		{
-			Console.WriteLine("Critical message from Car: {0}", msg);
+			Console.WriteLine("Critical message from Car: {0}", e.msg);
 		}
 
-		static void CarExlpoded(string msg)
+		static void CarExlpoded(object sender, CarEventArgs e)
 		{
-			Console.WriteLine("CarExlpoded: " + msg);
+			if (sender is Car car)
+				Console.WriteLine("{0} CarExploded: {1}", car.PetName, e.msg);
+			else
+				Console.WriteLine(sender + " CarExploded: " + e.msg);
 		}
 
 		public class Car
@@ -69,41 +79,41 @@
 			}
 
 
-			public delegate void CarEngineHandler(string msgForCaller);
+			public delegate void CarEngineHandler(object sender, CarEventArgs e);
 
-			public event CarEngineHandler Exploded;
-			public event CarEngineHandler AboutToBlow;
+			public event EventHandler<CarEventArgs> Exploded;
+			public event EventHandler<CarEventArgs> AboutToBlow;
 
 			public void RegisterWithCarEngine(CarEngineHandler methodCall)
 			{
 				_listOfHandlers = methodCall;
 			}
 
-			public void Accelerate(int delta)
-			{
-				if (_carIsDead)
-					_listOfHandlers?.Invoke("Sorry, this car is dead");
-				else
-					CurrentSpeed += delta;
+			// public void Accelerate(int delta)
+			// {
+			// 	if (_carIsDead)
+			// 		_listOfHandlers?.Invoke("Sorry, this car is dead");
+			// 	else
+			// 		CurrentSpeed += delta;
 
-				if (10 == (MaxSpeed - CurrentSpeed))
-					_listOfHandlers?.Invoke("Careful buddy! Gonna blow!");
+			// 	if (10 == (MaxSpeed - CurrentSpeed))
+			// 		_listOfHandlers?.Invoke("Careful buddy! Gonna blow!");
 
-				if (CurrentSpeed >= MaxSpeed)
-					_carIsDead = true;
-				else
-					Console.WriteLine("CurrentSpeed = {0}", CurrentSpeed);
-			}
+			// 	if (CurrentSpeed >= MaxSpeed)
+			// 		_carIsDead = true;
+			// 	else
+			// 		Console.WriteLine("CurrentSpeed = {0}", CurrentSpeed);
+			// }
 
 			public void AccelerateWithEvent(int delta)
 			{
 				if (_carIsDead)
-					Exploded?.Invoke("Sorry, this car is dead");
+					Exploded?.Invoke(this, new CarEventArgs("Sorry, this car is dead"));
 				else
 					CurrentSpeed += delta;
 
 				if (10 == (MaxSpeed - CurrentSpeed))
-					AboutToBlow?.Invoke("Careful buddy! Gonna blow!");
+					AboutToBlow?.Invoke(this, new CarEventArgs("Careful buddy! Gonna blow!"));
 
 				if (CurrentSpeed >= MaxSpeed)
 					_carIsDead = true;
@@ -113,5 +123,13 @@
 
 		}
 
+		public class CarEventArgs : EventArgs
+		{
+			public readonly string msg;
+			public CarEventArgs(string message)
+			{
+				msg = message;
+			}
+		}
 	}
 }
