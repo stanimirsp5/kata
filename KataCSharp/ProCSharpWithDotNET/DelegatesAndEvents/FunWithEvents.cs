@@ -6,15 +6,40 @@ namespace KataCSharp.ProCSharpWithDotNET.DelegatesAndEvents
 {
 	public class FunWithEvents
 	{
+		static int currentFuel = 10;
 		public void Start()
 		{
 			var car1 = new Car("SlugBug", 100, 10);
 			//car1.RegisterWithCarEngine(new Car.CarEngineHandler(OnCarEngineEvent));
 			car1.AboutToBlow += CarIsAlmostDoomed;
 			car1.AboutToBlow += CarAboutToBlow;
+			car1.FuelIsLow += delegate (int fuelExpense)
+			{
+				currentFuel -= fuelExpense;
+				if (currentFuel == fuelExpense)
+				{
+					Console.WriteLine("Fuel tank is almost empty.");
+					return false;
+				}
+				else if (currentFuel == 0)
+				{
+					Console.WriteLine("Out of fuel.");
+					return true;
+				}
+				else
+				{
+					Console.WriteLine("Current fuel level: {0}", currentFuel);
+					return false;
+				}
+			};
+			car1.FuelIsMax += delegate (int _)
+			{
+				return currentFuel >= 10 ? true : false;
+			};
 
-			EventHandler<CarEventArgs> d = CarExlpoded;
-			car1.Exploded += d;
+			// EventHandler<CarEventArgs> d = CarExlpoded;
+			// car1.Exploded += d;
+			car1.Exploded += CarExlpoded;
 
 			Console.WriteLine("**** Speeding up ****");
 			for (int i = 0; i < 6; i++)
@@ -22,7 +47,8 @@ namespace KataCSharp.ProCSharpWithDotNET.DelegatesAndEvents
 				car1.AccelerateWithEvent(20);
 			}
 
-			car1.Exploded -= d;
+			//car1.Exploded -= d;
+			car1.Exploded -= CarExlpoded;
 
 			Console.WriteLine("**** Speeding up ****");
 			for (int i = 0; i < 6; i++)
@@ -83,6 +109,8 @@ namespace KataCSharp.ProCSharpWithDotNET.DelegatesAndEvents
 
 			public event EventHandler<CarEventArgs> Exploded;
 			public event EventHandler<CarEventArgs> AboutToBlow;
+			public event Func<int, bool> FuelIsLow;
+			public event Func<int, bool> FuelIsMax;
 
 			public void RegisterWithCarEngine(CarEngineHandler methodCall)
 			{
