@@ -6,15 +6,16 @@ public class FunWithExcpetions
 {
     public void Start()
     {
-        CallException();
+        //CallException();
 
         try
         {
             CallExceptionThrow();
         }catch(Exception ex)
         {
-            throw;
+            //throw;
         }
+        Console.WriteLine("End of Start method");
 	}
 
     void CallExceptionThrow()

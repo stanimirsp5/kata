@@ -10,9 +10,9 @@ using System.Text.Json.Serialization;
 MyMain myMain = new MyMain();
 myMain.Main();
 
-// MyMainAsync main = new MyMainAsync();
-// await main.RunMainAsync();
-
+//MyMainAsync main = new MyMainAsync();
+//await main.RunMainAsync();
+if (false) return; 
 var t = null ?? "is null";
 // shallow copy - yes
 var listBase = new List<string>() { "test1", "test2", "test3", "test4" };
@@ -145,7 +145,7 @@ void ListRefTest(List<string> list)
 
 char[] ch = new char[] { 'a', 'b' };
 string resStr = string.Join("", ch);
-
+var testFilePropeDefaultValue = new File();
 
 var files = new List<File>() {
 	new File { Id=1,Code="1", Name = "File 1"},

@@ -21,7 +21,7 @@ using KataCSharp.Sandbox.DataStructures;
 using KataCSharp.Sandbox.Dates;
 using KataCSharp.Sandbox.DynamicObjects;
 using KataCSharp.Sandbox.NullRef;
-using KataCSharp.Sandbox.Semaphore;
+using KataCSharp.Sandbox.SemaphoreExercises;
 using KataCSharp.Sandbox.Span;
 using KataCSharp.Sandbox.Threads;
 using KataCSharp.TaskParallelLibrary;
@@ -98,7 +98,8 @@ namespace KataCSharp.Recursion
 			//var f = new FunWithPInvoke();
 			//var f = new FunWithObservableCollection();
 			//var f = new CustomConversion();
-			var f = new FunWithEvents();
+			//var f = new FunWithEvents();
+			var f = new SandboxCommon();
 
 
 
@@ -106,7 +107,7 @@ namespace KataCSharp.Recursion
 
 			//StringInterpolationSandbox.Start();
 			//ArrayIndices.Start();
-
+			Console.ReadLine();
 		}
 	}
 	public class MyMainAsync
@@ -116,8 +117,8 @@ namespace KataCSharp.Recursion
 			//Tasks
 			//var f = new TaskMain();
 			//var f = new Day1_Trebuchet();
-			//var f = new SemaphoreSlimInitCountSandbox();
-			var f = new TaskAndValueTask();
+			var f = new SemaphoreSlimInitCountSandbox();
+			//var f = new TaskAndValueTask();
 
 
 
