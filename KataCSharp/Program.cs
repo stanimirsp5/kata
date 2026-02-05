@@ -7,12 +7,12 @@ using System.Linq;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-MyMain myMain = new MyMain();
-myMain.Main();
+//MyMain myMain = new MyMain();
+//myMain.Main();
 
-//MyMainAsync main = new MyMainAsync();
-//await main.RunMainAsync();
-if (false) return; 
+MyMainAsync main = new MyMainAsync();
+await main.RunMainAsync();
+if (true) return; 
 var t = null ?? "is null";
 // shallow copy - yes
 var listBase = new List<string>() { "test1", "test2", "test3", "test4" };

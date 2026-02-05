@@ -17,6 +17,7 @@ using KataCSharp.ProCSharpWithDotNET.Records;
 using KataCSharp.Recursion.Backtracking;
 using KataCSharp.Recursion.Princeton;
 using KataCSharp.Sandbox;
+using KataCSharp.Sandbox.CancellationTokens;
 using KataCSharp.Sandbox.DataStructures;
 using KataCSharp.Sandbox.Dates;
 using KataCSharp.Sandbox.DynamicObjects;
@@ -117,12 +118,15 @@ namespace KataCSharp.Recursion
 			//Tasks
 			//var f = new TaskMain();
 			//var f = new Day1_Trebuchet();
-			var f = new SemaphoreSlimInitCountSandbox();
+			//var f = new SemaphoreSlimInitCountSandbox();
+			var f = new CancellationTokenWithTask();
 			//var f = new TaskAndValueTask();
 
 
 
 			await f.Start();
+
+			Console.ReadLine();
 		}
 	}
 }
