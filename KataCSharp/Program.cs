@@ -7,12 +7,13 @@ using System.Linq;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-//MyMain myMain = new MyMain();
-//myMain.Main();
+if (false) { 
+	//MyMain myMain = new MyMain();
+	//myMain.Main();
 
-MyMainAsync main = new MyMainAsync();
-await main.RunMainAsync();
-if (true) return; 
+	MyMainAsync main = new MyMainAsync();
+	await main.RunMainAsync();
+}
 var t = null ?? "is null";
 // shallow copy - yes
 var listBase = new List<string>() { "test1", "test2", "test3", "test4" };
@@ -184,6 +185,7 @@ else
 
 string fileTypeEnum = FileTypeEnum.Image.ToString();
 string fileTypeEnum2 = Enum.GetName(FileTypeEnum.Image);
+//string enumDescription = FileTypeEnum.Image;
 
 var glassOfWater = new Glass();
 glassOfWater.Bottle ??= new Bottle("customName");
