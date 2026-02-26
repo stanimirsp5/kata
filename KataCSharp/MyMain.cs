@@ -100,7 +100,8 @@ namespace KataCSharp.Recursion
 			//var f = new FunWithObservableCollection();
 			//var f = new CustomConversion();
 			//var f = new FunWithEvents();
-			var f = new SandboxCommon();
+			//var f = new SandboxCommon();
+			var f = new ExceptByIntersectByUnionBy();
 
 
 

@@ -7,12 +7,14 @@ using System.Linq;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-if (false) { 
-	//MyMain myMain = new MyMain();
-	//myMain.Main();
+if (true) {
+	MyMain myMain = new MyMain();
+	myMain.Main();
 
-	MyMainAsync main = new MyMainAsync();
-	await main.RunMainAsync();
+	//MyMainAsync main = new MyMainAsync();
+	//await main.RunMainAsync();
+
+	return;
 }
 var t = null ?? "is null";
 // shallow copy - yes
