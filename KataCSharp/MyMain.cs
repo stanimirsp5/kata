@@ -12,7 +12,9 @@ using KataCSharp.ProCSharpWithDotNET.DelegatesAndEvents;
 using KataCSharp.ProCSharpWithDotNET.Exceptions;
 using KataCSharp.ProCSharpWithDotNET.GarbageCollector;
 using KataCSharp.ProCSharpWithDotNET.IEnumerableAndIEnumerator;
+using KataCSharp.ProCSharpWithDotNET.Multithreading;
 using KataCSharp.ProCSharpWithDotNET.OverloadingOperators;
+using KataCSharp.ProCSharpWithDotNET.ProcessAppDomainsLoadContexts;
 using KataCSharp.ProCSharpWithDotNET.Records;
 using KataCSharp.Recursion.Backtracking;
 using KataCSharp.Recursion.Princeton;
@@ -101,7 +103,11 @@ namespace KataCSharp.Recursion
 			//var f = new CustomConversion();
 			//var f = new FunWithEvents();
 			//var f = new SandboxCommon();
-			var f = new ExceptByIntersectByUnionBy();
+			//var f = new ExceptByIntersectByUnionBy();
+			//var f = new ProcessManipulator();
+			//var f = new DefaultAppDomain();
+			//var f = new SimpleMultithread();
+			var f = new ConcurrencyProblem();
 
 
 
