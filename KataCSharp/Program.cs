@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-if (true) {
+if (false) {
 	MyMain myMain = new MyMain();
 	myMain.Main();
 
@@ -144,7 +144,8 @@ void ListRefTest(List<string> list)
 	//list.Add("A");
 
 }
-
+var containedElements = new List<string> { "artifactory.kubdev.com/ews-docker/redis-commander:latest" };
+var isElementContained = containedElements.Where(el => el.Contains("kubdev"));
 
 char[] ch = new char[] { 'a', 'b' };
 string resStr = string.Join("", ch);
@@ -159,6 +160,20 @@ var files = new List<File>() {
 var groupedFiles = files.GroupBy(f => f.Code);
 
 Console.WriteLine(nameof(File.Code));
+
+// Test Min linq method with nullable properties and empty collections
+var dates = new List<Dish>{new Dish { Quantity=1, ManifacutredDate = DateTime.Now }};
+var filteredDates = dates.Where(d => d.Quantity == 2);
+var minDate = filteredDates.Min(d => d.ManifacutredDate);
+
+List<Pet> pets = new List<Pet>{ new Pet { Name="Barley", Age=8 },
+				   new Pet { Name="Boots", Age=4 },
+				   new Pet { Name="Whiskers", Age=1 } };
+
+int? min = pets.Min(pet => pet.Age);
+
+List<Pet> pets2 = new List<Pet>();
+int? min2 = pets.Where(pet => pet.Age > 1).Min(pet => pet.Age);
 
 
 var nullPropCallWhere = new File
@@ -262,6 +277,7 @@ class Dish
 {
 	public int? Quantity { get; set; }
 	public string? Name { get; set; }
+	public DateTime? ManifacutredDate { get; set; }
 }
 
 class Bottle
@@ -306,7 +322,11 @@ class Types
 	// creates new value when value is changhed
 
 }
-
+class Pet
+{
+	public string Name { get; set; }
+	public int? Age { get; set; }
+}
 
 enum FileTypeEnum
 {
