@@ -25,6 +25,8 @@ public class ConcurrencyProblem
 	{
 		public void PrintNumbers()
 		{
+			// lock (this)
+			// {
 			Console.WriteLine("-> {0} is executing PrintNumbers().", Thread.CurrentThread.Name);
 			for (int i = 0; i < 10; i++)
 			{
@@ -32,12 +34,13 @@ public class ConcurrencyProblem
 				//Console.Write("{0}, {1} ", Thread.CurrentThread.Name, i);
 
 				Random r = new Random();
-				Thread.Sleep(r.Next(10, 100));
+				//Thread.Sleep(r.Next(10, 100));
 				//Console.Write("{0}, ", i);
 				Console.Write("{0}, {1} ", Thread.CurrentThread.Name, i);
 
 			}
 			Console.WriteLine();
+			// }
 		}
 	}
 
