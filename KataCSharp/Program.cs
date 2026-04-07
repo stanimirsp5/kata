@@ -7,7 +7,8 @@ using System.Linq;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-if (false) {
+if (true)
+{
 	MyMain myMain = new MyMain();
 	myMain.Main();
 
@@ -163,7 +164,7 @@ var groupedFiles = files.GroupBy(f => f.Code);
 Console.WriteLine(nameof(File.Code));
 
 // Test Min linq method with nullable properties and empty collections
-var dates = new List<Dish>{new Dish { Quantity=1, ManifacutredDate = DateTime.Now }};
+var dates = new List<Dish> { new Dish { Quantity = 1, ManifacutredDate = DateTime.Now } };
 var filteredDates = dates.Where(d => d.Quantity == 2);
 var minDate = filteredDates.Min(d => d.ManifacutredDate);
 
@@ -253,7 +254,7 @@ var sideBet = JsonSerializer.Deserialize<AdditionalData>(sideBetJson);
 var dish = new Dish();
 var nullExpression = dish.Quantity > 0;
 var notNullExpression = dish.Quantity is > 0;
-if(dish.Quantity is int vall && vall >= 0)
+if (dish.Quantity is int vall && vall >= 0)
 {
 
 }
@@ -263,7 +264,7 @@ else
 }
 var e1 = FileTypeEnum.Image.ToString();
 var e2 = nameof(FileTypeEnum.Image);
-	Console.WriteLine();
+Console.WriteLine();
 
 public class AdditionalData
 {
@@ -361,10 +362,10 @@ enum FileTypeEnum
 	Text = 1,
 
 	[Display(Name = "My Image")]
-	[Description("My Image desc")] 
+	[Description("My Image desc")]
 	Image = 2,
 
 	[Display(Name = "My Video")]
-	[Description("My Video desc")] 
+	[Description("My Video desc")]
 	Video = 3
 }
