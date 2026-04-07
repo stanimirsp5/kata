@@ -56,7 +56,8 @@ if (fileWithNullTags.Tags != null)
 	}
 }
 
-var listOfNumbers = new List<int>() { 1, 2, 3, 4, 5 };
+var listOfNumbers = new List<int?>() { 1, 2, null,3, 4, 5 };
+var orderedNullNums = listOfNumbers.OrderBy(el => el).ToList();
 var emptyListOfNumbers = new List<int>();
 
 // merge dictionary
@@ -166,9 +167,34 @@ var dates = new List<Dish>{new Dish { Quantity=1, ManifacutredDate = DateTime.No
 var filteredDates = dates.Where(d => d.Quantity == 2);
 var minDate = filteredDates.Min(d => d.ManifacutredDate);
 
-List<Pet> pets = new List<Pet>{ new Pet { Name="Barley", Age=8 },
+var pet1 = new Pet
+{
+	Name = "Barley",
+	Age = 8
+};
+var pet2 = new Pet
+{
+	Name = "Test",
+	Age = 88
+};
+
+void DontChangeByRef(Pet pet, Pet pet2)
+{
+	
+	pet = pet2;
+}
+
+DontChangeByRef(pet1, pet2);
+
+void ChangeListByRef(List<Pet> pet)
+{
+
+	pet[0] = pet2;
+}
+List <Pet> pets = new List<Pet>{ pet1,
 				   new Pet { Name="Boots", Age=4 },
 				   new Pet { Name="Whiskers", Age=1 } };
+ChangeListByRef(pets);
 
 int? min = pets.Min(pet => pet.Age);
 
