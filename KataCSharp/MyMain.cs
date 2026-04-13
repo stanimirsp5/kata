@@ -107,7 +107,8 @@ namespace KataCSharp.Recursion
 			//var f = new ProcessManipulator();
 			//var f = new DefaultAppDomain();
 			//var f = new SimpleMultithread();
-			var f = new ConcurrencyProblem();
+			//var f = new ConcurrencyProblem();
+			var f = new FunWithThreadPool();
 
 
 
