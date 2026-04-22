@@ -10,7 +10,7 @@ public class FunWithExcpetions
 
         try
         {
-            CallExceptionThrow();
+            CallExceptionThrow2();
         }catch(Exception ex)
         {
             //throw;
@@ -20,15 +20,41 @@ public class FunWithExcpetions
 
     void CallExceptionThrow()
     {
-        try
-        {
-            throw new Exception("This is a test exception");
-        }
-        catch (Exception ex) {
-            throw;
-            //throw new Exception("Not original exception");
-        }
+		try
+		{
+			throw new Exception("This is a origin exception");
+		}
+		catch (Exception ex)
+		{
+			try
+			{
+				throw new Exception("Inner exception", ex);
+			}
+			catch (Exception innerEx)
+			{
+				throw new Exception("This is a new exception", innerEx);
+			}
+		}
+	}
 
+    void CallExceptionThrow2()
+    {
+		try
+		{
+			throw new Exception("This is a origin exception");
+
+		}
+		catch (Exception ex)
+		{
+			try
+			{
+                throw;
+			}
+			catch (Exception innerEx)
+			{
+                throw;
+			}
+		}
 	}
 
 

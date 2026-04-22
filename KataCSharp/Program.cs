@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-if (true)
+if (false)
 {
 	MyMain myMain = new MyMain();
 	myMain.Main();
@@ -88,6 +88,7 @@ var emptyList2 = new List<string>();
 List<string> nullList = null;
 var notEmptyList = new List<List<string>>() { emptyList1, emptyList2, nullList };
 //var eresu = notEmptyList.SelectMany(notEmptyList => notEmptyList).ToList();
+var resultFromNullList = nullList?.Where(el => el == "test").ToList();
 
 var listCtor = new List<int>() { 1, 2, 3 };
 var listCtor2 = new List<int>(listCtor) { 4, 5 };

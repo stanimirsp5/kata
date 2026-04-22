@@ -93,7 +93,7 @@ namespace KataCSharp.Recursion
 
 			//var f = new FunWithSpan();
 			//var f = new FunWithRecords();
-			// var f = new FunWithExcpetions();
+			 var f = new FunWithExcpetions();
 			//var f = new FunWithPolymorphism();
 			//var f = new FunWithEnumerator();
 			//var f = new JumpGame();
@@ -108,7 +108,7 @@ namespace KataCSharp.Recursion
 			//var f = new DefaultAppDomain();
 			//var f = new SimpleMultithread();
 			//var f = new ConcurrencyProblem();
-			var f = new FunWithThreadPool();
+			//var f = new FunWithThreadPool();
 
 
 
@@ -127,8 +127,9 @@ namespace KataCSharp.Recursion
 			//var f = new TaskMain();
 			//var f = new Day1_Trebuchet();
 			//var f = new SemaphoreSlimInitCountSandbox();
-			var f = new CancellationTokenWithTask();
+			//var f = new CancellationTokenWithTask();
 			//var f = new TaskAndValueTask();
+			var f = new FunWithParallel();
 
 
 
