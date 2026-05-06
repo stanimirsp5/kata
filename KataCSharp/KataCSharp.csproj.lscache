@@ -156,6 +156,7 @@ ProCSharpWithDotNET/
  Indexers/FunWithIndexers.cs
  Interfaces/IFunWithInterfaces.cs
  Multithreading/
+  AsyncLocalFunctions.cs
   ConcurrencyProblem.cs
   FunWithThreadPool.cs
   SimpleMultithread.cs
