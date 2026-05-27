@@ -74,10 +74,25 @@ var res = listDict.SelectMany(dict => dict).ToLookup(dict => dict.Key, dict => d
 
 foreach (var group in res)
 {
+
 	//Console.WriteLine(group.Key);
 	foreach (var item in group)
 	{
+
 		//Console.WriteLine(item);
+		try
+		{
+			if (item.Contains("en1"))
+			{
+				return;
+				//continue;
+			}
+		}
+		catch (Exception ex)
+		{
+
+			throw;
+		}
 	}
 }
 
@@ -89,7 +104,7 @@ List<string> nullList = null;
 var notEmptyList = new List<List<string>>() { emptyList1, emptyList2, nullList };
 //var eresu = notEmptyList.SelectMany(notEmptyList => notEmptyList).ToList();
 var resultFromNullList = nullList?.Where(el => el == "test").ToList();
-
+var nullCount = resultFromNullList?.Count ?? 0;
 var listCtor = new List<int>() { 1, 2, 3 };
 var listCtor2 = new List<int>(listCtor) { 4, 5 };
 var nestedListBase = new List<List<int>>() { listCtor };
