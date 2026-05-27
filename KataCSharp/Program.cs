@@ -1,13 +1,23 @@
 ﻿
 using KataCSharp.LeetCode.B;
 using KataCSharp.Recursion;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Configuration.Json;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-if (true)
+
+IConfiguration configuration = new ConfigurationBuilder()
+	.SetBasePath(Directory.GetCurrentDirectory())
+	.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
+	.Build();
+
+var runAsynchronous = configuration.GetValue<bool>("RunAsynchronous");
+
+if (runAsynchronous)
 {
 	// MyMain myMain = new MyMain();
 	// myMain.Main();
@@ -17,6 +27,9 @@ if (true)
 
 	return;
 }
+
+var jsonConfigObj = configuration.GetSection("DishConfig").Get<Dish>();
+
 var t = null ?? "is null";
 // shallow copy - yes
 var listBase = new List<string>() { "test1", "test2", "test3", "test4" };
