@@ -7,13 +7,13 @@ using System.Linq;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
-if (false)
+if (true)
 {
-	MyMain myMain = new MyMain();
-	myMain.Main();
+	// MyMain myMain = new MyMain();
+	// myMain.Main();
 
-	//MyMainAsync main = new MyMainAsync();
-	//await main.RunMainAsync();
+	MyMainAsync main = new MyMainAsync();
+	await main.RunMainAsync();
 
 	return;
 }
@@ -57,7 +57,7 @@ if (fileWithNullTags.Tags != null)
 	}
 }
 
-var listOfNumbers = new List<int?>() { 1, 2, null,3, 4, 5 };
+var listOfNumbers = new List<int?>() { 1, 2, null, 3, 4, 5 };
 var orderedNullNums = listOfNumbers.OrderBy(el => el).ToList();
 var emptyListOfNumbers = new List<int>();
 
@@ -197,7 +197,7 @@ var pet2 = new Pet
 
 void DontChangeByRef(Pet pet, Pet pet2)
 {
-	
+
 	pet = pet2;
 }
 
@@ -208,7 +208,7 @@ void ChangeListByRef(List<Pet> pet)
 
 	pet[0] = pet2;
 }
-List <Pet> pets = new List<Pet>{ pet1,
+List<Pet> pets = new List<Pet>{ pet1,
 				   new Pet { Name="Boots", Age=4 },
 				   new Pet { Name="Whiskers", Age=1 } };
 ChangeListByRef(pets);
