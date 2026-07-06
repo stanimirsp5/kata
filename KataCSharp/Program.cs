@@ -1,11 +1,7 @@
-﻿
-using KataCSharp.LeetCode.B;
-using KataCSharp.Recursion;
+﻿using KataCSharp.Recursion;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Configuration.Json;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
@@ -15,16 +11,22 @@ IConfiguration configuration = new ConfigurationBuilder()
 	.AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
 	.Build();
 
-var runAsynchronous = configuration.GetValue<bool>("RunAsynchronous");
+var runMyMain = configuration.GetValue<bool>("RunMyMain");
 
-if (runAsynchronous)
+if (runMyMain)
 {
-	// MyMain myMain = new MyMain();
-	// myMain.Main();
+	var runAsynchronous = configuration.GetValue<bool>("RunAsynchronous");
 
-	MyMainAsync main = new MyMainAsync();
-	await main.RunMainAsync();
-
+	if (runAsynchronous)
+	{
+		MyMainAsync main = new MyMainAsync();
+		await main.RunMainAsync();
+	}
+	else
+	{
+		MyMain myMain = new MyMain();
+		myMain.Main();
+	}
 	return;
 }
 

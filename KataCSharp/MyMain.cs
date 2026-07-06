@@ -16,6 +16,7 @@ using KataCSharp.ProCSharpWithDotNET.Multithreading;
 using KataCSharp.ProCSharpWithDotNET.OverloadingOperators;
 using KataCSharp.ProCSharpWithDotNET.ProcessAppDomainsLoadContexts;
 using KataCSharp.ProCSharpWithDotNET.Records;
+using KataCSharp.ProCSharpWithDotNET.Reflection;
 using KataCSharp.Recursion.Backtracking;
 using KataCSharp.Recursion.Princeton;
 using KataCSharp.Sandbox;
@@ -93,7 +94,7 @@ namespace KataCSharp.Recursion
 
 			//var f = new FunWithSpan();
 			//var f = new FunWithRecords();
-			var f = new FunWithExcpetions();
+			//var f = new FunWithExcpetions();
 			//var f = new FunWithPolymorphism();
 			//var f = new FunWithEnumerator();
 			//var f = new JumpGame();
@@ -109,6 +110,7 @@ namespace KataCSharp.Recursion
 			//var f = new SimpleMultithread();
 			//var f = new ConcurrencyProblem();
 			//var f = new FunWithThreadPool();
+			var f = new LateBinding();
 
 
 
