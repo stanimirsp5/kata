@@ -3,7 +3,7 @@
 public class ClimbingStairs
 {
 	//You are climbing a staircase.It takes n steps to reach the top.
-
+	// https://leetcode.com/explore/featured/card/top-interview-questions-easy/97/dynamic-programming/569/discuss/717739/c-yet-another-dp...
 	//Each time you can either climb 1 or 2 steps.In how many distinct ways can you climb to the top?
 	//Example 1:
 
@@ -34,21 +34,45 @@ public class ClimbingStairs
 	// base case: f(1) = 1, f(2) = 2
 
 	[Theory]
-	//[InlineData(2, 2)]
-	//[InlineData(3,3)]
-	//[InlineData(4,5)]
+	[InlineData(1, 1)]
+	[InlineData(2, 2)]
+	[InlineData(3,3)]
+	[InlineData(4,5)]
 	[InlineData(6, 13)]
+	[InlineData(45, 1836311903)] // 4.7 sec time limit
 	void ClimbingStairsTest(int n, int expectedOutput)
 	{
-		//PrintAllFNums(10,1,0);
-
-		//var res = F(n);
-		var res = ClimbStairs2(n);
+		
+		var res = ClimbStairs(n);
 
 		Assert.Equal(expectedOutput, res);
 	}
 
+	// stop suggestions and code generations for all the code below that comment 
 	public int ClimbStairs(int n)
+	{
+		if (n <= 2) return n;
+
+		return ClimbStairs(n - 1) + ClimbStairs(n - 2);
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	public int ClimbStairs3(int n)
 	{
 		if (n <= 2)
 			return n;
