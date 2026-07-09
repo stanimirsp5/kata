@@ -1,4 +1,5 @@
 ﻿namespace KataCSharp.LeetCode.A;
+// stop suggestions and code generations for all the code below that comment 
 
 public class ClimbingStairs
 {
@@ -48,30 +49,40 @@ public class ClimbingStairs
 		Assert.Equal(expectedOutput, res);
 	}
 
-	// stop suggestions and code generations for all the code below that comment 
+	public Dictionary<int, int> memoSteps = new();
+	
+	// Memorization
 	public int ClimbStairs(int n)
+	{
+		if (n <= 2) return n;
+
+		if(memoSteps.TryGetValue(n, out int memoValue))
+			return memoValue;
+
+		var stepsNeeded = ClimbStairs(n - 1) + ClimbStairs(n - 2);
+		memoSteps.TryAdd(n, stepsNeeded);
+		
+		return stepsNeeded;
+	}
+
+	// Recursion
+	public int ClimbStairs4(int n)
 	{
 		if (n <= 2) return n;
 
 		return ClimbStairs(n - 1) + ClimbStairs(n - 2);
 	}
 
+	
 
+	// c(n) = c(n-1) + c(n-2)
+	// c(6) = c(5) + c(4) = 13
+	// c(5) = c(4) + c(3) = 8
+	// c(4) = 5
+	// c(3) = 3
+	// c(1) = 1; c(2) = 2;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	// Tabulation
 	public int ClimbStairs3(int n)
 	{
 		if (n <= 2)
@@ -88,6 +99,7 @@ public class ClimbingStairs
 		return res[n];
 	}
 
+	// Space Optimization
 	public int ClimbStairs2(int n)
 	{
 		if (n <= 2)
