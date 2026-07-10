@@ -12,6 +12,7 @@ using KataCSharp.ProCSharpWithDotNET.DelegatesAndEvents;
 using KataCSharp.ProCSharpWithDotNET.Exceptions;
 using KataCSharp.ProCSharpWithDotNET.GarbageCollector;
 using KataCSharp.ProCSharpWithDotNET.IEnumerableAndIEnumerator;
+using KataCSharp.ProCSharpWithDotNET.JsonSerializer;
 using KataCSharp.ProCSharpWithDotNET.Multithreading;
 using KataCSharp.ProCSharpWithDotNET.OverloadingOperators;
 using KataCSharp.ProCSharpWithDotNET.ProcessAppDomainsLoadContexts;
@@ -110,7 +111,8 @@ namespace KataCSharp.Recursion
 			//var f = new SimpleMultithread();
 			//var f = new ConcurrencyProblem();
 			//var f = new FunWithThreadPool();
-			var f = new LateBinding();
+			//var f = new LateBinding();
+			var f = new FunWithSerialization();
 
 
 
