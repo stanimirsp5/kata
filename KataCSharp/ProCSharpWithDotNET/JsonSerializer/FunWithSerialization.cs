@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.Json.Serialization;
-using System.Threading.Tasks;
+﻿using System.Text.Json.Serialization;
 
 namespace KataCSharp.ProCSharpWithDotNET.JsonSerializer
 {
@@ -18,13 +13,20 @@ namespace KataCSharp.ProCSharpWithDotNET.JsonSerializer
 			{
 				WriteIndented = true,
 				DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
-				IncludeFields = true
+				IncludeFields = true,
+				NumberHandling = JsonNumberHandling.AllowNamedFloatingPointLiterals & JsonNumberHandling.WriteAsString,
+				//PropertyNamingPolicy = null - change serialization to use PascalCase instead of camelCase
 			};
 			var carJson = System.Text.Json.JsonSerializer.Serialize(jamesBondCar, options);
 
+			// Set a variable to the Documents path.
+			string docPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 
-
-
+			// Append text to an existing file named "FunWithSerialization.txt".
+			using (StreamWriter outputFile = new StreamWriter(Path.Combine(docPath, "FunWithSerialization2.txt"), true))
+			{
+				outputFile.WriteLine(carJson);
+			}
 
 
 
