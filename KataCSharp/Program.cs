@@ -33,6 +33,7 @@ if (runMyMain)
 var jsonConfigObj = configuration.GetSection("DishConfig").Get<Dish>();
 
 var t = null ?? "is null";
+var t2 = "test" ?? "is null";
 // shallow copy - yes
 var listBase = new List<string>() { "test1", "test2", "test3", "test4" };
 var listRef = listBase;
