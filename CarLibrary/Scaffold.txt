@@ -1,0 +1,9 @@
+"Data Source=(localdb)\mssqllocaldb;Initial Catalog=AutoLot;Integrated Security=True" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Entities -Verbose -Force
+
+
+ef migration power shell
+dotnet ef migrations add AddCarTable
+
+Package manager console
+Add-Migration AddCarTable
+Update-Database
