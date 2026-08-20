@@ -3,6 +3,7 @@
 
 ef migration power shell
 dotnet ef migrations add AddCarTable
+dotnet ef database update
 
 Package manager console
 Add-Migration AddCarTable
