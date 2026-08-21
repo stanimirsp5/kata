@@ -296,8 +296,18 @@ else
 }
 var e1 = FileTypeEnum.Image.ToString();
 var e2 = nameof(FileTypeEnum.Image);
-Console.WriteLine();
 
+
+
+// SelectMany with List null test 
+var file1 = new File { Id = 1, Name = "File 1" };
+var file2 = new File { Id = 2, Name = "File 2" };
+var file3 = new File { Id = 3, Name = "File 3" };
+var listOfFiles = new List<File> { file1, file2, file3 };
+var tags = listOfFiles.SelectMany(f => f.Tags);//.ToList();//Throw NullReferenceException because Tags is null for all files
+
+
+Console.ReadLine();
 public class AdditionalData
 {
 	[JsonPropertyName("sideBetsCount")]
