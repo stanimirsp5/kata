@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarLibrary", "CarLibrary\Ca
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataProviderFactory", "DataProviderFactory\DataProviderFactory.csproj", "{395875CC-02BA-46F9-A1FB-A9ECF93E3698}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CarLibrary.Tests", "CarLibrary.Tests\CarLibrary.Tests.csproj", "{3551D107-E401-4195-8946-29CD2A60C65B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{395875CC-02BA-46F9-A1FB-A9ECF93E3698}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{395875CC-02BA-46F9-A1FB-A9ECF93E3698}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{395875CC-02BA-46F9-A1FB-A9ECF93E3698}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3551D107-E401-4195-8946-29CD2A60C65B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3551D107-E401-4195-8946-29CD2A60C65B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3551D107-E401-4195-8946-29CD2A60C65B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3551D107-E401-4195-8946-29CD2A60C65B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
