@@ -22,6 +22,8 @@
 		<PackageReference Include="System.Data.Odbc" Version="11.0.0-preview.6.26359.118" />
 
 		<PackageReference Include="System.Data.OleDb" Version="11.0.0-preview.6.26359.118" />
+
+		<PackageReference Include="xunit.extensibility.core" Version="2.9.3" />
 	</ItemGroup>
 
 </Project>

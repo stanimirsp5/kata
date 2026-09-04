@@ -4,8 +4,9 @@ using System.Text;
 
 namespace CarLibrary.Repository
 {
-	internal interface IRepository<T>
+	public interface IRepository<T>
 	{
 		public T GetOne(int id);
+		public void Dispose();
 	}
 }

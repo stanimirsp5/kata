@@ -7,7 +7,7 @@ using System.Text;
 
 namespace CarLibrary.Repository
 {
-	public class Repository<T> : IRepository<T> where T : class
+	public class Repository<T> : IRepository<T>, IDisposable where T : class
 	{
 
 		private readonly AutoLotContext context;
@@ -19,10 +19,17 @@ namespace CarLibrary.Repository
 			dbSet = context.Set<T>();
 		}
 
+		public void Dispose()
+		{
+			throw new NotImplementedException();
+		}
+
 		public T GetOne(int id)
 		{
 			return dbSet.Find(id);
 		}
+
+
 
 
 	}
