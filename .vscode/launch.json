@@ -4,6 +4,16 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
-    
+        {
+            "name": "KataCSharp",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build KataCSharp",
+            "program": "${workspaceFolder}/KataCSharp/bin/Debug/net8.0/KataCSharp.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/KataCSharp",
+            "console": "integratedTerminal",
+            "stopAtEntry": false
+        }
     ]
 }

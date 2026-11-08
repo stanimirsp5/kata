@@ -30,6 +30,7 @@ using KataCSharp.Sandbox.SemaphoreExercises;
 using KataCSharp.Sandbox.Span;
 using KataCSharp.Sandbox.Threads;
 using KataCSharp.TaskParallelLibrary;
+using KataCSharp.TaskParallelLibrary.ParallelProcessing;
 using System;
 namespace KataCSharp.Recursion
 {
@@ -134,7 +135,8 @@ namespace KataCSharp.Recursion
 			//var f = new CancellationTokenWithTask();
 			//var f = new TaskAndValueTask();
 			//var f = new FunWithParallel();
-			var f = new AsyncLocalFunctions();
+			//var f = new AsyncLocalFunctions();
+			var f = new FunWithParallelProcessing();
 
 
 

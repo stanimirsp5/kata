@@ -1,0 +1,15 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build KataCSharp",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/KataCSharp/KataCSharp.csproj"
+            ],
+            "problemMatcher": "$msCompile"
+        }
+    ]
+}
