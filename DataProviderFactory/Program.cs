@@ -4,63 +4,25 @@
 using DataProviderFactory;
 using Microsoft.Extensions.Configuration;
 using System.Data.Common;
+using Microsoft.Data.SqlClient;
 
-Console.WriteLine("Fun with Data Provider Factories");
+//FactoryDbConnection.Start();
 
+Console.WriteLine("Fun with Data Readers");
 
-
-var (provider, connectionString) = GetDataProviderFromConfiguration();
-DbProviderFactory factory = GetDbProviderFactory(provider);
-
-using (DbConnection connection = factory.CreateConnection())
+using (SqlConnection connection = new SqlConnection("Data Source=(localdb)\\mssqllocaldb;Initial Catalog=AutoLot;Integrated Security=True"))
 {
-	Console.WriteLine($"Your connection object is of type {connection.GetType().Name}");
-	connection.ConnectionString = connectionString;
 	connection.Open();
+	var sql = "SELECT * FROM Inventory i inner join Makes m on m.Id = i.MakeId";
+	SqlCommand command = new SqlCommand(sql, connection);
 
-	DbCommand command = factory.CreateCommand();
-	Console.WriteLine($"Your command object is of type {command.GetType().Name}");
-	command.Connection = connection;
-	command.CommandText = "SELECT * FROM Inventory i inner join Makes m on m.Id = i.MakeId";
-
-	// Print data with data reader
-	using (DbDataReader reader = command.ExecuteReader())
+	using (SqlDataReader reader = command.ExecuteReader())
 	{
-		Console.WriteLine($"Your data reader object is of type {reader.GetType().Name}");
-
 		while (reader.Read())
 		{
 			Console.WriteLine($"Car: #{reader["Id"]}, is a {reader["Name"]}");
 		}
 	}
 }
+
 Console.ReadLine();
-
-
-static DbProviderFactory GetDbProviderFactory(DataProviderEnum provider) => provider switch
-{
-	DataProviderEnum.SqlServer => Microsoft.Data.SqlClient.SqlClientFactory.Instance,
-	DataProviderEnum.Odbc => System.Data.Odbc.OdbcFactory.Instance,
-#if PC
-	DataProviderEnum.OleDb => System.Data.OleDb.OleDbFactory.Instance,
-#endif
-	_ => throw new ArgumentException("Invalid data provider value supplied.")
-};
-
-static (DataProviderEnum Provider, string ConnectionString) GetDataProviderFromConfiguration()
-{
-
-	IConfiguration config = new ConfigurationBuilder()
-		.SetBasePath(Directory.GetCurrentDirectory())
-		.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-		.Build();
-	var providerName = config["ProviderName"];
-
-	if (Enum.TryParse<DataProviderEnum>(providerName, out var provider))
-	{
-		var connectionString = config[$"{providerName}:ConnectionString"];
-		return (provider, connectionString);
-	}
-
-	throw new Exception("Invalid data provider value supplied.");
-}
